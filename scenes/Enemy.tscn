@@ -155,9 +155,6 @@ speed = 5
 transform = Transform( 1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, 0 )
 shape = SubResource( 1 )
 
-[node name="WeakSpot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68816, 0 )
-
 [node name="ChaseRefreshTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
@@ -181,3 +178,10 @@ anims/Attack = SubResource( 8 )
 anims/Idle = SubResource( 9 )
 anims/RESET = SubResource( 11 )
 anims/Walk = SubResource( 10 )
+
+[node name="Attack" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -2 )
+collision_mask = 3
+debug_shape_thickness = 3

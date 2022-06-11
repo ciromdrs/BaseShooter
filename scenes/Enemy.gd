@@ -3,7 +3,8 @@ extends "res://scripts/Character.gd"
 
 enum STATES {
 	idle,
-	walking
+	walking,
+	attacking
 }
 
 
@@ -19,6 +20,10 @@ func _process(delta):
 		$Model/AnimationPlayer.current_animation = "Idle"
 	elif state == STATES.walking:
 		$Model/AnimationPlayer.current_animation = "Walk"
+	elif state == STATES.attacking:
+		$Model/AnimationPlayer.current_animation = "Attack"
+		if !$Model/AnimationPlayer.is_playing():
+			state = STATES.idle
 	
 	if chased != null:
 		if $ChaseRefreshTimer.is_stopped() or path_index == path_to_chased.size()-1:
@@ -32,10 +37,19 @@ func _process(delta):
 			var next = path_to_chased[path_index]
 			move((next-global_transform.origin).normalized()*delta)
 			lerp_look_at(next)
-			state = STATES.walking
+			if state == STATES.idle:
+				state = STATES.walking
 			if almost_equal(global_transform.origin, next):
 				path_index += 1
 				lerp_look_at(path_to_chased[path_index])
+
+
+func _physics_process(delta):
+	if $Attack.is_colliding():
+		state = STATES.attacking
+	else:
+		state = STATES.idle
+
 
 func chase(to_chase):
 	chased = to_chase
