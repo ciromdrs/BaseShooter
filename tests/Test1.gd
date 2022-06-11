@@ -27,7 +27,7 @@ func spawn_enemy():
 	new.transform.origin = pos
 	var model = zombie_model.instance()
 	model.scale = Vector3(3,3,3)
-	new.set_model(model)
+	#new.set_model(model)
 	new.navigation = $Navigation
 	new.chased = $Player
 	new.speed = 5
