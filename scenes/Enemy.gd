@@ -46,7 +46,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	if $Attack.is_colliding():
-		state = STATES.attacking
+		if $Attack.get_collider() == chased:
+			state = STATES.attacking
 	else:
 		state = STATES.idle
 
