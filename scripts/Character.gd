@@ -31,3 +31,11 @@ func set_speed(new_speed):
 	speed = new_speed
 	move_speed = speed
 	rotation_speed = speed * PI/4
+
+
+func set_model(model):
+	var old = get_node("Model")
+	remove_child(old)
+	old.queue_free()
+	model.name = "Model"
+	add_child(model)
