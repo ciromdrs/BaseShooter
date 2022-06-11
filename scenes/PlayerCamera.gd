@@ -1,3 +1,8 @@
+"""
+3D Camera
+http://kidscancode.org/godot_recipes/3d/camera_gimbal/
+"""
+
 extends Spatial
 
 
