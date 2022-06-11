@@ -1,0 +1,10 @@
+# Godot stuff
+.DS_Store
+*~
+.import/
+logs/
+
+
+# 3D models
+**.blend1
+**.glb
