@@ -2,7 +2,6 @@ extends Spatial
 
 
 var enemy_scene = preload("res://scenes/Enemy.tscn")
-var zombie_model = preload("res://assets/zombie.tscn")
 
 
 func _ready():
@@ -27,8 +26,6 @@ func spawn_enemy():
 	var pos = Vector3(randi() % 100 - 50, 0, randi() % 100 - 50)
 	var new = enemy_scene.instance()
 	new.transform.origin = pos
-	var model = zombie_model.instance()
-	model.scale = Vector3(3,3,3)
 	new.navigation = $Navigation
 	new.chased = $Player
 	new.speed = 5
