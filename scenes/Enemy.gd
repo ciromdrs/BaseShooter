@@ -16,14 +16,16 @@ var state = STATES.idle
 
 
 func _process(delta):
-	if state == STATES.idle:
-		$Model/AnimationPlayer.current_animation = "Idle"
-	elif state == STATES.walking:
-		$Model/AnimationPlayer.current_animation = "Walk"
-	elif state == STATES.attacking:
-		$Model/AnimationPlayer.current_animation = "Attack"
-		if !$Model/AnimationPlayer.is_playing():
+	var animplayer = $Model/AnimationPlayer
+	if state == STATES.attacking:
+		animplayer.current_animation = "Attack"
+		if almost_finished_animation():
 			state = STATES.idle
+		return
+	if state == STATES.idle:
+		animplayer.current_animation = "Idle"
+	elif state == STATES.walking:
+		animplayer.current_animation = "Walk"
 	
 	if chased != null:
 		if $ChaseRefreshTimer.is_stopped() or path_index == path_to_chased.size()-1:
@@ -45,14 +47,10 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if $Attack.is_colliding():
-		if $Attack.get_collider() == chased:
-			state = STATES.attacking
-	else:
-		if path_to_chased != null:
-			state = STATES.walking
-		else:
-			state = STATES.idle
+	if state != STATES.attacking:
+		if $Attack.is_colliding():
+			if $Attack.get_collider() == chased:
+				state = STATES.attacking
 
 
 func chase(to_chase):
@@ -64,3 +62,9 @@ func almost_equal(v1, v2, precision=1):
 	if (v2-v1).length() < precision:
 		return true
 	return false
+
+
+func almost_finished_animation():
+	var current = $Model/AnimationPlayer.current_animation_position
+	var total = $Model/AnimationPlayer.current_animation_length
+	return current / total >= .99 # use a constant value almost equal to 1
