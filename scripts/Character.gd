@@ -18,7 +18,7 @@ func _process(delta):
 		rotation.y = angle
 
 
-# make character move to and look at the same target
+# TODO: make character move to and look at the same target
 func move(movement):
 	move_and_collide(movement*move_speed)
 
