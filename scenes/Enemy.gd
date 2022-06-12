@@ -49,7 +49,10 @@ func _physics_process(delta):
 		if $Attack.get_collider() == chased:
 			state = STATES.attacking
 	else:
-		state = STATES.idle
+		if path_to_chased != null:
+			state = STATES.walking
+		else:
+			state = STATES.idle
 
 
 func chase(to_chase):

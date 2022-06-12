@@ -25,7 +25,7 @@ surfaces/0 = {
 albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="Animation" id=8]
-resource_name = "Attack"
+resource_name = "attack"
 tracks/0/type = "value"
 tracks/0/path = NodePath("MeshInstance:rotation_degrees")
 tracks/0/interp = 2
@@ -52,7 +52,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=9]
-resource_name = "Idle"
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/path = NodePath("MeshInstance:translation")
 tracks/0/interp = 1
@@ -117,7 +117,7 @@ tracks/2/keys = {
 "values": [ Vector3( 0, 3, -0.990573 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 resource_name = "Walk"
 loop = true
 tracks/0/type = "value"
@@ -177,7 +177,7 @@ material/0 = SubResource( 5 )
 anims/Attack = SubResource( 8 )
 anims/Idle = SubResource( 9 )
 anims/RESET = SubResource( 11 )
-anims/Walk = SubResource( 10 )
+anims/Walk = SubResource( 12 )
 
 [node name="Attack" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
