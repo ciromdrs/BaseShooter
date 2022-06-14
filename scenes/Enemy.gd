@@ -29,6 +29,7 @@ func _process(delta):
 	
 	if chased != null:
 		if $ChaseRefreshTimer.is_stopped() or path_index == path_to_chased.size()-1:
+			update_refresh_interval()
 			$ChaseRefreshTimer.start()
 			path_to_chased = navigation.get_simple_path(
 				global_transform.origin,
@@ -68,3 +69,8 @@ func almost_finished_animation():
 	var current = $Model/AnimationPlayer.current_animation_position
 	var total = $Model/AnimationPlayer.current_animation_length
 	return current / total >= .99 # use a constant value almost equal to 1
+
+
+func update_refresh_interval():
+	var distance = global_transform.origin.distance_to(chased.global_transform.origin)
+	$ChaseRefreshTimer.wait_time = .05 if distance <= 10000 else 1
