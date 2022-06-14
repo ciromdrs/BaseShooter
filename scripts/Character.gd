@@ -11,10 +11,8 @@ export(int) var speed = 10 setget set_speed
 var move_speed = speed
 var rotation_speed = speed * PI/4
 var target:Vector3
-var valid_transitions = {
-	IDLE: [IDLE, WALKING, ATTACKING],
-	WALKING: [IDLE, WALKING, ATTACKING],
-	ATTACKING: []
+var invalid_transitions = {
+	ATTACKING: [IDLE, WALKING, ATTACKING]
 }
 
 func _process(delta):
@@ -81,4 +79,4 @@ func almost_finished_animation():
 
 
 func valid_transition(to_state):
-	return to_state in valid_transitions.get(state, [])
+	return not(to_state in invalid_transitions.get(state, []))
