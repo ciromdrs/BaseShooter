@@ -3,12 +3,12 @@ extends "res://scripts/Character.gd"
 
 func _process(_delta):
 	var animplayer = $Model/AnimationPlayer
-	if state == States.attacking:
+	if state == ATTACKING:
 		animplayer.current_animation = "Attack"
 		if almost_finished_animation():
-			state = States.idle
+			state = IDLE
 		return
-	if state == States.idle:
+	if state == IDLE:
 		animplayer.current_animation = "Idle"
-	elif state == States.walking:
+	elif state == WALKING:
 		animplayer.current_animation = "Walk"

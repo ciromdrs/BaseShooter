@@ -1,29 +1,28 @@
 extends KinematicBody
 
 
-enum States {
-	idle,
-	walking,
-	attacking
-}
-var state = States.idle
+const IDLE = "IDLE"
+const WALKING = "WALKING"
+const ATTACKING = "ATTACKING"
+
+var state = IDLE
 # Overall speed value. Other speeds are calculated from this one.
 export(int) var speed = 10 setget set_speed
 var move_speed = speed
 var rotation_speed = speed * PI/4
 var target:Vector3
-export(Dictionary) var valid_transitions:Dictionary
+
 
 func _process(delta):
 	var animplayer = $Model/AnimationPlayer
-	if state == States.attacking:
+	if state == ATTACKING:
 		animplayer.current_animation = "Attack"
 		if almost_finished_animation():
-			state = States.idle
+			state = IDLE
 		return
-	if state == States.idle:
+	if state == IDLE:
 		animplayer.current_animation = "Idle"
-	elif state == States.walking:
+	elif state == WALKING:
 		animplayer.current_animation = "Walk"
 	
 	if target != null:
@@ -38,8 +37,8 @@ func _process(delta):
 
 # TODO: make character move to and look at the same target
 func move(movement):
-	if state != States.attacking:
-		state = States.walking
+	if state != ATTACKING:
+		state = WALKING
 		move_and_collide(movement*move_speed)
 
 
@@ -62,13 +61,12 @@ func set_model(model):
 
 
 func attack():
-	state = States.attacking
-	print("qui")
+	state = ATTACKING
 
 
 func idle():
-	if state != States.attacking:
-		state = States.idle
+	if state != ATTACKING:
+		state = IDLE
 
 
 func almost_finished_animation():

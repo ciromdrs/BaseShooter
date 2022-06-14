@@ -19,7 +19,7 @@ func _process(delta):
 			
 		if not path_to_chased.empty():
 			var next = path_to_chased[path_index]
-			if state in [States.idle, States.walking]:
+			if state in [IDLE, WALKING]:
 				move((next-global_transform.origin).normalized()*delta)
 				lerp_look_at(next)
 			if almost_equal(global_transform.origin, next):
@@ -28,10 +28,10 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	if state != States.attacking:
+	if state != ATTACKING:
 		if $Attack.is_colliding():
 			if $Attack.get_collider() == chased:
-				state = States.attacking
+				state = ATTACKING
 
 
 func chase(to_chase):
