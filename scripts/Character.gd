@@ -11,7 +11,11 @@ export(int) var speed = 10 setget set_speed
 var move_speed = speed
 var rotation_speed = speed * PI/4
 var target:Vector3
-
+var valid_transitions = {
+	IDLE: [IDLE, WALKING, ATTACKING],
+	WALKING: [IDLE, WALKING, ATTACKING],
+	ATTACKING: []
+}
 
 func _process(delta):
 	var animplayer = $Model/AnimationPlayer
@@ -37,7 +41,7 @@ func _process(delta):
 
 # TODO: make character move to and look at the same target
 func move(movement):
-	if state != ATTACKING:
+	if valid_transition(WALKING):
 		state = WALKING
 		move_and_collide(movement*move_speed)
 
@@ -61,11 +65,12 @@ func set_model(model):
 
 
 func attack():
-	state = ATTACKING
+	if valid_transition(ATTACKING):
+		state = ATTACKING
 
 
 func idle():
-	if state != ATTACKING:
+	if valid_transition(IDLE):
 		state = IDLE
 
 
@@ -73,3 +78,7 @@ func almost_finished_animation():
 	var current = $Model/AnimationPlayer.current_animation_position
 	var total = $Model/AnimationPlayer.current_animation_length
 	return current / total >= .99 # use a constant value almost equal to 1
+
+
+func valid_transition(to_state):
+	return to_state in valid_transitions.get(state, [])
