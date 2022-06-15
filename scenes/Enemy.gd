@@ -1,4 +1,4 @@
-extends "res://scripts/Character.gd"
+extends "res://scenes/Character.gd"
 
 
 var chased:Spatial

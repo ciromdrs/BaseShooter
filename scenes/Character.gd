@@ -1,3 +1,6 @@
+class_name Character
+
+
 extends KinematicBody
 
 
@@ -17,10 +20,19 @@ var invalid_transitions = {
 	BEING_ATTACKED: [IDLE, WALKING, ATTACKING]
 }
 
+
+func _ready():
+	$Model/AnimationPlayer.current_animation = "idle"
+
+
 func _process(delta):
 	var animplayer = $Model/AnimationPlayer
+	var animpos = animplayer.current_animation_position / animplayer.current_animation_length
 	if state == ATTACKING:
 		animplayer.current_animation = "attacking"
+		if 0.2 < animpos and animpos < 0.3:
+			if $Attack.is_colliding():
+				$Attack.get_collider().be_attacked()
 		if almost_finished_animation():
 			state = IDLE
 		return
@@ -72,8 +84,6 @@ func set_model(model):
 func attack():
 	if valid_transition(ATTACKING):
 		state = ATTACKING
-		if $Attack.is_colliding():
-			$Attack.get_collider().be_attacked()
 
 
 func idle():

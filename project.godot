@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody",
+"class": "Character",
+"language": "GDScript",
+"path": "res://scenes/Character.gd"
+} ]
+_global_script_class_icons={
+"Character": ""
+}
+
 [application]
 
 config/name="Shooter"
@@ -69,11 +79,9 @@ click={
 [layer_names]
 
 3d_render/layer_1="scenario"
-3d_render/layer_2="player"
-3d_render/layer_3="enemies"
+3d_render/layer_2="characters"
 3d_physics/layer_1="scenario"
-3d_physics/layer_2="player"
-3d_physics/layer_3="enemies"
+3d_physics/layer_2="characters"
 
 [physics]
 
