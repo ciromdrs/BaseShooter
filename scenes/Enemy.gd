@@ -31,7 +31,7 @@ func _physics_process(delta):
 	if state != ATTACKING:
 		if $Attack.is_colliding():
 			if $Attack.get_collider() == chased:
-				state = ATTACKING
+				attack()
 
 
 func chase(to_chase):

@@ -1,9 +1,10 @@
 extends KinematicBody
 
 
-const IDLE = "IDLE"
-const WALKING = "WALKING"
-const ATTACKING = "ATTACKING"
+const IDLE = "idle"
+const WALKING = "walking"
+const ATTACKING = "attacking"
+const BEING_ATTACKED = "being_attacked"
 
 var state = IDLE
 # Overall speed value. Other speeds are calculated from this one.
@@ -12,20 +13,26 @@ var move_speed = speed
 var rotation_speed = speed * PI/4
 var target:Vector3
 var invalid_transitions = {
-	ATTACKING: [IDLE, WALKING, ATTACKING]
+	ATTACKING: [IDLE, WALKING, ATTACKING],
+	BEING_ATTACKED: [IDLE, WALKING, ATTACKING]
 }
 
 func _process(delta):
 	var animplayer = $Model/AnimationPlayer
 	if state == ATTACKING:
-		animplayer.current_animation = "Attack"
+		animplayer.current_animation = "attacking"
+		if almost_finished_animation():
+			state = IDLE
+		return
+	if state == BEING_ATTACKED:
+		animplayer.current_animation = "being_attacked"
 		if almost_finished_animation():
 			state = IDLE
 		return
 	if state == IDLE:
-		animplayer.current_animation = "Idle"
+		animplayer.current_animation = "idle"
 	elif state == WALKING:
-		animplayer.current_animation = "Walk"
+		animplayer.current_animation = "walking"
 	
 	if target != null:
 		var difference = target-transform.origin
@@ -65,6 +72,8 @@ func set_model(model):
 func attack():
 	if valid_transition(ATTACKING):
 		state = ATTACKING
+		if $Attack.is_colliding():
+			$Attack.get_collider().be_attacked()
 
 
 func idle():
@@ -80,3 +89,8 @@ func almost_finished_animation():
 
 func valid_transition(to_state):
 	return not(to_state in invalid_transitions.get(state, []))
+
+
+func be_attacked():
+	if valid_transition(BEING_ATTACKED):
+		state = BEING_ATTACKED
