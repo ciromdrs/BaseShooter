@@ -3,7 +3,7 @@ extends Spatial
 
 export(Color) var color = Color(1,1,1)
 
-# Called when the node enters the scene tree for the first time.
+# TODO: update 3D object on the editor's preview
 func _ready():
 	var material = SpatialMaterial.new()
 	material.albedo_color = color
