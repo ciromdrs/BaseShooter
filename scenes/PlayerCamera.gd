@@ -1,5 +1,5 @@
 """
-3D Camera
+3D Camera adapted from 
 http://kidscancode.org/godot_recipes/3d/camera_gimbal/
 """
 
