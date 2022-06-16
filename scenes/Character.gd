@@ -57,23 +57,23 @@ func _process(delta):
 
 
 # TODO: make character move to and look at the same target
-func move(movement):
+func move(movement: Vector3) -> void:
 	if valid_transition(WALKING):
 		state = WALKING
 		move_and_collide(movement*move_speed)
 
 
-func lerp_look_at(target):
+func lerp_look_at(target: Vector3) -> void:
 	self.target = target
 
 
-func set_speed(new_speed):
+func set_speed(new_speed: float) -> void:
 	speed = new_speed
 	move_speed = speed
 	rotation_speed = speed * PI/4
 
 
-func set_model(model):
+func set_model(model: Spatial) -> void:
 	var old = get_node("Model")
 	remove_child(old)
 	old.queue_free()
@@ -81,26 +81,26 @@ func set_model(model):
 	add_child(model)
 
 
-func attack():
+func attack() -> void:
 	if valid_transition(ATTACKING):
 		state = ATTACKING
 
 
-func idle():
+func idle() -> void:
 	if valid_transition(IDLE):
 		state = IDLE
 
 
-func almost_finished_animation():
+func almost_finished_animation() -> bool:
 	var current = $Model/AnimationPlayer.current_animation_position
 	var total = $Model/AnimationPlayer.current_animation_length
 	return current / total >= .99 # use a constant value almost equal to 1
 
 
-func valid_transition(to_state):
+func valid_transition(to_state) -> bool:
 	return not(to_state in invalid_transitions.get(state, []))
 
 
-func be_attacked():
+func be_attacked() -> void:
 	if valid_transition(BEING_ATTACKED):
 		state = BEING_ATTACKED

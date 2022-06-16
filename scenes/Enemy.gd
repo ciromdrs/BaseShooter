@@ -34,17 +34,17 @@ func _physics_process(delta):
 				attack()
 
 
-func chase(to_chase):
+func chase(to_chase: Spatial) -> void:
 	chased = to_chase
 	$ChaseRefreshTimer.stop()
 
 
-func almost_equal(v1, v2, precision=1):
+func almost_equal(v1: Vector3, v2: Vector3, precision: int = 1) -> bool:
 	if (v2-v1).length() < precision:
 		return true
 	return false
 
 
-func update_refresh_interval():
+func update_refresh_interval() -> void:
 	var distance = global_transform.origin.distance_to(chased.global_transform.origin)
 	$ChaseRefreshTimer.wait_time = .05 if distance <= 10000 else 1

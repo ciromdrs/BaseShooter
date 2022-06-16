@@ -22,7 +22,7 @@ func _process(delta):
 		get_tree().reload_current_scene()
 
 
-func spawn_enemy():
+func spawn_enemy() -> void:
 	var pos = Vector3(randi() % 100 - 50, 0, randi() % 100 - 50)
 	var new = enemy_scene.instance()
 	new.transform.origin = pos
@@ -32,7 +32,7 @@ func spawn_enemy():
 	add_child(new)
 
 
-func target_to_mouse():
+func target_to_mouse() -> void:
 	var camera = $Camera/InnerGimbal/Camera
 	var space_state = get_world().direct_space_state
 	var mouse_position = get_viewport().get_mouse_position()
