@@ -56,7 +56,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector3( 0, 3, 0 ) ]
+"values": [ Vector3( 0, 2, 0 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -83,7 +83,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.3, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 3, 0 ), Vector3( 0, 3, -0.990573 ), Vector3( 0, 3, 0 ) ]
+"values": [ Vector3( 0, 2, 0 ), Vector3( 0, 2, -0.991 ), Vector3( 0, 2, 0 ) ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -111,7 +111,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 3, 0 ), Vector3( 0, 3, 0 ) ]
+"values": [ Vector3( 0, 2, 0 ), Vector3( 0, 2, 0 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -126,7 +126,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 3, 0 ), Vector3( 0, 3, 0 ) ]
+"values": [ Vector3( 0, 2, 0 ), Vector3( 0, 2, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("MeshInstance:rotation_degrees")
@@ -166,14 +166,14 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 3, 0 ), Vector3( 0.25, 3, 0 ), Vector3( 0, 3, 0 ), Vector3( -0.25, 3, 0 ), Vector3( 0, 3, 0 ) ]
+"values": [ Vector3( 0, 2, 0 ), Vector3( 0.25, 2, 0 ), Vector3( 0, 2, 0 ), Vector3( -0.25, 2, 0 ), Vector3( 0, 2, 0 ) ]
 }
 
 [node name="Model" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 3, 0 )
+transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 2, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 16 )
