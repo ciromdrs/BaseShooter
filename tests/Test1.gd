@@ -41,7 +41,6 @@ func target_to_mouse():
 	var intersection = space_state.intersect_ray(ray_origin, ray_end, [$Player])
 	if not intersection.empty():
 		var pos = intersection.position
-		pos.y = $Player.global_transform.origin.y # using Player's y avoids rotation bugs
 		$Target.translation = pos
 	$TextureRect/Dot.position = mouse_position
 
