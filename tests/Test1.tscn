@@ -54,6 +54,7 @@ target = NodePath("../Player")
 
 [node name="Target" type="MeshInstance" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1, -8.12513 )
+visible = false
 mesh = SubResource( 1 )
 material/0 = null
 
