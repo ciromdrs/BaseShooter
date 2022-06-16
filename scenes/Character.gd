@@ -3,47 +3,46 @@ class_name Character
 
 extends KinematicBody
 
+# imports
+var states = preload("res://scripts/States.gd").new()
 
-const IDLE = "idle"
-const WALKING = "walking"
-const ATTACKING = "attacking"
-const BEING_ATTACKED = "being_attacked"
 
-var state = IDLE
+# state and related variables
+var state = states.IDLE
 # Overall speed value. Other speeds are calculated from this one.
 export(int) var speed = 10 setget set_speed
 var move_speed = speed
 var rotation_speed = speed * PI/4
 var target:Vector3
 var invalid_transitions = {
-	ATTACKING: [IDLE, WALKING, ATTACKING],
-	BEING_ATTACKED: [IDLE, WALKING, ATTACKING]
+	states.ATTACKING: [states.IDLE, states.WALKING, states.ATTACKING],
+	states.BEING_ATTACKED: [states.IDLE, states.WALKING, states.ATTACKING]
 }
 
 
 func _ready():
-	$Model/AnimationPlayer.current_animation = "idle"
+	_set_animation("idle")
 
 
 func _process(delta):
 	var animplayer = $Model/AnimationPlayer
 	var animpos = animplayer.current_animation_position / animplayer.current_animation_length
-	if state == ATTACKING:
+	if state == states.ATTACKING:
 		animplayer.current_animation = "attacking"
 		if 0.2 < animpos and animpos < 0.3:
 			if $Attack.is_colliding():
 				$Attack.get_collider().be_attacked()
 		if almost_finished_animation():
-			state = IDLE
+			state = states.IDLE
 		return
-	if state == BEING_ATTACKED:
+	if state == states.BEING_ATTACKED:
 		animplayer.current_animation = "being_attacked"
 		if almost_finished_animation():
-			state = IDLE
+			state = states.IDLE
 		return
-	if state == IDLE:
+	if state == states.IDLE:
 		animplayer.current_animation = "idle"
-	elif state == WALKING:
+	elif state == states.WALKING:
 		animplayer.current_animation = "walking"
 	
 	if target != null:
@@ -58,8 +57,8 @@ func _process(delta):
 
 # TODO: make character move to and look at the same target
 func move(movement: Vector3) -> void:
-	if valid_transition(WALKING):
-		state = WALKING
+	if valid_transition(states.WALKING):
+		state = states.WALKING
 		move_and_collide(movement*move_speed)
 
 
@@ -82,13 +81,13 @@ func set_model(model: Spatial) -> void:
 
 
 func attack() -> void:
-	if valid_transition(ATTACKING):
-		state = ATTACKING
+	if valid_transition(states.ATTACKING):
+		state = states.ATTACKING
 
 
 func idle() -> void:
-	if valid_transition(IDLE):
-		state = IDLE
+	if valid_transition(states.IDLE):
+		state = states.IDLE
 
 
 func almost_finished_animation() -> bool:
@@ -102,5 +101,6 @@ func valid_transition(to_state) -> bool:
 
 
 func be_attacked() -> void:
-	if valid_transition(BEING_ATTACKED):
-		state = BEING_ATTACKED
+	if valid_transition(states.BEING_ATTACKED):
+		state = states.BEING_ATTACKED
+
