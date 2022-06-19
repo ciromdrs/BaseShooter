@@ -10,3 +10,15 @@ static func collision_mask(layers: Array) -> int:
 				mask += pow(2, i-1)
 				break
 	return mask
+
+
+static func almost_equal(n1: float, n2: float, precision := 0.001) -> bool:
+	if n2 - n1 < precision:
+		return true
+	return false
+
+
+static func assert_get_node(parent: Node, node_path: String) -> Node:
+	var node := parent.get_node(node_path)
+	assert(node, "Cannot get child node " + node_path + " from " + parent.name)
+	return node

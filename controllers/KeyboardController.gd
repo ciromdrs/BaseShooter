@@ -22,12 +22,12 @@ var _mouse_raycast_mask := util.collision_mask(["aimable"])
 func _ready():
 	camera = get_node(camera_node)
 	controlled = get_parent()
-	state_machine = controlled.get_node("StateMachine")
-	idle_state = state_machine.get_node("IdleState")
-	move_state = state_machine.get_node("MoveState")
+	state_machine = util.assert_get_node(controlled, "StateMachine")
+	idle_state = util.assert_get_node(state_machine, "IdleState")
+	move_state = util.assert_get_node(state_machine, "MoveState")
 	move_state.move_speed = controlled.move_speed
-	attack_state = state_machine.get_node("AttackState")
-	be_attacked_state = state_machine.get_node("BeAttackedState")
+	attack_state = util.assert_get_node(state_machine, "AttackState")
+	be_attacked_state = util.assert_get_node(state_machine, "BeAttackedState")
 	if custom_mouse_image:
 		Input.set_custom_mouse_cursor(
 			custom_mouse_image,
