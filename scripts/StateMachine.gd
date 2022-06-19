@@ -10,6 +10,8 @@ onready var state: State setget _set_state
 onready var idle_state: State = $IdleState
 onready var move_state: State = $MoveState
 onready var attack_state: State = $AttackState
+onready var be_attacked_state: State = $BeAttackedState
+var _locked := false
 var _params := {}
 var freeze_time: float setget _set_freeze_time, _get_freeze_time
 
@@ -33,16 +35,21 @@ func _physics_process(delta: float) -> void:
 
 func valid_transition(to_state: State) -> bool:
 	assert(to_state.get_parent() == self, "States have different parents")
-	match state:
-		attack_state:
-			return not (to_state in [idle_state, move_state, attack_state])
+	if _locked:
+		match state:
+			attack_state:
+				return not (to_state in [idle_state, move_state, attack_state])
+			be_attacked_state:
+				return not (to_state in [idle_state, move_state, attack_state])
 	return true
 
 
 func transition_to(to_state: State, params := {}) -> void:
 	if not valid_transition(to_state):
 		return
+	print("transition from ", state, " to ", to_state)
 	_params = params
+	state.exit()
 	_set_state(to_state)
 	
 
@@ -61,6 +68,15 @@ func to_initial_state():
 
 func _set_state(new_state) -> void:
 	state = new_state
+	_locked = true
 	_set_freeze_time(state.freeze_time)
 	owner.get_node("Model").animation = state.animation
 	state.enter()
+
+
+func unlock() -> void:
+	_locked = false
+
+
+func set_params(params: Dictionary) -> void:
+	_params = params
