@@ -1,2 +1,1 @@
-extends "res://scenes/Character.gd"
-
+extends Character

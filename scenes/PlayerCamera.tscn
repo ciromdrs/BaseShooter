@@ -10,3 +10,4 @@ script = ExtResource( 1 )
 [node name="Camera" type="Camera" parent="InnerGimbal"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15 )
 current = true
+size = 40.0

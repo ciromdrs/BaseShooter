@@ -6,5 +6,5 @@ var move_speed: float
 
 # TODO: make character move to and look at the same target
 func process(delta: float, params := {}) -> void:
-	var movement = params['movement']
-	self.state_machine.owner.move_and_collide(movement*move_speed*delta)
+	state_machine.owner.target = params.target
+	state_machine.owner.move_and_collide(params.movement * move_speed * delta)

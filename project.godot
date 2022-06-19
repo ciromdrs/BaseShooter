@@ -9,13 +9,49 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "State",
+"class": "AttackState",
+"language": "GDScript",
+"path": "res://scripts/AttackState.gd"
+}, {
+"base": "State",
+"class": "BeAttackedState",
+"language": "GDScript",
+"path": "res://scripts/BeAttackedState.gd"
+}, {
 "base": "KinematicBody",
 "class": "Character",
 "language": "GDScript",
 "path": "res://scenes/Character.gd"
+}, {
+"base": "State",
+"class": "IdleState",
+"language": "GDScript",
+"path": "res://scripts/IdleState.gd"
+}, {
+"base": "State",
+"class": "MoveState",
+"language": "GDScript",
+"path": "res://scripts/MoveState.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://scripts/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
-"Character": ""
+"AttackState": "",
+"BeAttackedState": "",
+"Character": "",
+"IdleState": "",
+"MoveState": "",
+"State": "",
+"StateMachine": ""
 }
 
 [application]

@@ -3,18 +3,19 @@
 [ext_resource path="res://scripts/AttackState.gd" type="Script" id=1]
 
 [sub_resource type="RayShape" id=1]
-length = 5.0
+length = 2.5
 
 [node name="AttackState" type="Spatial"]
 script = ExtResource( 1 )
 animation = "attacking"
 freeze_time = 1.0
-hit_start = 0.2
-hit_end = 0.3
+hit_start = 0.3
+hit_end = 0.4
 
 [node name="Area" type="Area" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 monitorable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 1 )

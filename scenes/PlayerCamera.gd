@@ -42,7 +42,7 @@ func _unhandled_input(event):
 #			var y_rotation = clamp(event.relative.y, -30, 30)
 #			$InnerGimbal.rotate_object_local(Vector3.RIGHT, dir * y_rotation * mouse_sensitivity)
 
-func _process(delta):
+func _process(_delta):
 	$InnerGimbal.rotation.x = clamp($InnerGimbal.rotation.x, -1.4, -0.01)
 	scale = lerp(scale, Vector3.ONE * zoom, zoom_speed)
 	if target:

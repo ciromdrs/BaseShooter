@@ -47,7 +47,7 @@ func valid_transition(to_state: State) -> bool:
 func transition_to(to_state: State, params := {}) -> void:
 	if not valid_transition(to_state):
 		return
-	print("transition from ", state, " to ", to_state)
+	#print("transition from ", state, " to ", to_state)
 	_params = params
 	state.exit()
 	_set_state(to_state)
@@ -62,7 +62,7 @@ func _get_freeze_time() -> float:
 	return $FreezeTimer.time_left
 
 
-func to_initial_state():
+func to_initial_state() -> void:
 	_set_state(get_node(initial_state))
 
 
