@@ -5,12 +5,12 @@ extends Node
 const util = preload("res://scripts/Util.gd")
 
 
-var controlled
-var state_machine: StateMachine
-var idle_state: IdleState
-var move_state: MoveState
-var attack_state: AttackState
-var be_attacked_state: BeAttackedState
+onready var controlled: Character = get_parent()
+onready var state_machine: StateMachine = util.assert_get_node(controlled, "StateMachine")
+onready var idle_state: IdleState = util.assert_get_node(state_machine, "IdleState")
+onready var move_state: MoveState = util.assert_get_node(state_machine, "MoveState")
+onready var attack_state: AttackState = util.assert_get_node(state_machine, "AttackState")
+onready var be_attacked_state: BeAttackedState = util.assert_get_node(state_machine, "BeAttackedState")
 var input_vector := Vector3()
 export var camera_node: NodePath
 var camera: Camera
@@ -19,15 +19,10 @@ export var custom_mouse_image: Texture
 onready var target := $Target
 var _mouse_raycast_mask := util.collision_mask(["aimable"])
 
+
 func _ready():
 	camera = get_node(camera_node)
-	controlled = get_parent()
-	state_machine = util.assert_get_node(controlled, "StateMachine")
-	idle_state = util.assert_get_node(state_machine, "IdleState")
-	move_state = util.assert_get_node(state_machine, "MoveState")
 	move_state.move_speed = controlled.move_speed
-	attack_state = util.assert_get_node(state_machine, "AttackState")
-	be_attacked_state = util.assert_get_node(state_machine, "BeAttackedState")
 	if custom_mouse_image:
 		Input.set_custom_mouse_cursor(
 			custom_mouse_image,
