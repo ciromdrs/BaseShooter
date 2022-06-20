@@ -1,6 +1,8 @@
 extends Node
 
+
 const MAX_NUMBER_OF_LAYERS = 32
+
 
 static func collision_mask(layers: Array) -> int:
 	var mask := 0
@@ -12,7 +14,7 @@ static func collision_mask(layers: Array) -> int:
 	return mask
 
 
-static func almost_equal(n1: float, n2: float, precision := 0.001) -> bool:
+static func almost_equal(n1: float, n2: float, precision := 0.01) -> bool:
 	if n2 - n1 < precision:
 		return true
 	return false
