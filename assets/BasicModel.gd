@@ -3,7 +3,7 @@ extends Spatial
 
 
 export(Color) var color = Color(1,1,1) setget set_color
-export var default_animation: String
+export var default_animation := "idle"
 onready var animation := default_animation setget _set_animation, _get_animation
 
 
