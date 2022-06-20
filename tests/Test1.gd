@@ -4,20 +4,7 @@ extends Spatial
 var enemy_scene = preload("res://scenes/Enemy.tscn")
 
 
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	target_to_mouse()
-	$Player.lerp_look_at($Target.translation)
-	$Player.rotation_speed = 20*PI
-
-
-func _process(delta):
-	# project ray from screen
-	target_to_mouse()
-	$Player.lerp_look_at($Target.translation)
-	
-	if Input.is_action_just_pressed("toggle_fullscreen"):
-		OS.window_fullscreen = not OS.window_fullscreen
+func _process(_delta):
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
@@ -30,19 +17,6 @@ func spawn_enemy() -> void:
 	new.chased = $Player
 	new.speed = 5
 	add_child(new)
-
-
-func target_to_mouse() -> void:
-	var camera = $Camera/InnerGimbal/Camera
-	var space_state = get_world().direct_space_state
-	var mouse_position = get_viewport().get_mouse_position()
-	var ray_origin = camera.project_ray_origin(mouse_position)
-	var ray_end = ray_origin + camera.project_ray_normal(mouse_position) * 2000
-	var intersection = space_state.intersect_ray(ray_origin, ray_end, [$Player])
-	if not intersection.empty():
-		var pos = intersection.position
-		$Target.translation = pos
-	$TextureRect/Dot.position = mouse_position
 
 
 func _on_EnemySpawnTimer_timeout():
