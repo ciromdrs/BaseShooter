@@ -44,21 +44,22 @@ func _process(_delta):
 	var intersection = space_state.intersect_ray(ray_origin, ray_end, [], _mouse_raycast_mask)
 	if not intersection.empty():
 		target.global_transform.origin = intersection.position
-	params.target = target
+	
 	
 	if Input.is_action_just_pressed("click"):
 		state_machine.transition_to(attack_state)
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
-	params.movement = input_vector
 	
 	if input_vector.length() > 0:
 		if state_machine.state != move_state:
+			move_state.movement = input_vector
+			move_state.target = target
 			state_machine.transition_to(move_state)
 	elif _just_released_any_move_action():
+		idle_state.target = target
 		state_machine.transition_to(idle_state)
-	state_machine.set_params(params)
 	
 	if Input.is_action_just_pressed("toggle_fullscreen"):
 		OS.window_fullscreen = not OS.window_fullscreen

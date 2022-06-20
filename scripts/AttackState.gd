@@ -12,12 +12,12 @@ func enter() -> void:
 	already_hit = false
 
 
-func process(_delta: float, _params := {}) -> void:
+func process(_delta: float) -> void:
 	if state_machine.freeze_time == 0:
 		exit()
 
 
-func physics_process(delta: float, _params := {}) -> void:
+func physics_process(delta: float) -> void:
 	_elapsed += delta
 	if not already_hit:
 		if hit_start <= _elapsed and _elapsed <= hit_end:
@@ -27,4 +27,5 @@ func physics_process(delta: float, _params := {}) -> void:
 					assert(body is Character, msg)
 					already_hit = true
 					var sm = body.get_node("StateMachine")
-					sm.transition_to(sm.get_node("BeAttackedState"), {"attack_state" : self})
+					sm.transition_to(sm.get_node("BeAttackedState"))
+

@@ -12,7 +12,6 @@ onready var move_state: State = $MoveState
 onready var attack_state: State = $AttackState
 onready var be_attacked_state: State = $BeAttackedState
 var _locked := false
-var _params := {}
 var freeze_time: float setget _set_freeze_time, _get_freeze_time
 
 
@@ -26,11 +25,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	state.process(delta, _params)
+	state.process(delta)
 
 
 func _physics_process(delta: float) -> void:
-	state.physics_process(delta, _params)
+	state.physics_process(delta)
 
 
 func valid_transition(to_state: State) -> bool:
@@ -44,11 +43,9 @@ func valid_transition(to_state: State) -> bool:
 	return true
 
 
-func transition_to(to_state: State, params := {}) -> void:
+func transition_to(to_state: State) -> void:
 	if not valid_transition(to_state):
 		return
-	#print("transition from ", state, " to ", to_state)
-	_params = params
 	state.exit()
 	_set_state(to_state)
 	
@@ -76,7 +73,3 @@ func _set_state(new_state) -> void:
 
 func unlock() -> void:
 	_locked = false
-
-
-func set_params(params: Dictionary) -> void:
-	_params = params

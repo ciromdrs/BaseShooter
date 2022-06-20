@@ -25,11 +25,11 @@ func exit():
 	state_machine.to_initial_state()
 
 
-func process(_delta: float, _params := {}) -> void:
+func process(_delta: float) -> void:
 	pass
 
 
-func physics_process(_delta: float, _params := {}) -> void:
+func physics_process(_delta: float) -> void:
 	pass
 
 
