@@ -63,7 +63,7 @@ func to_initial_state() -> void:
 	_set_state(get_node(initial_state))
 
 
-func _set_state(new_state) -> void:
+func _set_state(new_state: State) -> void:
 	state = new_state
 	_locked = true
 	_set_freeze_time(state.freeze_time)
