@@ -29,3 +29,9 @@ func physics_process(delta: float) -> void:
 					var sm = body.get_node("StateMachine")
 					sm.transition_to(sm.get_node("BeAttackedState"))
 
+
+func is_in_range(body: PhysicsBody) -> bool:
+	for another in $Area.get_overlapping_bodies():
+		if body == another:
+			return true
+	return false
