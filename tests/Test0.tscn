@@ -5,10 +5,8 @@
 [ext_resource path="res://controllers/KeyboardController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://controllers/AIController.tscn" type="PackedScene" id=4]
 
-[sub_resource type="BoxShape" id=4]
-
 [sub_resource type="NavigationMesh" id=5]
-vertices = PoolVector3Array( -9.8, 0.4, -27.4, -19.4, 0.4, -27.4, -19.4, 0.4, -17.8, -19.4, 0.4, 1.4, -19.4, 0.4, 11.3, -9.8, 0.4, 11.3, 19.3, 0.4, -17.8, 19.3, 0.4, -27.4, 9.4, 0.4, -27.4, 9.4, 0.4, 11.3, 19.3, 0.4, 11.3, 19.3, 0.4, 1.4, -0.199997, 0.4, -27.4, -9.8, 0.4, -27.4, -19.4, 0.4, -17.8, -19.4, 0.4, -8.2, -19.4, 0.4, 1.4, -9.8, 0.4, 11.3, -0.199997, 0.4, 11.3, 19.3, 0.4, -8.2, 19.3, 0.4, -17.8, 9.4, 0.4, -27.4, -0.199997, 0.4, -27.4, -0.199997, 0.4, 11.3, 9.4, 0.4, 11.3, 19.3, 0.4, 1.4, -19.4, 0.4, -8.2, -19.4, 0.4, 1.4, -0.199997, 0.4, 11.3, 19.3, 0.4, 1.4, 19.3, 0.4, -8.2, -0.199997, 0.4, -27.4 )
+vertices = PoolVector3Array( -9.8, 1.4, -28.167, -19.4, 1.4, -28.167, -19.4, 1.4, -18.567, -19.4, 1.4, 0.632996, -19.4, 1.4, 10.533, -9.8, 1.4, 10.533, 19.3, 1.4, -18.567, 19.3, 1.4, -28.167, 9.4, 1.4, -28.167, 9.4, 1.4, 10.533, 19.3, 1.4, 10.533, 19.3, 1.4, 0.632996, -0.199999, 1.4, -28.167, -9.8, 1.4, -28.167, -19.4, 1.4, -18.567, -19.4, 1.4, -8.967, -19.4, 1.4, 0.632996, -9.8, 1.4, 10.533, -0.199999, 1.4, 10.533, 19.3, 1.4, -8.967, 19.3, 1.4, -18.567, 9.4, 1.4, -28.167, -0.199999, 1.4, -28.167, -0.199999, 1.4, 10.533, 9.4, 1.4, 10.533, 19.3, 1.4, 0.632996, -19.4, 1.4, -8.967, -19.4, 1.4, 0.632996, -0.199999, 1.4, 10.533, 19.3, 1.4, 0.632996, 19.3, 1.4, -8.967, -0.199999, 1.4, -28.167 )
 polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 3, 5, 4 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 13, 12, 14 ), PoolIntArray( 14, 12, 15 ), PoolIntArray( 18, 17, 16 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 21, 19, 22 ), PoolIntArray( 25, 24, 23 ), PoolIntArray( 27, 26, 28 ), PoolIntArray( 28, 26, 29 ), PoolIntArray( 29, 26, 30 ), PoolIntArray( 30, 26, 31 ) ]
 
 [sub_resource type="CubeMesh" id=1]
@@ -16,20 +14,14 @@ polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 3, 5, 4 ), PoolIntArray( 8, 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.294118, 0.294118, 0.294118, 1 )
 
+[sub_resource type="BoxShape" id=6]
+
 [node name="Spatial" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="KeyboardController" parent="Player" instance=ExtResource( 3 )]
 camera_node = NodePath("../../Camera")
-
-[node name="AimFloor" type="StaticBody" parent="Player"]
-transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="Player/AimFloor"]
-shape = SubResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 20, 10 )
@@ -49,8 +41,13 @@ navigation_node = NodePath("../../Navigation")
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 5 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Navigation/NavigationMeshInstance"]
-transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, -1, -8 )
+[node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, -8.76701 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Navigation/NavigationMeshInstance/StaticBody"]
 mesh = SubResource( 1 )
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/StaticBody"]
+shape = SubResource( 6 )

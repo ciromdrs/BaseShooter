@@ -17,7 +17,7 @@ var camera: Camera
 var move_actions = ["move_up", "move_down", "move_left", "move_right"]
 export var custom_mouse_image: Texture
 onready var target := $Target
-var _mouse_raycast_mask := util.collision_mask(["aimable"])
+var _mouse_raycast_mask := util.collision_mask(["scenario"])
 
 
 func _ready():
