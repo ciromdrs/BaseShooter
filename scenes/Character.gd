@@ -4,16 +4,21 @@ class_name Character
 extends KinematicBody
 
 
+# TODO: Move variables to adequate States
 # Overall speed value. Other speeds are calculated from this one.
-export(int) var speed: float = 10# setget set_speed
-var move_speed: float = speed
-var rotation_speed: float = speed * PI/4
+export(int) var speed: float = 10 setget set_speed
+var move_speed: float
+var rotation_speed: float
 var target: Spatial
+
+
+func _ready() -> void:
+	set_speed(speed)
 
 
 func _process(delta):
 	if target != null:
-		var difference = target.transform.origin - global_transform.origin
+		var difference = target.global_transform.origin - global_transform.origin
 		var rotated = rotation_speed*delta
 		# I do not know why PI/2 must be added to the angle, but it works, so keep it :)
 		var angle = Vector2(-difference.x, difference.z).angle() + PI/2
@@ -34,9 +39,3 @@ func set_model(model: Spatial) -> void:
 	old.queue_free()
 	model.name = "Model"
 	add_child(model)
-
-
-#func almost_finished_animation() -> bool:
-#	var current = $Model/AnimationPlayer.current_animation_position
-#	var total = $Model/AnimationPlayer.current_animation_length
-#	return current / total >= .99 # use a constant value almost equal to 1
