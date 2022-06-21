@@ -7,6 +7,7 @@ extends Node
 # state and related variables
 export var initial_state := NodePath()
 onready var state: State setget _set_state
+var states := []
 onready var idle_state: State = $IdleState
 onready var move_state: State = $MoveState
 onready var attack_state: State = $AttackState
@@ -21,10 +22,13 @@ func _ready() -> void:
 	for child in get_children():
 		if child is State:
 			child.state_machine = self
+			states += [child]
 	_set_state(get_node(initial_state))
 
 
 func _process(delta: float) -> void:
+	for s in states:
+		s.cooldown_time_left -= delta
 	state.process(delta)
 
 
@@ -34,6 +38,8 @@ func _physics_process(delta: float) -> void:
 
 func valid_transition(to_state: State) -> bool:
 	assert(to_state.get_parent() == self, "States have different parents")
+	if to_state.cooldown_time_left > 0:
+		return false
 	if _locked:
 		match state:
 			attack_state:
@@ -67,6 +73,7 @@ func _set_state(new_state: State) -> void:
 	state = new_state
 	_locked = true
 	_set_freeze_time(state.freeze_time)
+	state.cooldown_time_left = state.cooldown_time
 	owner.get_node("Model").animation = state.animation
 	state.enter()
 

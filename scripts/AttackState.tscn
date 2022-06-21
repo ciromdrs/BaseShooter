@@ -9,6 +9,7 @@ length = 2.5
 script = ExtResource( 1 )
 animation = "attacking"
 freeze_time = 1.0
+cooldown_time = 2.0
 hit_start = 0.3
 hit_end = 0.4
 
