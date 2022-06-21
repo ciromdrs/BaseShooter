@@ -40,17 +40,16 @@ func _process(_delta):
 	if not intersection.empty():
 		target.global_transform.origin = intersection.position
 	
-	
 	if Input.is_action_just_pressed("click"):
 		state_machine.transition_to(attack_state)
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input_vector.z = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	input_vector = input_vector.normalized()
-	
+			
 	if input_vector.length() > 0:
+		move_state.movement = input_vector
+		move_state.target = target
 		if state_machine.state != move_state:
-			move_state.movement = input_vector
-			move_state.target = target
 			state_machine.transition_to(move_state)
 	elif _just_released_any_move_action():
 		idle_state.target = target
