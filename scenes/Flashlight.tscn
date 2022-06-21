@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Flashlight.gd" type="Script" id=1]
+
+[node name="Flashlight" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -1 )
+light_cull_mask = 4294966273
+shadow_enabled = true
+spot_range = 16.0
+spot_angle = 27.7202
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -2 )
+light_cull_mask = 4294966275
+omni_range = 3.0
