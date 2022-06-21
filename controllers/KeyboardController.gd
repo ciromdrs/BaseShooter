@@ -13,7 +13,7 @@ onready var attack_state: AttackState = util.assert_get_node(state_machine, "Att
 onready var be_attacked_state: BeAttackedState = util.assert_get_node(state_machine, "BeAttackedState")
 var input_vector := Vector3()
 export var camera_node: NodePath
-var camera: Camera
+var camera: Spatial # Declare it a Spatial to make it possible to use a PlayerCamera
 var move_actions = ["move_up", "move_down", "move_left", "move_right"]
 export var custom_mouse_image: Texture
 onready var target := $Target

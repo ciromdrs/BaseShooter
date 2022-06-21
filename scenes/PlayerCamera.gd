@@ -42,8 +42,17 @@ func _unhandled_input(event):
 #			var y_rotation = clamp(event.relative.y, -30, 30)
 #			$InnerGimbal.rotate_object_local(Vector3.RIGHT, dir * y_rotation * mouse_sensitivity)
 
+
 func _process(_delta):
 	$InnerGimbal.rotation.x = clamp($InnerGimbal.rotation.x, -1.4, -0.01)
 	scale = lerp(scale, Vector3.ONE * zoom, zoom_speed)
 	if target:
 		global_transform.origin = get_node(target).global_transform.origin + start_pos
+
+
+func project_ray_origin(screen_point: Vector2) -> Vector3:
+	return $InnerGimbal/Camera.project_ray_origin(screen_point)
+	
+
+func project_ray_normal(screen_point: Vector2) -> Vector3:
+	return $InnerGimbal/Camera.project_ray_normal(screen_point)
