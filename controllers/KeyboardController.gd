@@ -31,7 +31,6 @@ func _ready():
 
 
 func _process(_delta):
-	var params := {}
 	var space_state = controlled.get_world().direct_space_state
 	var mouse_position = get_viewport().get_mouse_position()
 	var ray_origin = camera.project_ray_origin(mouse_position)
