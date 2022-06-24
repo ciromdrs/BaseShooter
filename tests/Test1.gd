@@ -20,7 +20,7 @@ func spawn_enemy() -> void:
 	new.speed = 5
 	add_child(new)
 	enemy_count += 1
-	$Label.text = str(enemy_count)
+	$Label.text = "Emeny count: " + str(enemy_count)
 
 
 func _on_EnemySpawnTimer_timeout():
