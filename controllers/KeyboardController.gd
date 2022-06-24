@@ -17,7 +17,7 @@ var camera: Spatial # Declare it a Spatial to make it possible to use a PlayerCa
 var move_actions = ["move_up", "move_down", "move_left", "move_right"]
 export var custom_mouse_image: Texture
 onready var target := $Target
-var _mouse_raycast_mask := util.collision_mask(["scenario"])
+var _mouse_raycast_mask := util.collision_mask(["characters","scenario"])
 
 
 func _ready():
