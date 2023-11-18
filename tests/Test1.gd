@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 
 var enemy_scene = preload("res://scenes/Enemy.tscn")
@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 
 func spawn_enemy() -> void:
 	var pos = Vector3(randi() % 100 - 50, 0, randi() % 100 - 50)
-	var new = $Enemy.duplicate() # enemy_scene.instance()
+	var new = $Enemy.duplicate() # enemy_scene.instantiate()
 	new.visible = true
 	new.transform.origin = pos
 	new.speed = 5

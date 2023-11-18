@@ -1,21 +1,21 @@
-tool
-extends Spatial
+@tool
+extends Node3D
 
 
-export(Color) var color = Color(1,1,1) setget set_color
-export var default_animation := "idle"
-onready var animation := default_animation setget _set_animation, _get_animation
+@export var color: Color = Color(1,1,1): set = set_color
+@export var default_animation := "idle"
+@onready var animation := default_animation: get = _get_animation, set = _set_animation
 
 
 func set_color(new_color:Color) -> void:
 	color = new_color
-	var material = SpatialMaterial.new()
-	var cylinder = get_node("MeshInstance")
+	var material = StandardMaterial3D.new()
+	var cylinder = get_node("MeshInstance3D")
 	var triangle = get_node("Triangle")
 	material.albedo_color = new_color
-	cylinder.set_surface_material(0, material)
-	triangle.set_surface_material(0, material)
-	property_list_changed_notify()
+	cylinder.set_surface_override_material(0, material)
+	triangle.set_surface_override_material(0, material)
+	notify_property_list_changed()
 
 
 func _set_animation(new_animation: String):

@@ -1,15 +1,15 @@
 class_name Character
 
 
-extends KinematicBody
+extends CharacterBody3D
 
 
 # TODO: Move variables to adequate States
 # Overall speed value. Other speeds are calculated from this one.
-export(int) var speed: float = 10 setget set_speed
+@export var speed: int = 10: set = set_speed
 var move_speed: float
 var rotation_speed: float
-var target: Spatial
+var target: Node3D
 
 
 func _ready() -> void:
@@ -33,7 +33,7 @@ func set_speed(new_speed: float) -> void:
 	rotation_speed = speed * PI/4
 
 
-func set_model(model: Spatial) -> void:
+func set_model(model: Node3D) -> void:
 	var old = get_node("Model")
 	remove_child(old)
 	old.queue_free()

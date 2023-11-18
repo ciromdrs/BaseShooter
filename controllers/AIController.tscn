@@ -9,4 +9,4 @@ script = ExtResource( 1 )
 wait_time = 0.1
 one_shot = true
 
-[node name="Target" type="Spatial" parent="."]
+[node name="Target" type="Node3D" parent="."]

@@ -5,18 +5,18 @@ extends Node
 const util = preload("res://scripts/Util.gd")
 
 
-onready var controlled: Character = get_parent()
-onready var state_machine: StateMachine = util.assert_get_node(controlled, "StateMachine")
-onready var idle_state: IdleState = util.assert_get_node(state_machine, "IdleState")
-onready var move_state: MoveState = util.assert_get_node(state_machine, "MoveState")
-onready var attack_state: AttackState = util.assert_get_node(state_machine, "AttackState")
-onready var be_attacked_state: BeAttackedState = util.assert_get_node(state_machine, "BeAttackedState")
+@onready var controlled: Character = get_parent()
+@onready var state_machine: StateMachine = util.assert_get_node(controlled, "StateMachine")
+@onready var idle_state: IdleState = util.assert_get_node(state_machine, "IdleState")
+@onready var move_state: MoveState = util.assert_get_node(state_machine, "MoveState")
+@onready var attack_state: AttackState = util.assert_get_node(state_machine, "AttackState")
+@onready var be_attacked_state: BeAttackedState = util.assert_get_node(state_machine, "BeAttackedState")
 var input_vector := Vector3()
-export var camera_node: NodePath
-var camera: Spatial # Declare it a Spatial to make it possible to use a PlayerCamera
+@export var camera_node: NodePath
+var camera: Node3D # Declare it a Node3D to make it possible to use a PlayerCamera
 var move_actions = ["move_up", "move_down", "move_left", "move_right"]
-export var custom_mouse_image: Texture
-onready var target := $Target
+@export var custom_mouse_image: Texture2D
+@onready var target := $Target
 var _mouse_raycast_mask := util.collision_mask(["characters","scenario"])
 
 
@@ -31,12 +31,13 @@ func _ready():
 
 
 func _process(_delta):
-	var space_state = controlled.get_world().direct_space_state
+	var space_state = controlled.get_world_3d().direct_space_state
 	var mouse_position = get_viewport().get_mouse_position()
 	var ray_origin = camera.project_ray_origin(mouse_position)
 	var ray_end = ray_origin + camera.project_ray_normal(mouse_position) * 2000
-	var intersection = space_state.intersect_ray(ray_origin, ray_end, [], _mouse_raycast_mask)
-	if not intersection.empty():
+	var query = PhysicsRayQueryParameters3D.create(mouse_position, mouse_position + Vector3(0, -10, 0))
+	var intersection = space_state.intersect_ray(query) #ray_origin, ray_end, [], _mouse_raycast_mask)
+	if not intersection.is_empty():
 		target.global_transform.origin = intersection.position
 	
 	if Input.is_action_just_pressed("click"):
@@ -55,7 +56,7 @@ func _process(_delta):
 		state_machine.transition_to(idle_state)
 	
 	if Input.is_action_just_pressed("toggle_fullscreen"):
-		OS.window_fullscreen = not OS.window_fullscreen
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (not ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 	
 	if OS.is_debug_build() and Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()

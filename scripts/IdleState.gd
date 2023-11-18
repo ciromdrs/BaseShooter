@@ -2,7 +2,7 @@ class_name IdleState
 extends State
 
 
-var target: Spatial
+var target: Node3D
 
 
 func init():

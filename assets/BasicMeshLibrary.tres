@@ -1,9 +1,9 @@
 [gd_resource type="MeshLibrary" load_steps=10 format=2]
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="StandardMaterial3D" id=13]
 albedo_color = Color( 0.192157, 0.192157, 0.192157, 1 )
 
-[sub_resource type="CubeMesh" id=14]
+[sub_resource type="BoxMesh" id=14]
 material = SubResource( 13 )
 
 [sub_resource type="Image" id=20]
@@ -19,12 +19,12 @@ data = {
 image = SubResource( 20 )
 size = Vector2( 64, 64 )
 
-[sub_resource type="BoxShape" id=12]
+[sub_resource type="BoxShape3D" id=12]
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="StandardMaterial3D" id=8]
 albedo_color = Color( 0.494118, 0.494118, 0.494118, 1 )
 
-[sub_resource type="CubeMesh" id=17]
+[sub_resource type="BoxMesh" id=17]
 material = SubResource( 8 )
 
 [sub_resource type="Image" id=21]
@@ -43,13 +43,13 @@ size = Vector2( 64, 64 )
 [resource]
 item/0/name = "Cube1"
 item/0/mesh = SubResource( 14 )
-item/0/mesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-item/0/shapes = [ SubResource( 12 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
-item/0/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+item/0/mesh_transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+item/0/shapes = [ SubResource( 12 ), Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+item/0/navmesh_transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/0/preview = SubResource( 16 )
 item/1/name = "Cube2"
 item/1/mesh = SubResource( 17 )
-item/1/mesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-item/1/shapes = [ SubResource( 12 ), Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
-item/1/navmesh_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+item/1/mesh_transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+item/1/shapes = [ SubResource( 12 ), Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ) ]
+item/1/navmesh_transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 item/1/preview = SubResource( 19 )

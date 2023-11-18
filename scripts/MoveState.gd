@@ -4,7 +4,7 @@ extends State
 
 var move_speed: float
 var movement: Vector3
-var target: Spatial
+var target: Node3D
 
 
 func process(delta: float) -> void:

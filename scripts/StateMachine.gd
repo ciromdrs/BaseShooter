@@ -5,19 +5,19 @@ extends Node
 
 
 # state and related variables
-export var initial_state := NodePath()
-onready var state: State setget _set_state
+@export var initial_state := NodePath()
+@onready var state: State: set = _set_state
 var states := []
-onready var idle_state: State = $IdleState
-onready var move_state: State = $MoveState
-onready var attack_state: State = $AttackState
-onready var be_attacked_state: State = $BeAttackedState
+@onready var idle_state: State = $IdleState
+@onready var move_state: State = $MoveState
+@onready var attack_state: State = $AttackState
+@onready var be_attacked_state: State = $BeAttackedState
 var _locked := false
-var freeze_time: float setget _set_freeze_time, _get_freeze_time
+var freeze_time: float: get = _get_freeze_time, set = _set_freeze_time
 
 
 func _ready() -> void:
-	yield(owner, "ready")
+	await owner.ready
 	# The state machine assigns itself to the State objects' state_machine property
 	for child in get_children():
 		if child is State:

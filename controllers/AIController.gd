@@ -5,17 +5,17 @@ extends Node
 const util = preload("res://scripts/Util.gd")
 
 
-export (NodePath) var chased_node
-onready var chased: Spatial = get_node(chased_node) setget chase
-var path_to_chased: PoolVector3Array
-export (NodePath) var navigation_node
-onready var navigation: Navigation = get_node(navigation_node)
+@export (NodePath) var chased_node
+@onready var chased: Node3D = get_node(chased_node): set = chase
+var path_to_chased: PackedVector3Array
+@export (NodePath) var navigation_node
+@onready var navigation: Navigation = get_node(navigation_node)
 var path_index = -1
-onready var controlled: Character = get_parent()
-onready var state_machine: StateMachine = util.assert_get_node(controlled, "StateMachine")
-onready var idle_state: IdleState = util.assert_get_node(state_machine, "IdleState")
-onready var move_state: MoveState = util.assert_get_node(state_machine, "MoveState")
-onready var attack_state: AttackState = util.assert_get_node(state_machine, "AttackState")
+@onready var controlled: Character = get_parent()
+@onready var state_machine: StateMachine = util.assert_get_node(controlled, "StateMachine")
+@onready var idle_state: IdleState = util.assert_get_node(state_machine, "IdleState")
+@onready var move_state: MoveState = util.assert_get_node(state_machine, "MoveState")
+@onready var attack_state: AttackState = util.assert_get_node(state_machine, "AttackState")
 
 
 func _ready() -> void:
@@ -32,15 +32,15 @@ func _process(_delta):
 				chased.global_transform.origin)
 			path_index = 1
 
-		if path_to_chased.empty():
+		if path_to_chased.is_empty():
 			state_machine.transition_to(idle_state)
 		else:
 			var next = path_to_chased[path_index]
 			if OS.is_debug_build():
 				var name = "DebugPath"
-				var path = get_node_or_null(name) as ImmediateGeometry
+				var path = get_node_or_null(name) as ImmediateMesh
 				if not path:
-					path = ImmediateGeometry.new()
+					path = ImmediateMesh.new()
 					path.name = name
 					add_child(path)
 				path.clear()
@@ -62,7 +62,7 @@ func _physics_process(_delta):
 		state_machine.transition_to(attack_state)
 
 
-func chase(to_chase: Spatial) -> void:
+func chase(to_chase: Node3D) -> void:
 	chased = to_chase
 	$ChaseRefreshTimer.stop()
 

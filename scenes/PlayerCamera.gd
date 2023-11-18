@@ -1,29 +1,29 @@
 """
-3D Camera adapted from 
+3D Camera3D adapted from 
 http://kidscancode.org/godot_recipes/3d/camera_gimbal/
 """
 
-extends Spatial
+extends Node3D
 
 
-export (NodePath) var target
-export (float, 0.0, 2.0) var rotation_speed = PI/2
+@export (NodePath) var target
+@export (float, 0.0, 2.0) var rotation_speed = PI/2
 
 
 # mouse properties
-export (float, 0.001, 0.1) var mouse_sensitivity = 0.005
-export (bool) var invert_y = true
-export (bool) var invert_x = true
+@export (float, 0.001, 0.1) var mouse_sensitivity = 0.005
+@export (bool) var invert_y = true
+@export (bool) var invert_x = true
 
 
 # zoom settings
-export (float) var max_zoom = 3.0
-export (float) var min_zoom = 0.4
-export (float, 0.05, 1.0) var zoom_speed = 0.09
+@export (float) var max_zoom = 3.0
+@export (float) var min_zoom = 0.4
+@export (float, 0.05, 1.0) var zoom_speed = 0.09
 
 var zoom = 1.5
 
-onready var start_pos = transform.origin
+@onready var start_pos = transform.origin
 
 func _unhandled_input(event):
 	if not Input.get_mouse_mode() in [Input.MOUSE_MODE_CAPTURED, Input.MOUSE_MODE_HIDDEN]:
@@ -51,8 +51,8 @@ func _process(_delta):
 
 
 func project_ray_origin(screen_point: Vector2) -> Vector3:
-	return $InnerGimbal/Camera.project_ray_origin(screen_point)
+	return $InnerGimbal/Camera3D.project_ray_origin(screen_point)
 	
 
 func project_ray_normal(screen_point: Vector2) -> Vector3:
-	return $InnerGimbal/Camera.project_ray_normal(screen_point)
+	return $InnerGimbal/Camera3D.project_ray_normal(screen_point)

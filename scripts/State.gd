@@ -3,9 +3,9 @@ extends Node
 
 
 var state_machine = null
-export var animation := ""
-export var freeze_time := 0.0
-export var cooldown_time: float
+@export var animation := ""
+@export var freeze_time := 0.0
+@export var cooldown_time: float
 var cooldown_time_left: float
 
 

@@ -1,3 +1,3 @@
 [gd_scene format=2]
 
-[node name="Debugger" type="Spatial"]
+[node name="Debugger" type="Node3D"]

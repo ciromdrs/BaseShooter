@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 
 var environment = preload("test_environment.tres")
