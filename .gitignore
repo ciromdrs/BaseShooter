@@ -19,3 +19,5 @@ mono_crash.*.json
 ### 3D models ###
 **.blend1
 **.glb
+
+addons/
