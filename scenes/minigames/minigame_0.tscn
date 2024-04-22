@@ -15,7 +15,7 @@ transform = Transform3D(0.718005, -0.294166, 0.630822, -0.294827, 0.692448, 0.65
 
 [node name="Character" parent="." instance=ExtResource("2_1q2ff")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, 0)
-color = Color(0.399854, 0.467101, 1, 1)
+color = Color(0, 0, 1, 1)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("3_1ghog")
