@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk83to3eidsh8"]
+
+[ext_resource type="Script" path="res://assets/DemoBlock.gd" id="1_5yxmd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu24q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ju2dt"]
+material = SubResource("StandardMaterial3D_hu24q")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yyx07"]
+
+[node name="DemoBlock" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_ju2dt")
+skeleton = NodePath("StaticBody3D")
+script = ExtResource("1_5yxmd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_yyx07")

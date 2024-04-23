@@ -1,17 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://cro5u3kjdisia"]
+[gd_scene load_steps=8 format=3 uid="uid://cro5u3kjdisia"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_a8s7b"]
+[ext_resource type="PackedScene" uid="uid://bk83to3eidsh8" path="res://assets/DemoBlock.tscn" id="1_a1eu2"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3lduw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eg65u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54wbf"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbpp8"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktqn8"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kknnj"]
+albedo_color = Color(0.489622, 0.489622, 0.489622, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88wcg"]
+albedo_color = Color(1, 1, 0, 1)
 
 [node name="Library3D" type="Node3D"]
 
-[node name="StaticBodies" type="Node3D" parent="."]
+[node name="Block" parent="." instance=ExtResource("1_a1eu2")]
+surface_material_override/0 = SubResource("StandardMaterial3D_eg65u")
 
-[node name="Box" type="StaticBody3D" parent="StaticBodies"]
+[node name="RedBlock" parent="." instance=ExtResource("1_a1eu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+surface_material_override/0 = SubResource("StandardMaterial3D_54wbf")
+color = Color(1, 0, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBodies/Box"]
-mesh = SubResource("BoxMesh_a8s7b")
+[node name="GreenBlock" parent="." instance=ExtResource("1_a1eu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+skeleton = NodePath("../RedBlock/StaticBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_dbpp8")
+color = Color(0, 1, 0, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBodies/Box"]
-shape = SubResource("BoxShape3D_3lduw")
+[node name="BlueBlock" parent="." instance=ExtResource("1_a1eu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+skeleton = NodePath("../Block/StaticBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_ktqn8")
+color = Color(0, 0, 1, 1)
+
+[node name="GrayBlock" parent="." instance=ExtResource("1_a1eu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+skeleton = NodePath("../Block/StaticBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_kknnj")
+color = Color(0.489622, 0.489622, 0.489622, 1)
+
+[node name="GreenBlock2" parent="." instance=ExtResource("1_a1eu2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+skeleton = NodePath("../RedBlock/StaticBody3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_88wcg")
+color = Color(1, 1, 0, 1)
