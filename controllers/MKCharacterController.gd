@@ -13,10 +13,10 @@ func _ready():
 func _process(_delta):
 	# Walk
 	var walk_direction := Vector3.ZERO
-	walk_direction.z = Input.get_action_strength("walk_down") - \
-		Input.get_action_strength("walk_up")
-	walk_direction.x = Input.get_action_strength("walk_right") - \
-		Input.get_action_strength("walk_left")
+	walk_direction.z = Input.get_action_strength("move_down") - \
+		Input.get_action_strength("move_up")
+	walk_direction.x = Input.get_action_strength("move_right") - \
+		Input.get_action_strength("move_left")
 	walk_direction = walk_direction.normalized()
 	self.character.walk(walk_direction)
 	
