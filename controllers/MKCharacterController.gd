@@ -28,6 +28,3 @@ func _process(_delta):
 	var to = from + camera3d.project_ray_normal(mouse_pos) * ray_length
 	to.y = character.global_position.y
 	character.look(to)
-	
-	$Label.position = mouse_pos
-	$Label.text = str(mouse_pos) + '\n'+ str(to)
