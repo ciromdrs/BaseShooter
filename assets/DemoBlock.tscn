@@ -13,6 +13,7 @@ material = SubResource("StandardMaterial3D_hu24q")
 mesh = SubResource("BoxMesh_ju2dt")
 skeleton = NodePath("StaticBody3D")
 script = ExtResource("1_5yxmd")
+size = null
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
