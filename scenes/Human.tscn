@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsy2ocrbtii6l"]
+
+[ext_resource type="Script" path="res://scenes/Character.gd" id="1_3yc0c"]
+[ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="2_p840e"]
+[ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://scenes/CharacterCollisionShape.tscn" id="4_tvc7v"]
+
+[node name="Human" type="CharacterBody3D"]
+script = ExtResource("1_3yc0c")
+walk_speed = 4.0
+
+[node name="CharacterDemoSkin" parent="." instance=ExtResource("2_p840e")]
+color = Color(0, 0, 1, 1)
+
+[node name="CharacterCollisionShape" parent="." instance=ExtResource("4_tvc7v")]

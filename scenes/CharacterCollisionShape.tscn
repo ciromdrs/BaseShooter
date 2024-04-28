@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgyjyyq3cldsk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lfoav"]
+
+[node name="CharacterCollisionShape" type="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_lfoav")

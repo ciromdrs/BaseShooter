@@ -2,7 +2,5 @@
 
 [ext_resource type="Script" path="res://controllers/MKCharacterController.gd" id="1_7udkl"]
 
-[node name="MKCharacterController" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="MKCharacterController" type="Node"]
 script = ExtResource("1_7udkl")

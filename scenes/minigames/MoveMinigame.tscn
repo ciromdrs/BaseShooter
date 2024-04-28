@@ -1,22 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmfdfi7m4m8ep"]
+[gd_scene load_steps=4 format=3 uid="uid://bmfdfi7m4m8ep"]
 
-[ext_resource type="PackedScene" uid="uid://dt7h3wovmfkh7" path="res://scenes/Character.tscn" id="2_1q2ff"]
+[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://scenes/Human.tscn" id="1_ptlnl"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_je4cp"]
 [ext_resource type="MeshLibrary" uid="uid://bow3gxcjcrqdk" path="res://assets/library3d.tres" id="3_1ghog"]
-[ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="3_k6ru7"]
 
 [node name="MoveMinigame" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.718005, -0.294166, 0.630822, -0.294827, 0.692448, 0.658478, -0.630513, -0.658773, 0.410453, 18.1893, 5.41479, 2.03992)
-
-[node name="Player" parent="." instance=ExtResource("2_1q2ff")]
+[node name="Human" parent="." instance=ExtResource("1_ptlnl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="CharacterDemoSkin" parent="Player" instance=ExtResource("3_k6ru7")]
-color = Color(0, 0, 1, 1)
+[node name="MKCharacterController2" parent="Human" instance=ExtResource("2_je4cp")]
 
-[node name="MKCharacterController" parent="Player" instance=ExtResource("2_je4cp")]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.718005, -0.294166, 0.630822, -0.294827, 0.692448, 0.658478, -0.630513, -0.658773, 0.410453, 18.1893, 5.41479, 2.03992)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("3_1ghog")
