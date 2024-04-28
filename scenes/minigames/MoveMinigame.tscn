@@ -10,13 +10,13 @@
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.718005, -0.294166, 0.630822, -0.294827, 0.692448, 0.658478, -0.630513, -0.658773, 0.410453, 18.1893, 5.41479, 2.03992)
 
-[node name="Character" parent="." instance=ExtResource("2_1q2ff")]
+[node name="Player" parent="." instance=ExtResource("2_1q2ff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="CharacterDemoSkin" parent="Character" instance=ExtResource("3_k6ru7")]
+[node name="CharacterDemoSkin" parent="Player" instance=ExtResource("3_k6ru7")]
 color = Color(0, 0, 1, 1)
 
-[node name="MKCharacterController" parent="Character" instance=ExtResource("2_je4cp")]
+[node name="MKCharacterController" parent="Player" instance=ExtResource("2_je4cp")]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("3_1ghog")
