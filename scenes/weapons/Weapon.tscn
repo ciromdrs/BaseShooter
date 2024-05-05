@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3mdeswkvljqe"]
+
+[ext_resource type="Script" path="res://scenes/weapons/Weapon.gd" id="1_mer60"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x1nvp"]
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_rvp1e"]
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_mer60")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, -4.80825e-08, -0.3, 0, 1.1, -1.31134e-08, 0, 0.15, -0.55)
+mesh = SubResource("CylinderMesh_x1nvp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.81, 0, 0, 0, 0.2, -2.4869e-14, 0, 3.55271e-14, 2.08, 0, 0.454545, 0.666667)
+mesh = SubResource("BoxMesh_rvp1e")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15217, 0.0724498)
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5

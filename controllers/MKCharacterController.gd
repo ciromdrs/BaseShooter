@@ -1,14 +1,36 @@
-extends CharacterController
-## A mouse+keyboard [code]CharacterController[/code].
+extends Node
+## A mouse+keyboard controller for [code]Character[/code]s.
 ##
 ## Add this as a child of a [code]Character[/code] node.
 
 
-func _ready():
-	self.controlled = get_parent()
-	
+## The [code]Character[/code] controlled by this.
+@onready var controlled: Character = get_parent()
+
+## Indicates if the Character just shot a bullet.
+## To be processed during _physics_process.
+var just_shot: bool = false
+## Target of the last shot.
+var target: Vector3
+
+
 func _process(_delta):
-	# Walk
+	_control_walk()
+	_control_look_at_mouse()
+	_control_mouse_actions()
+
+## Gets the global mouse position in the 3D space.
+func _get_mouse_pos3D() -> Vector3:
+	var camera3d = get_viewport().get_camera_3d()
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_length = 10  # Must be bigger than the camera's distance?
+	var from = camera3d.project_ray_origin(mouse_pos)
+	var to = from + camera3d.project_ray_normal(mouse_pos) * ray_length
+	to.y = controlled.global_position.y
+	return to
+
+## Commands `controlled` to walk.
+func _control_walk():
 	var walk_direction := Vector3.ZERO
 	walk_direction.z = Input.get_action_strength("move_down") - \
 		Input.get_action_strength("move_up")
@@ -16,12 +38,13 @@ func _process(_delta):
 		Input.get_action_strength("move_left")
 	walk_direction = walk_direction.normalized()
 	self.controlled.walk(walk_direction)
-	
-	# Look at mouse
-	var camera3d = get_viewport().get_camera_3d()
-	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_length = 10  # Must be bigger than the camera's distance?
-	var from = camera3d.project_ray_origin(mouse_pos)
-	var to = from + camera3d.project_ray_normal(mouse_pos) * ray_length
-	to.y = controlled.global_position.y
+
+## Commands `controlled` to look at the mouse.
+func _control_look_at_mouse():
+	var to = _get_mouse_pos3D()
 	controlled.look(to)
+
+## Commands `controlled` to perform mouse actions.
+func _control_mouse_actions():
+	if Input.is_action_just_pressed("action1"):
+		controlled.shoot()
