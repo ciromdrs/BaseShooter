@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckdhl0d0mcqmg"]
+[gd_scene load_steps=5 format=3 uid="uid://ckdhl0d0mcqmg"]
 
 [ext_resource type="Script" path="res://scenes/Zombie.gd" id="1_auu8l"]
 [ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://scenes/CharacterCollisionShape.tscn" id="2_7a3qn"]
 [ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="3_bd2l8"]
+[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://scenes/Dialog.tscn" id="4_x8qqy"]
 
 [node name="Zombie" type="CharacterBody3D"]
 script = ExtResource("1_auu8l")
@@ -11,3 +12,6 @@ script = ExtResource("1_auu8l")
 
 [node name="CharacterDemoSkin" parent="." instance=ExtResource("3_bd2l8")]
 color = Color(0.891357, 0, 0.205658, 1)
+
+[node name="Dialog" parent="." instance=ExtResource("4_x8qqy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32893, 0.6)

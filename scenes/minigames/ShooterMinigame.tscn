@@ -32,6 +32,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("4_cppb1")]
+projection = 1
 script = ExtResource("5_5amu2")
 followed = NodePath("../Player")
 

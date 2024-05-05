@@ -28,5 +28,3 @@ func _shoot_process():
 			var collider = $RayCast3D.get_collider()
 			if collider is Character:
 				collider.take_damage()
-			# print($RayCast3D.get_collider_shape())
-			# print($RayCast3D.get_collider_rid())

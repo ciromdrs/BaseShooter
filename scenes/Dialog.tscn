@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyqf8n6it7xox"]
+
+[ext_resource type="Script" path="res://scenes/Dialog.gd" id="1_5f53t"]
+
+[node name="Dialog" type="Label3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32893, 0)
+billboard = 1
+font_size = 55
+outline_size = 25
+script = ExtResource("1_5f53t")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

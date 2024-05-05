@@ -32,10 +32,23 @@ func walk_facing(destination: Vector3):
 
 ## Commands the weapon to shoot.
 func shoot():
+	var lines: Array[String] = [
+		'PEI!!',
+		'TEI!!',
+		'PÁÁ!!',
+		'TÁÁ!!',
+		'PEI!! Toma arrombado!',
+		'PEI!! Rá po inferno!',
+		'PÁ!! Pegue no quengo!',
+	]
+	say(lines.pick_random())
 	self.weapon.shoot()
 
 func take_damage():
-	die()
+	assert(false, 'Not implemented yet')
 
 func die():
 	queue_free()
+
+func say(line: String):
+	$Dialog.show_text(line, 1)
