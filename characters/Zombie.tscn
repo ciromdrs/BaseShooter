@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckdhl0d0mcqmg"]
 
-[ext_resource type="Script" path="res://scenes/Zombie.gd" id="1_auu8l"]
-[ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://scenes/CharacterCollisionShape.tscn" id="2_7a3qn"]
+[ext_resource type="Script" path="res://characters/Zombie.gd" id="1_auu8l"]
+[ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://characters/CharacterCollisionShape.tscn" id="2_7a3qn"]
 [ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="3_bd2l8"]
-[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://scenes/Dialog.tscn" id="4_x8qqy"]
+[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_x8qqy"]
 
 [node name="Zombie" type="CharacterBody3D"]
 script = ExtResource("1_auu8l")

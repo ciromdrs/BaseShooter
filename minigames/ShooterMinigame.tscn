@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://db7kq8djvfnf5"]
 
-[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://scenes/Human.tscn" id="1_widrr"]
+[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="1_widrr"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_ebh4m"]
 [ext_resource type="MeshLibrary" uid="uid://bow3gxcjcrqdk" path="res://assets/library3d.tres" id="3_fmjc4"]
-[ext_resource type="PackedScene" uid="uid://b3mdeswkvljqe" path="res://scenes/weapons/Weapon.tscn" id="3_gdebs"]
-[ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://scenes/Camera3DPlus.tscn" id="4_cppb1"]
-[ext_resource type="Script" path="res://scenes/Camera3DPlus.gd" id="5_5amu2"]
-[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://scenes/Zombie.tscn" id="6_1v3xd"]
+[ext_resource type="PackedScene" uid="uid://b3mdeswkvljqe" path="res://weapons/Weapon.tscn" id="3_gdebs"]
+[ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://util/Camera3DPlus.tscn" id="4_cppb1"]
+[ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="5_5amu2"]
+[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/Zombie.tscn" id="6_1v3xd"]
 [ext_resource type="PackedScene" uid="uid://cnks015m076md" path="res://controllers/ChaseController.tscn" id="7_cw2kc"]
 
 [node name="ShooterMinigame" type="Node3D"]

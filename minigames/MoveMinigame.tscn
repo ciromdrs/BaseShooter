@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmfdfi7m4m8ep"]
 
-[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://scenes/Human.tscn" id="1_ptlnl"]
+[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="1_ptlnl"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_je4cp"]
 [ext_resource type="MeshLibrary" uid="uid://bow3gxcjcrqdk" path="res://assets/library3d.tres" id="3_1ghog"]
 

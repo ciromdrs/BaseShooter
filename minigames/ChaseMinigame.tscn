@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://uii5e3x0480g"]
 
-[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://scenes/Human.tscn" id="1_kdyof"]
+[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="1_kdyof"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="3_7p4rl"]
 [ext_resource type="MeshLibrary" uid="uid://bow3gxcjcrqdk" path="res://assets/library3d.tres" id="4_alb5o"]
-[ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://scenes/Camera3DPlus.tscn" id="5_n6f37"]
-[ext_resource type="Script" path="res://scenes/Camera3DPlus.gd" id="6_bctiq"]
-[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://scenes/Zombie.tscn" id="7_h3b2e"]
+[ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://util/Camera3DPlus.tscn" id="5_n6f37"]
+[ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="6_bctiq"]
+[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/Zombie.tscn" id="7_h3b2e"]
 [ext_resource type="PackedScene" uid="uid://cnks015m076md" path="res://controllers/ChaseController.tscn" id="9_o0trh"]
 
 [node name="ChaseMinigame2" type="Node3D"]

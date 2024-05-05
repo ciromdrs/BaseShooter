@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsy2ocrbtii6l"]
 
-[ext_resource type="Script" path="res://scenes/Character.gd" id="1_3yc0c"]
+[ext_resource type="Script" path="res://characters/Character.gd" id="1_3yc0c"]
 [ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="2_p840e"]
-[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://scenes/Dialog.tscn" id="4_0poyf"]
-[ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://scenes/CharacterCollisionShape.tscn" id="4_tvc7v"]
+[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_0poyf"]
+[ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://characters/CharacterCollisionShape.tscn" id="4_tvc7v"]
 
 [node name="Human" type="CharacterBody3D"]
 script = ExtResource("1_3yc0c")
