@@ -4,6 +4,13 @@ extends Camera3D
 ## The node followed by this camera.
 @export var followed: Node3D
 
+## The offset distance from `followed`.
+var offset := Vector3.ZERO
+
+func _ready():
+	if followed != null:
+		offset = self.global_position - followed.global_position
+
 func _process(delta):
-	self.global_position.x = followed.global_position.x
-	self.global_position.z = followed.global_position.z
+	if followed != null:
+		self.global_position = followed.global_position + offset
