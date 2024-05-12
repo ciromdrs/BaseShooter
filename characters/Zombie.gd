@@ -1,6 +1,7 @@
 extends Character
 
-func take_damage():
+func take_damage(damage: int):
+	super.take_damage(damage)
 	var lines: Array[String] = [
 		'Arra meu figo!..',
 		'Arra fi de rapariga!..',

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dx4eg1ujl1udl"]
+[gd_scene load_steps=25 format=3 uid="uid://dx4eg1ujl1udl"]
 
 [ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="1_yc1mq"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_55v1b"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="5_k5ilq"]
 [ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/Zombie.tscn" id="6_sey8w"]
 [ext_resource type="PackedScene" uid="uid://cnks015m076md" path="res://controllers/ChaseController.tscn" id="7_cxg1x"]
+[ext_resource type="PackedScene" uid="uid://bfbvr5limn4fp" path="res://other/HealthSystem.tscn" id="8_elj2l"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_iivw3"]
 vertices = PackedVector3Array(-9.2, 2.25031, -9, -9.6, 2.25031, -9.6, -9.6, 2.25031, 9.6, -9, 2.25031, 9.4, -9.6, 2.25031, -9.6, -9.2, 2.25031, -9, 9.2, 2.25031, -9.2, 9.6, 2.25031, -9.6, -9, 2.25031, 9.4, -9.6, 2.25031, 9.6, 9.6, 2.25031, 9.6, 9.4, 2.25031, 9.2, 9.4, 2.25031, 9.2, 9.6, 2.25031, 9.6, 9.6, 2.25031, -9.6, 9.2, 2.25031, -9.2, -8.4, 0.250309, 0, -6, 0.250309, 0, -6, 0.250309, -0.599999, -4, 0.250309, -5.8, -3.8, 0.250309, -5.4, -3.6, 0.250309, -8.4, -8.4, 0.250309, 0, -6, 0.250309, -0.599999, -5, 0.250309, -1, -6.2, 0.250309, -4.4, -8.4, 0.250309, -8.4, -5, 0.250309, -1, -5, 0.250309, -4.2, -6.2, 0.250309, -4.4, -6.2, 0.250309, -5.6, -4, 0.250309, -5.8, -3.6, 0.250309, -8.4, -8.4, 0.250309, -8.4, -6.2, 0.250309, -4.4, -6.2, 0.250309, -5.6, -8.4, 0.250309, -8.4, 2, 0.250309, -0.8, 4.4, 0.250309, -3, 4, 0.250309, -3.2, 1.6, 0.250309, -1.4, -4, 0.250309, 0, 0, 0.250309, 0, 0, 0.250309, -1, -5, 0.250309, -4.2, -5, 0.250309, -1, -4.4, 0.250309, -1, -4, 0.250309, -4.2, -4, 0.250309, -4.2, -4.4, 0.250309, -1, -4, 0.250309, 0, 0, 0.250309, -1, 0.400001, 0.250309, -1.4, -3.8, 0.250309, -5.4, 6, 0.250309, -6.8, 6, 0.250309, -4.4, 8.6, 0.250309, -4.2, 8.6, 0.250309, -8.4, 4.2, 0.250309, -7, 6, 0.250309, -6.8, 8.6, 0.250309, -8.4, -3.6, 0.250309, -8.4, 0.400001, 0.250309, -1.4, 1.6, 0.250309, -1.4, 4, 0.250309, -3.2, 4.2, 0.250309, -7, -3.6, 0.250309, -8.4, -3.8, 0.250309, -5.4, 4.8, 1.25031, -6.2, 4.8, 1.25031, -3.8, 5.2, 1.25031, -3.8, 5.2, 1.25031, -6.2, 8.6, 0.250309, -4.2, 6, 0.250309, -4.4, 5.8, 0.250309, -3, 5.8, 0.250309, -3, 4.4, 0.250309, -3, 2, 0.250309, -0.8, 2, 0.250309, 1, 8.6, 0.250309, -4.2, 5.8, 0.250309, -3, 2, 0.250309, 1, 1, 0.250309, 8.6, 8.6, 0.250309, 8.6, 2, 0.250309, 1, 1, 0.250309, 1.4, 1, 0.250309, 8.6, -5.2, 2.25031, -0.2, -5.2, 2.25031, 0.2, -4.8, 2.25031, 0.2, -4.8, 2.25031, -0.2, -5.6, 0.250309, 1, -6, 0.250309, 0, -8.4, 0.250309, 0, -8.4, 0.250309, 8.6, 0, 0.250309, 1, 0, 0.250309, 0, -4, 0.250309, 0, 0, 0.250309, 1, -4, 0.250309, 0, -4.4, 0.250309, 1, 1, 0.250309, 1.4, 1, 0.250309, 1.4, -4.4, 0.250309, 1, -5.6, 0.250309, 1, -8.4, 0.250309, 8.6, 1, 0.250309, 8.6)
@@ -26,11 +27,11 @@ size = Vector3(1, 2, 18)
 [sub_resource type="BoxMesh" id="BoxMesh_3r2r4"]
 size = Vector3(1, 2, 18)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gh2ek"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjoi8"]
 albedo_color = Color(0.295867, 0.295866, 0.295866, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tfvxj"]
-material = SubResource("StandardMaterial3D_gh2ek")
+material = SubResource("StandardMaterial3D_kjoi8")
 size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ud6lb"]
@@ -72,7 +73,6 @@ weapon = NodePath("Gun")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.802, -0.613907)
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("4_fx57x")]
-visible = false
 projection = 1
 script = ExtResource("5_k5ilq")
 followed = NodePath("../Player")
@@ -175,26 +175,38 @@ shape = SubResource("BoxShape3D_psprv")
 [node name="Zombies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Zombie" parent="Zombies" instance=ExtResource("6_sey8w")]
+[node name="Zombie" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
+health_system = NodePath("HealthSystem")
 
 [node name="ChaseController" parent="Zombies/Zombie" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
 
-[node name="Zombie2" parent="Zombies" instance=ExtResource("6_sey8w")]
+[node name="HealthSystem" parent="Zombies/Zombie" instance=ExtResource("8_elj2l")]
+
+[node name="Zombie2" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+health_system = NodePath("HealthSystem2")
 
 [node name="ChaseController2" parent="Zombies/Zombie2" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
 
-[node name="Zombie3" parent="Zombies" instance=ExtResource("6_sey8w")]
+[node name="HealthSystem2" parent="Zombies/Zombie2" instance=ExtResource("8_elj2l")]
+
+[node name="Zombie3" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+health_system = NodePath("HealthSystem3")
 
 [node name="ChaseController3" parent="Zombies/Zombie3" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
 
-[node name="Zombie4" parent="Zombies" instance=ExtResource("6_sey8w")]
+[node name="HealthSystem3" parent="Zombies/Zombie3" instance=ExtResource("8_elj2l")]
+
+[node name="Zombie4" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+health_system = NodePath("HealthSystem4")
 
 [node name="ChaseController4" parent="Zombies/Zombie4" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
+
+[node name="HealthSystem4" parent="Zombies/Zombie4" instance=ExtResource("8_elj2l")]

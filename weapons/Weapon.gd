@@ -4,6 +4,10 @@ extends Node3D
 
 ## In meters.
 @export var range: float = 10
+
+## Damage.
+@export var damage: int = 30
+
 ## Indicates if just shot.
 var just_shot: bool = false
 
@@ -27,4 +31,4 @@ func _shoot_process():
 		if $RayCast3D.is_colliding():
 			var collider = $RayCast3D.get_collider()
 			if collider is Character:
-				collider.take_damage()
+				collider.take_damage(damage)

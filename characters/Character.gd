@@ -21,6 +21,8 @@ var _just_jumped := false
 ## The character's weapon.
 @export var weapon: Weapon
 
+## The health system.
+@export var health_system: HealthSystem
 
 func _ready():
 	pass
@@ -86,8 +88,11 @@ func shoot():
 	say(lines.pick_random())
 	self.weapon.shoot()
 
-func take_damage():
-	assert(false, 'Not implemented yet')
+func take_damage(damage):
+	if health_system:
+		health_system.take_damage(damage)
+		if health_system.is_dead():
+			self.die()
 
 func die():
 	queue_free()
