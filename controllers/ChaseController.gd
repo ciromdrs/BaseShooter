@@ -24,7 +24,7 @@ func setup_navigation():
 	controlled.add_child(navagent)
 	# These values need to be adjusted for the actor's speed and the navigation
 	# layout.
-	navagent.path_desired_distance = 1.1
+	navagent.path_desired_distance = 1.15
 	# navagent.target_desired_distance = 100
 	await get_tree().physics_frame
 
