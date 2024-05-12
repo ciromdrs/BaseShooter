@@ -16,6 +16,7 @@ var target: Vector3
 
 func _process(_delta):
 	_control_walk()
+	_control_jump()
 	_control_look_at_mouse()
 	_control_mouse_actions()
 
@@ -48,3 +49,8 @@ func _control_look_at_mouse():
 func _control_mouse_actions():
 	if Input.is_action_just_pressed("action1"):
 		controlled.shoot()
+
+## Commands `controlled` to jump.
+func _control_jump():
+	if Input.is_action_just_pressed('jump'):
+		controlled.jump()
