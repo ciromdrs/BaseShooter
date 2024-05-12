@@ -57,6 +57,10 @@ jump={
 ]
 }
 
+[navigation]
+
+3d/default_cell_size=0.2
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

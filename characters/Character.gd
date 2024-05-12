@@ -56,6 +56,10 @@ func walk(direction: Vector3):
 
 ## Look at `at`.
 func look(at: Vector3):
+	# Avoid error in `look_at` when positions are equal
+	if at == global_position:
+		return
+	# Positions are different, can call `look_at`
 	look_at(at)
 
 ## Walk to destination facing it.
