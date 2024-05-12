@@ -1,4 +1,3 @@
-@tool
 ## A Character, either playable or not.
 
 class_name Character
