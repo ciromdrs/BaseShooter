@@ -37,6 +37,9 @@ func _control_walk():
 		Input.get_action_strength("move_up")
 	walk_direction.x = Input.get_action_strength("move_right") - \
 		Input.get_action_strength("move_left")
+	# Camera-relative movement
+	var camera = get_viewport().get_camera_3d()
+	walk_direction = walk_direction.rotated(Vector3.UP, camera.rotation.y)
 	walk_direction = walk_direction.normalized()
 	self.controlled.walk(walk_direction)
 
