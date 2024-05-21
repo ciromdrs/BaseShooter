@@ -3,7 +3,7 @@ class_name Weapon
 extends Node3D
 
 ## In meters.
-@export var range: float = 10
+@export var range: float = 13
 
 ## Damage.
 @export var damage: int = 30
@@ -13,7 +13,8 @@ var just_shot: bool = false
 
 
 func _ready():
-	$RayCast3D.scale = Vector3(1, self.range, 1)
+	for r in $RayCasts.get_children():
+		r.scale = Vector3(1, self.range, 1)
 
 
 func _physics_process(delta):
@@ -28,7 +29,8 @@ func shoot():
 func _shoot_process():
 	if just_shot:
 		just_shot = false
-		if $RayCast3D.is_colliding():
-			var collider = $RayCast3D.get_collider()
-			if collider is Character:
-				collider.take_damage(damage)
+		for r in $RayCasts.get_children():
+			if r.is_colliding():
+				var collider = r.get_collider()
+				if collider is Character:
+					collider.take_damage(damage)
