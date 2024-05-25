@@ -32,8 +32,8 @@ func spawn():
 			continue
 		count += 1
 		var zombie = zombie_scene.instantiate()
-		spawn_parent.add_child(zombie)
 		zombie.global_position = point
+		spawn_parent.add_child(zombie)
 		var health_system = preload('res://other/HealthSystem.tscn').instantiate()
 		zombie.health_system = health_system
 		#var controller = \
