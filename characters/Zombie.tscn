@@ -18,3 +18,4 @@ color = Color(0.891357, 0, 0.205658, 1)
 [node name="Dialog" parent="." instance=ExtResource("4_x8qqy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.329, -1)
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
