@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_x8qqy"]
 
 [node name="Zombie" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_auu8l")
 
 [node name="CharacterCollisionShape" parent="." instance=ExtResource("2_7a3qn")]
