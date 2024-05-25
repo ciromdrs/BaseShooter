@@ -16,4 +16,5 @@ script = ExtResource("1_auu8l")
 color = Color(0.891357, 0, 0.205658, 1)
 
 [node name="Dialog" parent="." instance=ExtResource("4_x8qqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.32893, 0.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.329, -1)
+
