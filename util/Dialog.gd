@@ -10,16 +10,16 @@ func _ready():
 func _process(_delta):
 	position = get_parent().global_position + _position_offset
 
-## Shows `text` during `duration` (in seconds).
-func show_text(text: String, duration: float = 2):
-	self.text = text
+## Shows `text_` during `duration` (in seconds).
+func show_text(text_: String, duration: float = 2):
+	self.text = text_
 	$Timer.wait_time = duration
 	$Timer.start()
 
-## Shows `text` without a timer.
-func show_text_forever(text: String):
+## Shows `text_` without a timer.
+func show_text_forever(text_: String):
 	$Timer.stop()
-	self.text = text
+	self.text = text_
 
 func _on_timer_timeout():
 	self.text = ''

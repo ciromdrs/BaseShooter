@@ -11,6 +11,6 @@ func _ready():
 	if followed != null:
 		offset = self.global_position - followed.global_position
 
-func _process(delta):
+func _process(_delta):
 	if followed != null:
 		self.global_position = followed.global_position + offset

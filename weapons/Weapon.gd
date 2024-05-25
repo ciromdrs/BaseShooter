@@ -3,7 +3,7 @@ class_name Weapon
 extends Node3D
 
 ## In meters.
-@export var range: float = 13
+@export var range_: float = 13
 
 ## Damage.
 @export var damage: int = 30
@@ -14,10 +14,10 @@ var just_shot: bool = false
 
 func _ready():
 	for r in $RayCasts.get_children():
-		r.scale = Vector3(1, self.range, 1)
+		r.scale = Vector3(1, self.range_, 1)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	self._shoot_process()
 
 ## Prepares to shoot.
