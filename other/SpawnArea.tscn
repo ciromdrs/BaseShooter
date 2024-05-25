@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn2ds681w2jm4"]
+
+[ext_resource type="Script" path="res://other/SpawnArea.gd" id="1_sxiih"]
+[ext_resource type="Material" uid="uid://4l0dkdtlkpcm" path="res://other/SpawnAreaMaterial.tres" id="2_0giac"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qnmbt"]
+material = ExtResource("2_0giac")
+
+[node name="SpawnerArea" type="Node3D"]
+script = ExtResource("1_sxiih")
+
+[node name="Area" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+cast_shadow = 0
+ignore_occlusion_culling = true
+gi_mode = 0
+mesh = SubResource("BoxMesh_qnmbt")
