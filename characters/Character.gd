@@ -22,7 +22,8 @@ var _just_jumped := false
 @export var weapon: Weapon
 
 ## The health system.
-@export var health_system: HealthSystem
+@onready var health_system = $HealthSystem
+
 
 func _ready():
 	pass
@@ -89,10 +90,18 @@ func shoot():
 	self.weapon.shoot()
 
 func take_damage(damage):
-	if health_system:
-		health_system.take_damage(damage)
-		if health_system.is_dead():
-			self.die()
+	health_system.take_damage(damage)
+	if health_system.is_dead():
+		self.die()
+	else:
+		var lines: Array[String] = [
+			'Arra meu figo!..',
+			'Arra fi de rapariga!..',
+			'Arra fresco!..',
+			'Arra foi mesmo no pau da minha venta!..',
+			'Arra meus dente!..',
+		]
+		say(lines.pick_random())
 
 func die():
 	queue_free()
