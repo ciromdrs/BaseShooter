@@ -1,4 +1,4 @@
-## Spawns nodes inside its area.
+## Spawns nodes inside its area. New nodes are added to the parent.
 ##
 ## Note: To make the spawn area bigger, scale this node, DO NOT change $Area.
 
@@ -7,21 +7,22 @@ extends Node3D
 ## TODO: Temporary variable. Delete it.
 var count = 0
 
-## The amount of zombies spawned at every interval.
+## The amount of nodes to spawn.
 @export var spawn_amount: int = 10
 
-## The node to add spawned zombies as children.
-@export var spawn_parent: Node3D
+## The node to spawn.
+@export var spawnable: Node3D
 
 
 func _ready():
 	if not Engine.is_editor_hint():
 		self.visible = false
+	assert(spawnable.process_mode == PROCESS_MODE_DISABLED)
+	assert(spawnable.visible == false)
 
-## Spawns zombies.
-## Raises a warning if a zombie could not be spawned in the navigation map.
+## Spawns nodes.
+## Raises a warning if a node could not be spawned in the navigation map.
 func spawn():
-	var zombie_scene = preload('res://characters/Zombie.tscn')
 	for i in spawn_amount:
 		var point = _get_random_spawn_point()
 		# Check if the point is in the spawn area
@@ -31,14 +32,11 @@ func spawn():
 			push_warning('Position ', point, ' not in spawn area.')
 			continue
 		count += 1
-		var zombie = zombie_scene.instantiate()
-		zombie.global_position = point
-		spawn_parent.add_child(zombie)
-		var health_system = preload('res://other/HealthSystem.tscn').instantiate()
-		zombie.health_system = health_system
-		#var controller = \
-			#preload('res://controllers/ChaseController.tscn').instantiate()
-		#zombie.add_child(controller)
+		var spawned = spawnable.duplicate()
+		get_parent().add_child(spawned)
+		spawned.process_mode = PROCESS_MODE_INHERIT
+		spawned.visible = true
+		spawned.global_position = point
 
 ## Returns a random position on the navigation region, making a best effort for
 ## it to be inside the spawn area.
