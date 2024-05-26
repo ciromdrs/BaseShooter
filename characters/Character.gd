@@ -107,7 +107,8 @@ func die():
 	queue_free()
 
 func say(line: String):
-	$Dialog.show_text(line, 1)
+	var duration = clamp(len(line)/20.0, .5, 3)
+	$Dialog.show_text(line, duration)
 
 func stop():
 	velocity = Vector3.ZERO

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://characters/Zombie.gd" id="1_auu8l"]
 [ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://characters/CharacterCollisionShape.tscn" id="2_7a3qn"]
 [ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="3_bd2l8"]
-[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_x8qqy"]
+[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_34hb8"]
 
 [node name="Zombie" type="CharacterBody3D"]
 collision_layer = 4
@@ -15,7 +15,8 @@ script = ExtResource("1_auu8l")
 [node name="CharacterDemoSkin" parent="." instance=ExtResource("3_bd2l8")]
 color = Color(0.891357, 0, 0.205658, 1)
 
-[node name="Dialog" parent="." instance=ExtResource("4_x8qqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.329, -1)
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 1.15
+
+[node name="Dialog" parent="." instance=ExtResource("4_34hb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)

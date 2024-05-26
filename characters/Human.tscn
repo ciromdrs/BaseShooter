@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://characters/Character.gd" id="1_3yc0c"]
 [ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="2_p840e"]
-[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_0poyf"]
+[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_o823k"]
 [ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://characters/CharacterCollisionShape.tscn" id="4_tvc7v"]
 
 [node name="Human" type="CharacterBody3D"]
@@ -17,5 +17,5 @@ color = Color(0, 0, 1, 1)
 
 [node name="CharacterCollisionShape" parent="." instance=ExtResource("4_tvc7v")]
 
-[node name="Dialog" parent="." instance=ExtResource("4_0poyf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.329, -1)
+[node name="Dialog" parent="." instance=ExtResource("4_o823k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
