@@ -1,14 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3mdeswkvljqe"]
+[gd_scene load_steps=7 format=3 uid="uid://b3mdeswkvljqe"]
 
 [ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_mer60"]
+[ext_resource type="Texture2D" uid="uid://cofuitcv7tiri" path="res://weapons/aim.png" id="2_fwei1"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_x1nvp"]
 height = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_rvp1e"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckftm"]
+transparency = 1
+albedo_texture = ExtResource("2_fwei1")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_78865"]
+material = SubResource("StandardMaterial3D_ckftm")
+size = Vector2(0.07, 8)
+
 [node name="Weapon" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00629961, 0, 0.000104181)
 script = ExtResource("1_mer60")
+accuracy = 0.484
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.15, 0, 0, 0, -2.40413e-08, -0.15, 0, 0.55, -6.55671e-09, 0, 0.15, -0.25)
@@ -26,3 +37,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.157)
 collision_mask = 5
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
+
+[node name="LeftBound" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.527524)
+
+[node name="Mesh" type="MeshInstance3D" parent="LeftBound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055, 0.15, -4)
+mesh = SubResource("PlaneMesh_78865")
+skeleton = NodePath("../..")
+
+[node name="RightBound" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.528)
+
+[node name="Mesh" type="MeshInstance3D" parent="RightBound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.15, -4)
+mesh = SubResource("PlaneMesh_78865")
+skeleton = NodePath("../..")
