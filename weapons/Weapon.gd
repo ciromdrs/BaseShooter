@@ -17,6 +17,7 @@ var just_shot: bool = false
 
 func _ready():
 	_update_aim()
+	_rotate_raycasts()
 	for r in $RayCasts.get_children():
 		r.scale = Vector3(1, self.range_, 1)
 
