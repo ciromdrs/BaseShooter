@@ -72,6 +72,8 @@ weapon = NodePath("Gun")
 [node name="Gun" parent="Player" instance=ExtResource("3_hcxpx")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.802, -0.613907)
 
+[node name="HealthSystem" parent="Player" instance=ExtResource("8_elj2l")]
+
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("4_fx57x")]
 projection = 1
 script = ExtResource("5_k5ilq")
@@ -175,38 +177,34 @@ shape = SubResource("BoxShape3D_psprv")
 [node name="Zombies" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Zombie" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
+[node name="Zombie" parent="Zombies" instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
-health_system = NodePath("HealthSystem")
 
 [node name="ChaseController" parent="Zombies/Zombie" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
 
 [node name="HealthSystem" parent="Zombies/Zombie" instance=ExtResource("8_elj2l")]
 
-[node name="Zombie2" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
+[node name="Zombie2" parent="Zombies" instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
-health_system = NodePath("HealthSystem2")
 
 [node name="ChaseController2" parent="Zombies/Zombie2" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
 
-[node name="HealthSystem2" parent="Zombies/Zombie2" instance=ExtResource("8_elj2l")]
+[node name="HealthSystem" parent="Zombies/Zombie2" instance=ExtResource("8_elj2l")]
 
-[node name="Zombie3" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
+[node name="Zombie3" parent="Zombies" instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
-health_system = NodePath("HealthSystem3")
 
 [node name="ChaseController3" parent="Zombies/Zombie3" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
 
-[node name="HealthSystem3" parent="Zombies/Zombie3" instance=ExtResource("8_elj2l")]
+[node name="HealthSystem" parent="Zombies/Zombie3" instance=ExtResource("8_elj2l")]
 
-[node name="Zombie4" parent="Zombies" node_paths=PackedStringArray("health_system") instance=ExtResource("6_sey8w")]
+[node name="Zombie4" parent="Zombies" instance=ExtResource("6_sey8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
-health_system = NodePath("HealthSystem4")
 
 [node name="ChaseController4" parent="Zombies/Zombie4" node_paths=PackedStringArray("chased") instance=ExtResource("7_cxg1x")]
 chased = NodePath("../../../Player")
 
-[node name="HealthSystem4" parent="Zombies/Zombie4" instance=ExtResource("8_elj2l")]
+[node name="HealthSystem" parent="Zombies/Zombie4" instance=ExtResource("8_elj2l")]
