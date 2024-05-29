@@ -17,9 +17,7 @@ material = SubResource("StandardMaterial3D_ckftm")
 size = Vector2(0.07, 8)
 
 [node name="Weapon" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00629961, 0, 0.000104181)
 script = ExtResource("1_mer60")
-accuracy = 0.484
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.15, 0, 0, 0, -2.40413e-08, -0.15, 0, 0.55, -6.55671e-09, 0, 0.15, -0.25)
@@ -39,17 +37,17 @@ debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="LeftBound" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.527524)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0, 0.144303)
 
 [node name="Mesh" type="MeshInstance3D" parent="LeftBound"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055, 0.15, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -4.715)
 mesh = SubResource("PlaneMesh_78865")
 skeleton = NodePath("../..")
 
 [node name="RightBound" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.528)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0.143303)
 
 [node name="Mesh" type="MeshInstance3D" parent="RightBound"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0.15, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -4.715)
 mesh = SubResource("PlaneMesh_78865")
 skeleton = NodePath("../..")

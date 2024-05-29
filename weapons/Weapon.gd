@@ -24,7 +24,8 @@ func _ready():
 		r.scale = Vector3(1, self.range_, 1)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	self._rotate_raycasts(delta)
 	self._shoot_process()
 
 ## Prepares to shoot.
@@ -42,6 +43,19 @@ func _shoot_process():
 				if collider is Character:
 					collider.take_damage(damage)
 
+## Rotates the RayCast3D nodes to simulate accuracy.
+func _rotate_raycasts(delta):
+	for ray in $RayCasts.get_children():
+		# Compute the rotation radians
+		var min_ = $LeftBound.rotation.y
+		var max_ = $RightBound.rotation.y
+		var current = ray.rotation.z
+		var target = min_ + randf() * (max_ - min_)
+		var radians = current - target
+		# Apply rotation
+		ray.rotate(Vector3.FORWARD, radians)
+
+## Update the aim's aperture.
 func _update_aim():
 	var angle = (1 - accuracy)**2 * MAX_APERTURE / 2
 	$LeftBound.rotate(Vector3.UP, angle)
