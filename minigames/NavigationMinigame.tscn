@@ -70,7 +70,7 @@ weapon = NodePath("Gun")
 [node name="MKCharacterController" parent="Player" instance=ExtResource("2_55v1b")]
 
 [node name="Gun" parent="Player" instance=ExtResource("3_hcxpx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.802, -0.613907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.802, -0.613907)
 
 [node name="HealthSystem" parent="Player" instance=ExtResource("8_elj2l")]
 
