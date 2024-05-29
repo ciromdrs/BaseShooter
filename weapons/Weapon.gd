@@ -1,9 +1,6 @@
 ## A weapon.
-class_name Weapon
-extends Node3D
+class_name Weapon extends Node3D
 
-
-const MAX_APERTURE = PI
 
 ## In meters.
 @export var range_: float = 13
@@ -22,7 +19,6 @@ func _ready():
 	_update_aim()
 	for r in $RayCasts.get_children():
 		r.scale = Vector3(1, self.range_, 1)
-
 
 func _physics_process(delta):
 	self._rotate_raycasts(delta)
@@ -45,18 +41,22 @@ func _shoot_process():
 
 ## Rotates the RayCast3D nodes to simulate accuracy.
 func _rotate_raycasts(delta):
-	for ray in $RayCasts.get_children():
-		# Compute the rotation radians
-		var min_ = $LeftBound.rotation.y
-		var max_ = $RightBound.rotation.y
+	# Number of rays
+	var nrays = len($RayCasts.get_children())
+	# Aperture of each ray
+	var ray_aperture = ($Aim/Right.rotation.y - $Aim/Left.rotation.y) / nrays
+	for i in nrays:
+		var ray = $RayCasts.get_child(i)
+		var target = $Aim/Left.rotation.y + \
+			i * ray_aperture + \
+			ray_aperture * (1 - randf())
 		var current = ray.rotation.z
-		var target = min_ + randf() * (max_ - min_)
 		var radians = current - target
 		# Apply rotation
 		ray.rotate(Vector3.FORWARD, radians)
 
 ## Update the aim's aperture.
 func _update_aim():
-	var angle = (1 - accuracy)**2 * MAX_APERTURE / 2
-	$LeftBound.rotate(Vector3.UP, angle)
-	$RightBound.rotate(Vector3.UP, -angle)
+	var angle = (1 - accuracy)**2
+	$Aim/Left.rotate(Vector3.UP, angle)
+	$Aim/Right.rotate(Vector3.UP, -angle)
