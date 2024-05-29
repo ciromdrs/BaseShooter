@@ -77,6 +77,8 @@ weapon = NodePath("Shotgun")
 [node name="Shotgun" parent="Player" instance=ExtResource("5_1yyko")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.6)
 
+[node name="HealthSystem" parent="Player" instance=ExtResource("5_b0oc3")]
+
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("4_74j83")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 24, 0)
 fov = 40.0
