@@ -44,5 +44,5 @@ func _shoot_process():
 
 func _update_aim():
 	var angle = (1 - accuracy)**2 * MAX_APERTURE / 2
-	$LeftBound.rotate(Vector3.UP, -angle)
-	$RightBound.rotate(Vector3.UP, angle)
+	$LeftBound.rotate(Vector3.UP, angle)
+	$RightBound.rotate(Vector3.UP, -angle)
