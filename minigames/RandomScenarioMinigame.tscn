@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://hus22q8nv0dj"]
+[gd_scene load_steps=28 format=3 uid="uid://hus22q8nv0dj"]
 
 [ext_resource type="Script" path="res://minigames/RandomScenarioMinigame.gd" id="1_m6dvq"]
 [ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="2_jxy1t"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3mdeswkvljqe" path="res://weapons/Weapon.tscn" id="4_llcur"]
 [ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://util/Camera3DPlus.tscn" id="5_u8fkm"]
 [ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="6_j3wpc"]
+[ext_resource type="PackedScene" uid="uid://j5o0ne0vwj5g" path="res://weapons/Grenade.tscn" id="6_y4irx"]
 [ext_resource type="PackedScene" uid="uid://cn2ds681w2jm4" path="res://other/SpawnArea.tscn" id="7_fwq2n"]
 [ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/Zombie.tscn" id="8_anmrb"]
 [ext_resource type="PackedScene" uid="uid://bfbvr5limn4fp" path="res://other/HealthSystem.tscn" id="9_of5nd"]
@@ -78,6 +79,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.583838)
 
 [node name="HealthSystem" parent="Player" instance=ExtResource("9_of5nd")]
 
+[node name="Grenade" parent="Player" instance=ExtResource("6_y4irx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.426822, 0.907593, 0.363466)
+
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("5_u8fkm")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -4, 24, 0)
 fov = 40.0
@@ -93,6 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.749691, 0)
 
 [node name="WallW" type="StaticBody3D" parent="NavigationRegion3D/Scenario"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 1.5, 0)
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Scenario/WallW"]
 shape = SubResource("BoxShape3D_5ys7d")
@@ -102,6 +107,7 @@ mesh = SubResource("BoxMesh_at6o7")
 
 [node name="WallE" type="StaticBody3D" parent="NavigationRegion3D/Scenario"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 1.5, 0)
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Scenario/WallE"]
 shape = SubResource("BoxShape3D_5ys7d")
@@ -111,6 +117,7 @@ mesh = SubResource("BoxMesh_at6o7")
 
 [node name="WallS" type="StaticBody3D" parent="NavigationRegion3D/Scenario"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, 14.5)
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Scenario/WallS"]
 shape = SubResource("BoxShape3D_qkugh")
@@ -120,6 +127,7 @@ mesh = SubResource("BoxMesh_xtyr8")
 
 [node name="WallN" type="StaticBody3D" parent="NavigationRegion3D/Scenario"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, -14.5)
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Scenario/WallN"]
 shape = SubResource("BoxShape3D_qkugh")
@@ -128,6 +136,7 @@ shape = SubResource("BoxShape3D_qkugh")
 mesh = SubResource("BoxMesh_xtyr8")
 
 [node name="Floor" type="StaticBody3D" parent="NavigationRegion3D/Scenario"]
+collision_mask = 9
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Scenario/Floor"]
 mesh = SubResource("BoxMesh_b73rb")
@@ -140,6 +149,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.749691, 0)
 
 [node name="Box" type="StaticBody3D" parent="NavigationRegion3D/Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5)
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Obstacles/Box"]
 shape = SubResource("BoxShape3D_2f01r")
@@ -149,6 +159,7 @@ mesh = SubResource("BoxMesh_mdxi8")
 
 [node name="Capsule" type="StaticBody3D" parent="NavigationRegion3D/Obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1, 0.9, 0)
+collision_mask = 9
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Obstacles/Capsule"]
 mesh = SubResource("CapsuleMesh_crb53")
@@ -158,6 +169,7 @@ shape = SubResource("CapsuleShape3D_37382")
 
 [node name="Cylinder" type="StaticBody3D" parent="NavigationRegion3D/Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+collision_mask = 9
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Obstacles/Cylinder"]
 mesh = SubResource("CylinderMesh_h5ll1")
@@ -167,6 +179,7 @@ shape = SubResource("CylinderShape3D_jginh")
 
 [node name="Wall" type="StaticBody3D" parent="NavigationRegion3D/Obstacles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.4, -5)
+collision_mask = 9
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Obstacles/Wall"]
 mesh = SubResource("BoxMesh_y8fd0")
@@ -176,7 +189,6 @@ shape = SubResource("BoxShape3D_kpqu5")
 
 [node name="SpawnArea" parent="." node_paths=PackedStringArray("spawnable") instance=ExtResource("7_fwq2n")]
 transform = Transform3D(26, 0, 0, 0, 0.5, 0, 0, 0, 26, -4, 0.5, 0)
-visible = false
 spawnable = NodePath("../Zombie")
 
 [node name="Timer" type="Timer" parent="SpawnArea"]
@@ -193,5 +205,12 @@ visible = false
 
 [node name="ChaseController" parent="Zombie" node_paths=PackedStringArray("chased") instance=ExtResource("10_2v0cu")]
 chased = NodePath("../../Player")
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -4, 6.67639, 9.88943)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 142.0
+offset_bottom = 73.0
 
 [connection signal="timeout" from="SpawnArea/Timer" to="." method="_on_timer_timeout"]
