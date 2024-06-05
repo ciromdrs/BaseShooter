@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxmgay1e78st"]
+
+[ext_resource type="Script" path="res://controllers/MKHUDController.gd" id="1_e3e3e"]
+
+[node name="MKHUDController" type="Node"]
+script = ExtResource("1_e3e3e")
