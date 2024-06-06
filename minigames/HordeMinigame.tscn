@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://61e84tuq4sp7"]
+[gd_scene load_steps=27 format=3 uid="uid://61e84tuq4sp7"]
 
 [ext_resource type="Script" path="res://minigames/HordeMinigame.gd" id="1_72rqi"]
 [ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="1_yvsfk"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_k6a2i"]
-[ext_resource type="PackedScene" uid="uid://b3mdeswkvljqe" path="res://weapons/Weapon.tscn" id="3_4m2b8"]
 [ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://util/Camera3DPlus.tscn" id="4_74j83"]
 [ext_resource type="PackedScene" uid="uid://ck5ybqy03jeqm" path="res://weapons/Shotgun.tscn" id="5_1yyko"]
 [ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="5_303dq"]
@@ -178,10 +177,6 @@ shape = SubResource("BoxShape3D_kpqu5")
 [node name="FPS" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="Gun" parent="." instance=ExtResource("3_4m2b8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.6)
-visible = false
 
 [node name="SpawnArea" parent="." node_paths=PackedStringArray("spawnable") instance=ExtResource("8_0b44g")]
 transform = Transform3D(6.01514, 0, 0, 0, 0.8192, 0, 0, 0, 6.01514, 9.96574, 0.6, -9.87109)
