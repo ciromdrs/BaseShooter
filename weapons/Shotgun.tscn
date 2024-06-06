@@ -10,6 +10,8 @@ height = 1.0
 
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_gr6bx")
+range_ = 9.0
+damage = 150
 accuracy = 0.4
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -30,14 +32,27 @@ debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="RayCast3D2" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.99863, 0.052336, 0, -0.052336, 0.99863, 0, 0, 0, 1, 0, 0, 0)
 collision_mask = 5
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="RayCast3D3" type="RayCast3D" parent="RayCasts"]
+collision_mask = 5
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D4" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0, 1, 0, 0, 0)
+collision_mask = 5
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5
+
+[node name="RayCast3D5" type="RayCast3D" parent="RayCasts"]
 transform = Transform3D(0.994522, -0.104528, 0, 0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
 collision_mask = 5
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="Aim" parent="." instance=ExtResource("2_v6v6j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147126, 0.00581685)
