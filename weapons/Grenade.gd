@@ -44,6 +44,8 @@ func boom():
 
 ## Performs the throw.
 func apply_throw():
+	# Unfreeze to be affected by physics again
+	self.freeze = false
 	# Reparent to become independant
 	var old_pos = global_position
 	var grandparent = get_parent().get_parent()
