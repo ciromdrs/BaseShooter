@@ -21,7 +21,7 @@ func _ready():
 	for r in $RayCasts.get_children():
 		r.scale = Vector3(1, self.range_, 1)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	self._shoot_process()
 
 ## Prepares to shoot.
@@ -33,7 +33,7 @@ func shoot():
 func _shoot_process():
 	if just_shot:
 		just_shot = false
-		var ray_damage = damage / len($RayCasts.get_children())
+		var ray_damage = damage / float(len($RayCasts.get_children()))
 		for r in $RayCasts.get_children():
 			if r.is_colliding():
 				var collider = r.get_collider()

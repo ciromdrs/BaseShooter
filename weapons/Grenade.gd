@@ -21,7 +21,7 @@ var force = Vector3(8,5,8)
 @export_range(.1, 1, .1) var range_: float = .7
 
 
-func _process(delta):
+func _process(_delta):
 	# TODO: Move to MKCharacterController
 	if Input.is_action_just_released('action2'):
 		$AnimationPlayer.current_animation = 'throw'

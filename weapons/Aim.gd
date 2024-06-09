@@ -7,7 +7,7 @@ extends Node3D
 @onready var grandparent = get_parent().get_parent()
 
 
-func _process(delta):
+func _process(_delta):
 	if not camera.current:
 		camera = get_viewport().get_camera_3d()
 	$Left.position = camera.unproject_position(global_position)

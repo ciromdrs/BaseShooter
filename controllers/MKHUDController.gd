@@ -3,7 +3,7 @@ extends Node
 
 @onready var controlled: HUD3D = get_parent()
 
-func _process(delta):
+func _process(_delta):
 	control_hud()
 
 ## Commands `controlled` to show the HUD.
