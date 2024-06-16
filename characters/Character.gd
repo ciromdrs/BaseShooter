@@ -28,6 +28,7 @@ var _just_jumped := false
 func _ready():
 	pass
 
+
 func _physics_process(delta):
 	if is_on_floor():
 		if _just_jumped:
@@ -41,6 +42,7 @@ func _physics_process(delta):
 		_process_fall(delta)
 	move_and_slide()
 
+
 ## Processes fall physics.
 func _process_fall(delta):
 	# Apply gravity
@@ -52,10 +54,12 @@ func _process_fall(delta):
 	const JUMP_FALL_MOTION = 5
 	velocity += gravity_vector * JUMP_FALL_MOTION * gravity * delta
 
+
 ## Walk towards `direction`.
 func walk(direction: Vector3):
 	if is_on_floor():
 		_walk_direction = direction.normalized()
+
 
 ## Look at `at`.
 func look(at: Vector3):
@@ -64,6 +68,7 @@ func look(at: Vector3):
 		return
 	# Positions are different, can call `look_at`
 	look_at(at)
+
 
 ## Walk to destination facing it.
 ## Does not change x rotation.
@@ -110,6 +115,7 @@ func take_damage(damage):
 		]
 		say(lines.pick_random())
 
+
 func die():
 	queue_free()
 
@@ -117,10 +123,12 @@ func say(line: String):
 	var duration = clamp(len(line)/20.0, .5, 3)
 	$Dialog.show_text(line, duration)
 
+
 func stop():
 	velocity = Vector3.ZERO
 	_walk_direction = Vector3.ZERO
 	_just_jumped = false
+
 
 func jump():
 	_just_jumped = true
