@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://minigames/RandomScenarioMinigame.gd" id="1_m6dvq"]
 [ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="2_jxy1t"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="3_pwgoq"]
-[ext_resource type="PackedScene" uid="uid://b3mdeswkvljqe" path="res://weapons/Weapon.tscn" id="4_llcur"]
 [ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://util/Camera3DPlus.tscn" id="5_u8fkm"]
 [ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="6_j3wpc"]
 [ext_resource type="PackedScene" uid="uid://j5o0ne0vwj5g" path="res://weapons/Grenade.tscn" id="6_y4irx"]
 [ext_resource type="PackedScene" uid="uid://cn2ds681w2jm4" path="res://other/SpawnArea.tscn" id="7_fwq2n"]
 [ext_resource type="PackedScene" uid="uid://cj61nrs3fo57c" path="res://util/HUD3D.tscn" id="7_g35d6"]
 [ext_resource type="PackedScene" uid="uid://bvxmgay1e78st" path="res://controllers/MKHUDController.tscn" id="8_4b6hj"]
+[ext_resource type="PackedScene" uid="uid://b0ls7usiqt21e" path="res://weapons/AssaultRifle.tscn" id="8_84okl"]
 [ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/Zombie.tscn" id="8_anmrb"]
 [ext_resource type="PackedScene" uid="uid://bfbvr5limn4fp" path="res://other/HealthSystem.tscn" id="9_of5nd"]
 [ext_resource type="PackedScene" uid="uid://cnks015m076md" path="res://controllers/ChaseController.tscn" id="10_2v0cu"]
@@ -27,14 +27,11 @@ script = ExtResource("1_m6dvq")
 transform = Transform3D(0.718005, -0.294166, 0.630821, -0.294827, 0.692448, 0.658478, -0.630513, -0.658773, 0.410453, 14.1893, 16.4148, 2.03992)
 
 [node name="Player" parent="." node_paths=PackedStringArray("weapon") instance=ExtResource("2_jxy1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 9, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 6, 12)
 walk_speed = 5.0
-weapon = NodePath("Weapon")
+weapon = NodePath("AssaultRifle")
 
 [node name="MKCharacterController" parent="Player" instance=ExtResource("3_pwgoq")]
-
-[node name="Weapon" parent="Player" instance=ExtResource("4_llcur")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.583838)
 
 [node name="HealthSystem" parent="Player" instance=ExtResource("9_of5nd")]
 
@@ -44,6 +41,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.426822, 0.907593, 0.363466)
 [node name="HUD3D" parent="Player" instance=ExtResource("7_g35d6")]
 
 [node name="MKHUDController" parent="Player/HUD3D" instance=ExtResource("8_4b6hj")]
+
+[node name="AssaultRifle" parent="Player" instance=ExtResource("8_84okl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.558655)
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("5_u8fkm")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -11, 29, 12)

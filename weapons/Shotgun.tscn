@@ -1,29 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck5ybqy03jeqm"]
+[gd_scene load_steps=7 format=3 uid="uid://ck5ybqy03jeqm"]
 
 [ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_gr6bx"]
-[ext_resource type="PackedScene" uid="uid://d0h62ejpkkgsv" path="res://weapons/Aim.tscn" id="2_v6v6j"]
+[ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="2_lu8nu"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_x1nvp"]
+[sub_resource type="BoxMesh" id="BoxMesh_dblbo"]
+size = Vector3(0.09, 0.35, 0.09)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1obas"]
+top_radius = 0.05
+bottom_radius = 0.05
 height = 1.0
+radial_segments = 8
 
-[sub_resource type="BoxMesh" id="BoxMesh_rvp1e"]
+[sub_resource type="BoxMesh" id="BoxMesh_6eru0"]
+size = Vector3(0.09, 0.15, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lpy25"]
+size = Vector3(0.09, 0.15, 0.6)
 
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_gr6bx")
 range_ = 9.0
 damage = 150
 accuracy = 0.4
+freeze_time = 800.0
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.15, 0, 0, 0, -2.40413e-08, -0.15, 0, 0.55, -6.55671e-09, 0, 0.15, -0.25)
-mesh = SubResource("CylinderMesh_x1nvp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.000946797)
+mesh = SubResource("BoxMesh_dblbo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(0.81, 0, 0, 0, 0.2, -2.4869e-14, 0, 3.55271e-14, 2.08, 0, 0.454545, 0.666667)
-mesh = SubResource("BoxMesh_rvp1e")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.154545, -0.496387)
+mesh = SubResource("CylinderMesh_1obas")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112058, 0.304093)
+mesh = SubResource("BoxMesh_6eru0")
 
 [node name="RayCasts" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, 0.15)
+visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
 transform = Transform3D(0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
@@ -54,5 +70,8 @@ collision_mask = 5
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
-[node name="Aim" parent="." instance=ExtResource("2_v6v6j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147126, 0.00581685)
+[node name="Aim" parent="." instance=ExtResource("2_lu8nu")]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124348, -0.450947)
+mesh = SubResource("BoxMesh_lpy25")

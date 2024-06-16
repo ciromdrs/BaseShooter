@@ -4,11 +4,14 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ltc8k"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lc2ac"]
-albedo_color = Color(1, 0.337255, 0, 1)
+[sub_resource type="SphereMesh" id="SphereMesh_pc6d0"]
+radius = 0.55
+height = 1.1
+radial_segments = 8
+rings = 4
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ulwpx"]
-material = SubResource("StandardMaterial3D_lc2ac")
+[sub_resource type="BoxMesh" id="BoxMesh_om2fu"]
+size = Vector3(0.3, 0.3, 0.02)
 
 [sub_resource type="Animation" id="Animation_htuao"]
 length = 0.001
@@ -160,8 +163,12 @@ shape = SubResource("SphereShape3D_ltc8k")
 
 [node name="Skin" type="MeshInstance3D" parent="CollisionShape3D"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_ulwpx")
+mesh = SubResource("SphereMesh_pc6d0")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Skin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.622241, 0)
+mesh = SubResource("BoxMesh_om2fu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

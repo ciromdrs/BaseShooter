@@ -51,7 +51,9 @@ func _control_look_at_mouse():
 ## Commands `controlled` to perform mouse actions.
 func _control_mouse_actions():
 	if Input.is_action_just_pressed("action1"):
-		controlled.shoot()
+		controlled.pull_trigger()
+	elif Input.is_action_just_released("action1"):
+		controlled.release_trigger()
 
 ## Commands `controlled` to jump.
 func _control_jump():

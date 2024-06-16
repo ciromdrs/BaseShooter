@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://2uwapeamrudl"]
+
+[ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_lh0fb"]
+[ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="2_0s3b2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfo5l"]
+albedo_color = Color(0.158472, 0.158472, 0.158472, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rvp1e"]
+material = SubResource("StandardMaterial3D_vfo5l")
+size = Vector3(0.09, 0.35, 0.09)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v5lpq"]
+size = Vector3(0.1, 0.2, 0.55)
+
+[node name="Pistol" type="Node3D"]
+script = ExtResource("1_lh0fb")
+freeze_time = 0.0
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00185148, 0.004545)
+mesh = SubResource("BoxMesh_rvp1e")
+skeleton = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12077, -0.257011)
+mesh = SubResource("BoxMesh_v5lpq")
+skeleton = NodePath("../..")
+
+[node name="RayCasts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.157)
+collision_mask = 5
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5
+
+[node name="Aim" parent="." instance=ExtResource("2_0s3b2")]
