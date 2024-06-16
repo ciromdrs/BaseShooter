@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0ls7usiqt21e"]
+
+[ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_invhl"]
+[ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="3_bj363"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yxr67"]
+size = Vector3(0.09, 0.35, 0.09)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7ibt7"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 1.0
+radial_segments = 8
+
+[sub_resource type="PrismMesh" id="PrismMesh_optit"]
+left_to_right = 0.8
+size = Vector3(0.2, 0.4, 0.09)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y55du"]
+size = Vector3(0.09, 0.15, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j8rth"]
+size = Vector3(0.09, 0.2, 0.09)
+
+[node name="AssaultRifle" type="Node3D"]
+script = ExtResource("1_invhl")
+fire_mode = 0
+freeze_time = 100.0
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.000946797)
+mesh = SubResource("BoxMesh_yxr67")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.154545, -0.496387)
+mesh = SubResource("CylinderMesh_7ibt7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, 1.91069e-15, -4.37114e-08, 0, -1, -4.37114e-08, 0, 0.11221, 0.228995)
+mesh = SubResource("PrismMesh_optit")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124348, -0.450947)
+mesh = SubResource("BoxMesh_y55du")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.400947)
+mesh = SubResource("BoxMesh_j8rth")
+
+[node name="RayCasts" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, 0.15)
+
+[node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
+collision_mask = 5
+debug_shape_custom_color = Color(0, 0, 1, 1)
+debug_shape_thickness = 5
+
+[node name="Aim" parent="." instance=ExtResource("3_bj363")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0057991, -0.516423)
