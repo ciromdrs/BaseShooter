@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsy2ocrbtii6l"]
+[gd_scene load_steps=6 format=3 uid="uid://bsy2ocrbtii6l"]
 
 [ext_resource type="Script" path="res://characters/Character.gd" id="1_3yc0c"]
-[ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="2_p840e"]
 [ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_o823k"]
 [ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://characters/CharacterCollisionShape.tscn" id="4_tvc7v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ob8df"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fe42k"]
+material = SubResource("StandardMaterial3D_ob8df")
+radial_segments = 32
 
 [node name="Human" type="CharacterBody3D"]
 collision_layer = 2
@@ -12,10 +18,11 @@ velocity = Vector3(0, -333.195, 0)
 script = ExtResource("1_3yc0c")
 walk_speed = 4.0
 
-[node name="CharacterDemoSkin" parent="." instance=ExtResource("2_p840e")]
-color = Color(0, 0, 1, 1)
-
 [node name="CharacterCollisionShape" parent="." instance=ExtResource("4_tvc7v")]
 
 [node name="Dialog" parent="." instance=ExtResource("4_o823k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+
+[node name="Skin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_fe42k")

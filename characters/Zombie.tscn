@@ -1,9 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckdhl0d0mcqmg"]
+[gd_scene load_steps=8 format=3 uid="uid://ckdhl0d0mcqmg"]
 
 [ext_resource type="Script" path="res://characters/Zombie.gd" id="1_auu8l"]
 [ext_resource type="PackedScene" uid="uid://bgyjyyq3cldsk" path="res://characters/CharacterCollisionShape.tscn" id="2_7a3qn"]
-[ext_resource type="PackedScene" uid="uid://ptc6vgtow6c" path="res://assets/CharacterDemoSkin.tscn" id="3_bd2l8"]
 [ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_34hb8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxyq1"]
+albedo_color = Color(0.701961, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yv6n1"]
+material = SubResource("StandardMaterial3D_oxyq1")
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uj28e"]
+albedo_color = Color(0.701961, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_iyos1"]
+material = SubResource("StandardMaterial3D_uj28e")
+size = Vector3(1, 1, 0.1)
 
 [node name="Zombie" type="CharacterBody3D"]
 collision_layer = 4
@@ -12,11 +25,17 @@ script = ExtResource("1_auu8l")
 
 [node name="CharacterCollisionShape" parent="." instance=ExtResource("2_7a3qn")]
 
-[node name="CharacterDemoSkin" parent="." instance=ExtResource("3_bd2l8")]
-color = Color(0.891357, 0, 0.205658, 1)
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 1.15
 
 [node name="Dialog" parent="." instance=ExtResource("4_34hb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+
+[node name="Skin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_yv6n1")
+
+[node name="Skin2" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(0.590527, 0, 0, 0, -1.5745e-08, 1, 0, -0.360205, -4.37114e-08, 0, -0.490036, -0.705545)
+mesh = SubResource("PrismMesh_iyos1")
+skeleton = NodePath("../..")
