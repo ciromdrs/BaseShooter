@@ -78,18 +78,17 @@ func walk_facing(destination: Vector3):
 
 ## Pulls the weapon's trigger.
 func pull_trigger():
-	var could_shoot = self.weapon.pull_trigger()
-	if could_shoot:
-		var lines: Array[String] = [
-			'PEI!!',
-			'TEI!!',
-			'PÁÁ!!',
-			'TÁÁ!!',
-			'PEI!! Toma arrombado!',
-			'PEI!! Rá po inferno!',
-			'PÁ!! Pegue no quengo!',
-		]
-		say(lines.pick_random())
+	self.weapon.pull_trigger()
+	var lines: Array[String] = [
+		'PEI!!',
+		'TEI!!',
+		'PÁÁ!!',
+		'TÁÁ!!',
+		'PEI!! Toma arrombado!',
+		'PEI!! Rá po inferno!',
+		'PÁ!! Pegue no quengo!',
+	]
+	say(lines.pick_random())
 
 
 ## Releases the weapon's trigger.
