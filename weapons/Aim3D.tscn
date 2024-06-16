@@ -1,15 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dla6ybjgpehhe"]
+[gd_scene load_steps=3 format=3 uid="uid://dla6ybjgpehhe"]
 
-[ext_resource type="Texture2D" uid="uid://cofuitcv7tiri" path="res://weapons/aim.png" id="1_gvxip"]
 [ext_resource type="Script" path="res://weapons/Aim3D.gd" id="1_oi4ha"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckftm"]
-transparency = 1
-albedo_texture = ExtResource("1_gvxip")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_78865"]
-material = SubResource("StandardMaterial3D_ckftm")
-size = Vector2(0.07, 1)
+[ext_resource type="ArrayMesh" uid="uid://dhpo8hysltinr" path="res://assets/anchored_plane_N_Plane.res" id="3_4pfti"]
 
 [node name="Aim3D" type="Node3D"]
 script = ExtResource("1_oi4ha")
@@ -18,14 +10,14 @@ script = ExtResource("1_oi4ha")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Left"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.5)
-mesh = SubResource("PlaneMesh_78865")
-skeleton = NodePath("../../..")
+transform = Transform3D(-0.075, 0, -1.50996e-07, 0, 1, 0, 1.13247e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("3_4pfti")
+skeleton = NodePath("../..")
 
 [node name="Right" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, -0.001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="Right"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -0.5)
-mesh = SubResource("PlaneMesh_78865")
-skeleton = NodePath("../../..")
+transform = Transform3D(-0.075, 0, -1.50996e-07, 0, 1, 0, 1.13247e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("3_4pfti")
+skeleton = NodePath("../..")

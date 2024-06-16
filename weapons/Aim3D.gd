@@ -23,5 +23,5 @@ func set_aperture(accuracy):
 func set_range(range_):
 	const MAX_AIM_LENGTH = 13
 	var length = min(range_, MAX_AIM_LENGTH)
-	$Left/Mesh.mesh.size.y = length
-	$Right/Mesh.mesh.size.y = length
+	$Left/Mesh.scale.z = length
+	$Right/Mesh.scale.z = length

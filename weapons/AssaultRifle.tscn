@@ -56,4 +56,4 @@ debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="Aim" parent="." instance=ExtResource("3_bj363")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0057991, -0.516423)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.149666, -1.00566)
