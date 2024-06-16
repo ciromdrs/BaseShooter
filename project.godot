@@ -68,10 +68,6 @@ status={
 3d_physics/layer_2="player"
 3d_physics/layer_3="enemies"
 
-[navigation]
-
-3d/default_cell_size=0.2
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
