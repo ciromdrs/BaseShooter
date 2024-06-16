@@ -176,6 +176,7 @@ shape = SubResource("CylinderShape3D_4dc37")
 
 [node name="RedCylinder" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+visible = false
 mesh = SubResource("CylinderMesh_rt1pl")
 skeleton = NodePath("../WhiteCylinder/StaticBody3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_4g0dp")
