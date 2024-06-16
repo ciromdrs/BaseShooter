@@ -9,10 +9,6 @@ extends RigidBody3D
 ## character.
 @onready var initial_parent = get_parent()
 
-## The initial transform of the grenade. Used to respawn grenades in their
-## original position, rotation and scale relative to the parent.
-@onready var initial_transform = transform
-
 ## The force applied when throwing the grenade.
 ## Note: Created for prototyping, might become a constant later.
 var force = Vector3(8,5,8)
