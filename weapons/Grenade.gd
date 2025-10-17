@@ -27,6 +27,8 @@ func _process(_delta):
 
 ## Inflicts the damage of the explosion.
 func boom():
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
 	for body in $DamageArea.get_overlapping_bodies():
 		var radius = $DamageArea/CollisionShape3D.shape.radius
 		var distance = self.global_position.distance_to(body.global_position)
