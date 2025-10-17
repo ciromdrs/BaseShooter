@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccw600quhxwih"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjx11"]
+albedo_color = Color(0, 0.44933867, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kse3w"]
+albedo_color = Color(0.35394153, 0.1396093, 0, 1)
+
+[node name="Arvore" type="Node3D"]
+visible = false
+
+[node name="Folhas" type="CSGSphere3D" parent="."]
+transform = Transform3D(6, 0, 0, 0, 3, 0, 0, 0, 6, 0, 8.321138, 0)
+radius = 1.0
+radial_segments = 5
+rings = 5
+material = SubResource("StandardMaterial3D_wjx11")
+
+[node name="Tronco" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8446045, 0)
+use_collision = true
+height = 5.0
+material = SubResource("StandardMaterial3D_kse3w")
