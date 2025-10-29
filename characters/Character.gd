@@ -18,15 +18,18 @@ var _just_jumped := false
 ## In meters per second.
 @export var jump_speed: float = 10.5
 
-## The character's weapon.
-@export var weapon: Weapon
+## The character's weapons.
+@export var weapons: Array[Node3D]
+
+## The current (equiped) weapon's index.
+var current_weapon: int = 0
 
 ## The health system.
 @onready var health_system = $HealthSystem
 
-
 func _ready():
-	pass
+	if len(weapons) > 0:
+		weapons[current_weapon].equip()
 
 
 func _physics_process(delta):
@@ -83,7 +86,7 @@ func walk_facing(destination: Vector3):
 
 ## Pulls the weapon's trigger.
 func pull_trigger():
-	self.weapon.pull_trigger()
+	self.weapons[current_weapon].pull_trigger()
 	var lines: Array[String] = [
 		'PEI!!',
 		'TEI!!',
@@ -98,7 +101,7 @@ func pull_trigger():
 
 ## Releases the weapon's trigger.
 func release_trigger():
-	self.weapon.release_trigger()
+	self.weapons[current_weapon].release_trigger()
 
 
 func take_damage(damage):
@@ -119,6 +122,7 @@ func take_damage(damage):
 func die():
 	queue_free()
 
+
 func say(line: String):
 	var duration = clamp(len(line)/20.0, .5, 3)
 	$Dialog.show_text(line, duration)
@@ -132,3 +136,17 @@ func stop():
 
 func jump():
 	_just_jumped = true
+
+
+func throw():
+	self.weapons[current_weapon].be_thrown()
+	
+
+func equip(weapon_index: int):
+	# Unequip current weapon
+	if weapons[current_weapon] != null:
+		weapons[current_weapon].unequip()
+	# Equip next weapon
+	if weapons[weapon_index] != null:
+		current_weapon = weapon_index
+		weapons[current_weapon].equip()

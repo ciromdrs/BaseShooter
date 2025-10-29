@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://da1dfwneb3kro"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xps84"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_w46md"]
+size = Vector3(0.695, 0.7, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6vfi"]
+albedo_color = Color(1, 0.23137255, 0, 1)
+
+[node name="RoadBlock" type="CSGCombiner3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0.49822676, 2.1855694e-08)
+size = Vector3(0.302, 0.5, 1)
+material = SubResource("StandardMaterial3D_xps84")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0.35822678, 2.1855694e-08)
+mesh = SubResource("PrismMesh_w46md")
+material = SubResource("StandardMaterial3D_xps84")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0.49822676, -2.1855694e-08)
+size = Vector3(0.302, 0.5, 1)
+material = SubResource("StandardMaterial3D_s6vfi")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0.35822678, -2.1855694e-08)
+mesh = SubResource("PrismMesh_w46md")
+material = SubResource("StandardMaterial3D_s6vfi")

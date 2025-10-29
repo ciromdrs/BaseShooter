@@ -3,6 +3,7 @@ extends Node
 ##
 ## Add this as a child of a [code]Character[/code] node.
 
+const CURSOR = preload('res://assets/cursor.png')
 
 ## The [code]Character[/code] controlled by this.
 @onready var controlled: Character = get_parent()
@@ -10,25 +11,20 @@ extends Node
 ## Indicates if the Character just shot a bullet.
 ## To be processed during _physics_process.
 var just_shot: bool = false
+
 ## Target of the last shot.
 var target: Vector3
 
 
+func _ready():
+	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.set_custom_mouse_cursor(CURSOR, Input.CURSOR_ARROW, CURSOR.get_size() / 2)
+
 func _process(_delta):
 	_control_walk()
-	_control_jump()
+	# _control_jump()
 	_control_look_at_mouse()
-	_control_mouse_actions()
-
-## Gets the global mouse position in the 3D space.
-func _get_mouse_pos3D() -> Vector3:
-	var camera3d = get_viewport().get_camera_3d()
-	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_length = 10  # Must be bigger than the camera's distance?
-	var from = camera3d.project_ray_origin(mouse_pos)
-	var to = from + camera3d.project_ray_normal(mouse_pos) * ray_length
-	to.y = controlled.global_position.y
-	return to
+	_control_equip()
 
 ## Commands `controlled` to walk.
 func _control_walk():
@@ -45,17 +41,26 @@ func _control_walk():
 
 ## Commands `controlled` to look at the mouse.
 func _control_look_at_mouse():
-	var to = _get_mouse_pos3D()
-	controlled.look(to)
-
-## Commands `controlled` to perform mouse actions.
-func _control_mouse_actions():
-	if Input.is_action_just_pressed("action1"):
-		controlled.pull_trigger()
-	elif Input.is_action_just_released("action1"):
-		controlled.release_trigger()
+	var mouse_pos = get_viewport().get_mouse_position()
+	var center = get_viewport().get_visible_rect().size / 2
+	var angle = mouse_pos.angle_to_point(center)
+	controlled.rotation.y = -angle - PI*.5
 
 ## Commands `controlled` to jump.
 func _control_jump():
 	if Input.is_action_just_pressed('jump'):
 		controlled.jump()
+
+func _control_equip():
+	var just_equiped = -1
+	if Input.is_action_just_pressed('equip1'):
+		just_equiped = 0
+	if Input.is_action_just_pressed('equip2'):
+		just_equiped = 1
+	if Input.is_action_just_pressed('equip3'):
+		just_equiped = 2
+	if Input.is_action_just_pressed('equip4'):
+		just_equiped = 3
+	if just_equiped < 0:
+		return
+	controlled.equip(just_equiped)

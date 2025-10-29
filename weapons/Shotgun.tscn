@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ck5ybqy03jeqm"]
+[gd_scene load_steps=12 format=3 uid="uid://ck5ybqy03jeqm"]
 
-[ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_gr6bx"]
+[ext_resource type="Script" uid="uid://0xqg0lygjh1h" path="res://weapons/Weapon.gd" id="1_gr6bx"]
 [ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="2_lu8nu"]
+[ext_resource type="PackedScene" uid="uid://d0waw2eynesrw" path="res://controllers/mk_weapon_controller.tscn" id="3_rx5td"]
+[ext_resource type="Texture2D" uid="uid://culmcgoan4rgw" path="res://assets/models3D/gunshot-fire1.png" id="4_8swrk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dblbo"]
 size = Vector3(0.09, 0.35, 0.09)
@@ -17,6 +19,67 @@ size = Vector3(0.09, 0.15, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lpy25"]
 size = Vector3(0.09, 0.15, 0.6)
+
+[sub_resource type="Animation" id="Animation_6necn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1c1in"]
+resource_name = "shoot"
+length = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4r8g"]
+_data = {
+&"RESET": SubResource("Animation_6necn"),
+&"shoot": SubResource("Animation_1c1in")
+}
 
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_gr6bx")
@@ -38,8 +101,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112058, 0.304093)
 mesh = SubResource("BoxMesh_6eru0")
 
 [node name="RayCasts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, 0.15)
-visible = false
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, -0.99256337)
 
 [node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
 transform = Transform3D(0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
@@ -72,7 +134,28 @@ debug_shape_thickness = 5
 
 [node name="Aim" parent="." instance=ExtResource("2_lu8nu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147675, -1.00169)
+visible = false
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124348, -0.450947)
 mesh = SubResource("BoxMesh_lpy25")
+
+[node name="MKWeaponController" parent="." instance=ExtResource("3_rx5td")]
+process_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../GunshotFire")
+libraries = {
+&"": SubResource("AnimationLibrary_w4r8g")
+}
+
+[node name="GunshotFire" type="Sprite3D" parent="."]
+transform = Transform3D(-1.6750001, 1.4643314e-07, 7.321658e-08, -7.3216576e-08, 3.2003977e-15, -1.6750002, -1.4643315e-07, -1.6749998, 3.2003986e-15, -0.017961971, 0.15933633, -1.253048)
+visible = false
+texture = ExtResource("4_8swrk")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17060626, -1.1103766)
+visible = false
+light_energy = 0.533
+omni_range = 6.7131577

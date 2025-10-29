@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://car3blck7fy1l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axcr3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_axcr3"]
+height = 1.8
+radial_segments = 16
+rings = 3
+
+[sub_resource type="PrismMesh" id="PrismMesh_axcr3"]
+size = Vector3(0.55, 0.35, 0.1)
+
+[node name="Human" type="CSGCombiner3D"]
+material_override = SubResource("StandardMaterial3D_axcr3")
+
+[node name="Body" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9025456, 0)
+mesh = SubResource("CapsuleMesh_axcr3")
+
+[node name="Arrow" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3895868, 0.68746305)
+mesh = SubResource("PrismMesh_axcr3")

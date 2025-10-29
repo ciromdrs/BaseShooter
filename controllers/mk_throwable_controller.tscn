@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4jp760bnicdm"]
+
+[ext_resource type="Script" uid="uid://cqb3sicj2gn3k" path="res://controllers/mk_throwable_controller.gd" id="1_gse6u"]
+
+[node name="MKThrowableController" type="Node"]
+script = ExtResource("1_gse6u")

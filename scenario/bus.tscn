@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckxgck25eguee"]
+
+[ext_resource type="PackedScene" uid="uid://dqhd8r88xerrx" path="res://assets/models3D/bus.tscn" id="1_tkmav"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1k5v"]
+size = Vector3(2.6, 3.223889, 12.0330925)
+
+[node name="Bus" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5950682, -0.021795273)
+shape = SubResource("BoxShape3D_m1k5v")
+
+[node name="Bus" parent="." instance=ExtResource("1_tkmav")]

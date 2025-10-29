@@ -1,6 +1,8 @@
-[gd_scene format=3 uid="uid://dh5wri0vfxf0p"]
+[gd_scene load_steps=2 format=3 uid="uid://dh5wri0vfxf0p"]
+
+[ext_resource type="Script" uid="uid://bdslfijn3cqpu" path="res://util/Camera3DPlus.gd" id="1_e5rtm"]
 
 [node name="Camera3D" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12, 0)
 current = true
 size = 15.0
+script = ExtResource("1_e5rtm")

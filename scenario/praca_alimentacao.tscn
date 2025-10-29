@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=3 uid="uid://dljfec6np8wpu"]
+
+[ext_resource type="Material" uid="uid://tp7vl7lim2lt" path="res://scenario/TelhadoMaterial.tres" id="1_r4p0p"]
+[ext_resource type="Material" uid="uid://bcnsltqvb7d8v" path="res://scenario/invisible_material.tres" id="2_bm0ce"]
+[ext_resource type="Texture2D" uid="uid://bkjfdbr65bip6" path="res://ignored/sao_joao_reference.png" id="2_r4p0p"]
+[ext_resource type="PackedScene" uid="uid://ccw600quhxwih" path="res://scenario/arvore.tscn" id="3_bm0ce"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnwqy"]
+albedo_color = Color(0.38170326, 0.38170323, 0.38170323, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_kj341"]
+left_to_right = 1.0
+size = Vector3(2, 1, 38.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_hnwqy"]
+left_to_right = 1.0
+size = Vector3(2, 1, 34)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj341"]
+albedo_color = Color(1, 0.88235295, 0.40784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xutlp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bm0ce"]
+albedo_texture = ExtResource("2_r4p0p")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kj341"]
+size = Vector2(260, 140)
+
+[node name="PracaAlimentacao" type="CSGCombiner3D"]
+transform = Transform3D(-0.99994284, 0, 0.0106811235, 0, 1, 0, -0.0106811235, 0, -0.99994284, 0, 0, 0)
+use_collision = true
+
+[node name="Piso" type="CSGBox3D" parent="."]
+size = Vector3(38.5, 1, 34)
+material = SubResource("StandardMaterial3D_hnwqy")
+
+[node name="AcessoN" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.377216e-08, 0, -1, 0, 1, 0, 1, 0, -4.377216e-08, 0, 0, -18)
+use_collision = true
+mesh = SubResource("PrismMesh_kj341")
+material = ExtResource("2_bm0ce")
+
+[node name="AcessoS" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.377216e-08, 0, 1, 0, 1, 0, -1, 0, -4.377216e-08, 0, 0, 18)
+use_collision = true
+mesh = SubResource("PrismMesh_kj341")
+material = ExtResource("2_bm0ce")
+
+[node name="AcessoE" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 0, -8.754432e-08, 0, 1, 0, 8.754432e-08, 0, -1, 20.25, 0, 0)
+use_collision = true
+mesh = SubResource("PrismMesh_hnwqy")
+material = ExtResource("2_bm0ce")
+
+[node name="AcessoW" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 0, 0)
+use_collision = true
+mesh = SubResource("PrismMesh_hnwqy")
+material = ExtResource("2_bm0ce")
+
+[node name="Quiosques" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1375868, 2.5, 6.0187454)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Quiosques"]
+transform = Transform3D(0.9992953, 0, 0.0375332, 0, 1, 0, -0.0375332, 0, 0.9992953, 4.163794, 0, 0.08313084)
+size = Vector3(4.209, 4, 13.5854645)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Quiosques"]
+transform = Transform3D(0.042608008, 0, -0.9990922, 0, 1, 0, 0.9990922, 0, 0.042608008, -1.6897128, 0, 5.015569)
+size = Vector3(4.209, 4, 7.852)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Quiosques"]
+transform = Transform3D(0.9992953, 0, 0.0375332, 0, 1, 0, -0.0375332, 0, 0.9992953, 4.163794, 2.2001953, 0.08313084)
+size = Vector3(4.209, 0.40039063, 13.5854645)
+material = ExtResource("1_r4p0p")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Quiosques"]
+transform = Transform3D(0.042607967, 0, -0.99908775, 0, 1, 0, 0.99908775, 0, 0.042607967, -1.6897128, 2.199829, 5.015569)
+size = Vector3(4.209, 0.3996582, 7.852)
+material = ExtResource("1_r4p0p")
+
+[node name="Concha" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.670185, 0, -3.5707438)
+
+[node name="Add" type="CSGCylinder3D" parent="Concha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.048356, 4.5, 5.2603154)
+radius = 9.958
+height = 8.0
+sides = 12
+material = SubResource("StandardMaterial3D_kj341")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Concha/Add"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06001, 0, -5.067413)
+operation = 1
+size = Vector3(10.206, 8, 10.136)
+
+[node name="Subtract" type="CSGCylinder3D" parent="Concha"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.580696, 4.992676, 5.5884066)
+operation = 2
+radius = 9.958
+height = 7.0146484
+sides = 12
+material = SubResource("StandardMaterial3D_xutlp")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Concha/Subtract"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06001, 0, -5.067413)
+operation = 1
+size = Vector3(10.206, 8, 10.136)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Concha/Subtract"]
+transform = Transform3D(0.9670734, -0.13394277, -0.21639852, -0.005821252, 0.8384329, -0.5449739, 0.25443098, 0.52828926, 0.8100464, -9.21492, -3.652892, -0.8215554)
+size = Vector3(1, 1, 2.5766602)
+
+[node name="Refrence" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.9055975, 0, -0.18846357, 0, 0.92499995, 0, 0.18846357, 0, -0.9055975, -89.11153, 1.2329102, 39.259956)
+visible = false
+material_override = SubResource("StandardMaterial3D_bm0ce")
+mesh = SubResource("PlaneMesh_kj341")
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="Arvore" parent="Trees" instance=ExtResource("3_bm0ce")]
+transform = Transform3D(0.835, 0, 0, 0, 0.835, 0, 0, 0, 0.835, -9.49857, 0, -15.862868)
+
+[node name="Arvore2" parent="Trees" instance=ExtResource("3_bm0ce")]
+transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, -16.34557, 0, -6.0796885)
+
+[node name="Arvore3" parent="Trees" instance=ExtResource("3_bm0ce")]
+transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, -16.052734, 0, 0.65470874)
+
+[node name="Arvore4" parent="Trees" instance=ExtResource("3_bm0ce")]
+transform = Transform3D(0.315, 0, 2.3283064e-10, 0, 0.315, 0, -2.3283064e-10, 0, 0.315, -15.380145, 0, 6.7499557)
+
+[node name="Arvore5" parent="Trees" instance=ExtResource("3_bm0ce")]
+transform = Transform3D(0.23, 0, 3.4000666e-10, 0, 0.23, 0, -3.4000666e-10, 0, 0.23, -12.525913, 0, 10.281519)

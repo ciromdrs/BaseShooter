@@ -2,9 +2,11 @@
 class_name Weapon extends Node3D
 
 ## Fire mode.
-## Manual: pull the trigger to shoot one bullet.
-## Auto: hold the trigger to shoot automaticaly.
-enum FireMode {AUTO, MANUAL}
+enum FireMode {
+	MANUAL,  ## Pull the trigger to shoot one bullet.
+	AUTO,  ## Hold the trigger to shoot automaticaly.
+	THROW  ## Hold the click and release to throw.
+}
 
 ## In meters.
 @export var range_: float = 10
@@ -71,6 +73,14 @@ func _shoot_process():
 ## Performs a shot by applying damage to raycast colliders and updates last shot
 ## time.
 func _shoot():
+	var gunshot_textures = [
+		preload('res://assets/models3D/gunshot-fire1.png'),
+		preload('res://assets/models3D/gunshot-fire2.png'),
+		preload('res://assets/models3D/gunshot-fire3.png'),
+	]
+	$GunshotFire.texture = gunshot_textures.pick_random()
+	$GunshotFire.flip_h = randf() > .5
+	$AnimationPlayer.current_animation = 'shoot'
 	_last_shot = Util.now()
 	var ray_damage = damage / float(len($RayCasts.get_children()))
 	for r in $RayCasts.get_children():
@@ -107,3 +117,23 @@ func _scale_raycasts():
 func _update_aim():
 	$Aim.set_range(self.range_)
 	$Aim.set_aperture(self.accuracy)
+
+
+## Equips the weapon and activates controls.
+func equip():
+	const CURSOR = preload('res://assets/cursor.png')
+	Input.set_custom_mouse_cursor(CURSOR, Input.CURSOR_ARROW, CURSOR.get_size() / 2)
+	var player: Character = get_parent()
+	$MKWeaponController.controlled = player
+	$MKWeaponController.process_mode = Node.PROCESS_MODE_INHERIT
+	$Aim.visible = true
+	visible = true
+
+
+## Unequips the weapon and deactivates controls.
+func unequip():
+	# TODO: Restore cursor?
+	visible = false
+	$Aim.visible = false
+	$MKWeaponController.process_mode = Node.PROCESS_MODE_DISABLED
+	$MKWeaponController.controlled = null

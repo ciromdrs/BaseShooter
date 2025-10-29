@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0waw2eynesrw"]
+
+[ext_resource type="Script" uid="uid://cy050466ewknc" path="res://controllers/mk_weapon_controller.gd" id="1_6a4qq"]
+
+[node name="MKWeaponController" type="Node"]
+script = ExtResource("1_6a4qq")

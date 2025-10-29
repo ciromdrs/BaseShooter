@@ -8,4 +8,4 @@ func _process(_delta):
 
 
 func _on_timer_timeout():
-	$SpawnArea.spawn()
+	was$SpawnArea.spawn()

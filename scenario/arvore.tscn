@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccw600quhxwih"]
+
+[ext_resource type="PackedScene" uid="uid://d7fumh36hsht" path="res://assets/models3D/arvore.tscn" id="1_yvdv5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pu1n3"]
+height = 4.1411133
+
+[node name="Arvore" type="StaticBody3D"]
+
+[node name="Mesh" parent="." instance=ExtResource("1_yvdv5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CylinderShape3D_pu1n3")

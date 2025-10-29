@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bls1jx4pnnnem"]
+
+[ext_resource type="PackedScene" uid="uid://da1dfwneb3kro" path="res://assets/models3D/road_block.tscn" id="1_tsonk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6yy3v"]
+size = Vector3(0.479, 0.7519531, 2)
+
+[node name="RoadBlock" type="StaticBody3D"]
+
+[node name="RoadBlock" parent="." instance=ExtResource("1_tsonk")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.38555694, 0)
+shape = SubResource("BoxShape3D_6yy3v")

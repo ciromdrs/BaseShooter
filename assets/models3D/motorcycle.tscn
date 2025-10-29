@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://buj17dfxnsokm"]
+
+[ext_resource type="Material" uid="uid://c42pywfjv1mo" path="res://scenario/carlights_material.tres" id="1_qtrsc"]
+[ext_resource type="Texture2D" uid="uid://qbo52bcipyo3" path="res://ignored/motorcycle.png" id="2_u054m"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qtrsc"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.15
+radial_segments = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubikj"]
+albedo_color = Color(0.20152658, 0.20152658, 0.20152658, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ho5m3"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.2
+radial_segments = 10
+
+[sub_resource type="PrismMesh" id="PrismMesh_bjvw7"]
+left_to_right = 0.7
+size = Vector3(1.59, 0.755, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csraw"]
+albedo_texture = ExtResource("2_u054m")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cbtsr"]
+size = Vector2(2, 1.11)
+
+[node name="Motorcycle" type="CSGCombiner3D"]
+
+[node name="Tire" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.24336272, 0.5477904)
+mesh = SubResource("CylinderMesh_qtrsc")
+material = SubResource("StandardMaterial3D_ubikj")
+
+[node name="Tire3" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.24953437, -0.48350525)
+mesh = SubResource("CylinderMesh_ho5m3")
+material = SubResource("StandardMaterial3D_ubikj")
+
+[node name="Body" type="CSGMesh3D" parent="."]
+transform = Transform3D(-3.384004e-08, 0, 1, -6.768008e-08, -0.727608, -3.821371e-15, 0.7741698, -6.360951e-08, 4.371139e-08, 0, 0.40805948, -0.13871169)
+mesh = SubResource("PrismMesh_bjvw7")
+
+[node name="Front" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74200773, 0.377374)
+size = Vector3(0.3, 0.25603026, 0.2881836)
+
+[node name="Mesh" type="CSGCylinder3D" parent="Front"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.08023018, -0.11725962)
+radius = 0.025
+height = 0.75
+
+[node name="LightL" type="CSGCylinder3D" parent="Front"]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -7.110785e-10, -0.012953043, 0.14496607)
+radius = 0.099609375
+height = 0.035464846
+sides = 7
+material = ExtResource("1_qtrsc")
+
+[node name="Suspension" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.91244894, 0.4091906, 0, -0.4091906, 0.91244894, 0, 0.47476876, 0.44488752)
+size = Vector3(0.25, 0.533668, 0.053)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 1.0541992, 0.50183755, 0)
+material_override = SubResource("StandardMaterial3D_csraw")
+mesh = SubResource("PlaneMesh_cbtsr")

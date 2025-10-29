@@ -18,6 +18,7 @@ var _last_refresh: int = 0
 ## Time interval between path recomputings, in milliseconds.
 @export var refresh_interval: int = 1
 
+
 func _ready():
 	controlled = get_parent()
 	# Make sure to not await during _ready.

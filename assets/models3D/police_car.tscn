@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://cah3msnikq3yf"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_yc1fd"]
+left_to_right = 1.0
+size = Vector3(0.53, 1.215, 1.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yc1fd"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_yj4dp"]
+left_to_right = 1.0
+size = Vector3(0.53, 0.72, 1.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aj84p"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3n7a"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ho5m3"]
+height = 0.3
+radial_segments = 8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1k5v"]
+size = Vector3(2.3, 1.6, 4.4003906)
+
+[node name="PoliceCar" type="StaticBody3D"]
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.09671301)
+
+[node name="Front" type="CSGMesh3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, -1, -1, 1.9106855e-15, 4.371139e-08, 0, 1, -4.371139e-08, 0, 1.3175228, 0.94512963)
+mesh = SubResource("PrismMesh_yc1fd")
+material = SubResource("StandardMaterial3D_yc1fd")
+
+[node name="Back" type="CSGMesh3D" parent="CSGCombiner3D2"]
+transform = Transform3D(4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, 4.371139e-08, -3.821371e-15, -1, -4.371139e-08, 0, 1.3082654, -1.6546953)
+mesh = SubResource("PrismMesh_yj4dp")
+material = SubResource("StandardMaterial3D_yc1fd")
+
+[node name="Upper" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3082654, -0.48025352)
+size = Vector3(1.9, 0.545, 1.6294)
+
+[node name="Upper2" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 1.691, 0.058)
+size = Vector3(0.7080933, 0.21146485, 0.31445313)
+material = SubResource("StandardMaterial3D_aj84p")
+
+[node name="Upper3" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1.691, 0.058)
+size = Vector3(0.7080933, 0.21146485, 0.31445313)
+material = SubResource("StandardMaterial3D_v3n7a")
+
+[node name="Lower" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72130036, -0.20898038)
+size = Vector3(2.0666504, 0.6711426, 4.4020014)
+
+[node name="Tire" type="CSGMesh3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1, 0.5090532, 1.3961072)
+mesh = SubResource("CylinderMesh_ho5m3")
+
+[node name="Tire2" type="CSGMesh3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -1, 0.509, 1.3961074)
+mesh = SubResource("CylinderMesh_ho5m3")
+
+[node name="Tire3" type="CSGMesh3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1, 0.5090532, -1.2583041)
+mesh = SubResource("CylinderMesh_ho5m3")
+
+[node name="Tire4" type="CSGMesh3D" parent="CSGCombiner3D2"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -1, 0.509, -1.2583039)
+mesh = SubResource("CylinderMesh_ho5m3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7855996, -0.103482306)
+shape = SubResource("BoxShape3D_m1k5v")

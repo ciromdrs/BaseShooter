@@ -1,0 +1,143 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmq3e58dd2acb"]
+
+[ext_resource type="Material" uid="uid://bcnsltqvb7d8v" path="res://scenario/invisible_material.tres" id="1_1n53p"]
+[ext_resource type="Material" uid="uid://tp7vl7lim2lt" path="res://scenario/TelhadoMaterial.tres" id="2_pgo8k"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_vqlev"]
+left_to_right = 1.0
+size = Vector3(3, 1.5, 34)
+
+[sub_resource type="PrismMesh" id="PrismMesh_8tytt"]
+left_to_right = 1.0
+size = Vector3(3, 1.5, 24)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ovftc"]
+size = Vector3(7, 5, 0.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_d2d2s"]
+material = ExtResource("2_pgo8k")
+size = Vector3(15, 3, 17.5)
+
+[sub_resource type="PrismMesh" id="PrismMesh_kse3w"]
+material = ExtResource("2_pgo8k")
+size = Vector3(9, 2, 25)
+
+[sub_resource type="PrismMesh" id="PrismMesh_y0vc2"]
+material = ExtResource("2_pgo8k")
+size = Vector3(10, 2, 5)
+
+[node name="Igreja" type="CSGCombiner3D"]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
+
+[node name="Calçada" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.021504564, 0.7567539, 0.0043689427)
+
+[node name="Piso" type="CSGBox3D" parent="Calçada"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.476, 0, 0)
+size = Vector3(34, 1.5, 24)
+
+[node name="AcessoN" type="CSGMesh3D" parent="Calçada"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.5, 0, -13.5)
+use_collision = true
+mesh = SubResource("PrismMesh_vqlev")
+material = ExtResource("1_1n53p")
+
+[node name="AcessoS" type="CSGMesh3D" parent="Calçada"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 0, 13.5)
+use_collision = true
+mesh = SubResource("PrismMesh_vqlev")
+material = ExtResource("1_1n53p")
+
+[node name="AcessoE" type="CSGMesh3D" parent="Calçada"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, 0, 0)
+use_collision = true
+mesh = SubResource("PrismMesh_8tytt")
+material = ExtResource("1_1n53p")
+
+[node name="AcessoW" type="CSGMesh3D" parent="Calçada"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+use_collision = true
+mesh = SubResource("PrismMesh_8tytt")
+material = ExtResource("1_1n53p")
+
+[node name="Paredes" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.021504564, 0.7567539, 0.0043689427)
+
+[node name="Principal" type="CSGBox3D" parent="Paredes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7356188, 0)
+size = Vector3(25, 6, 15)
+
+[node name="LateralN" type="CSGBox3D" parent="Paredes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.991997, 3.7681699, -9.778065)
+size = Vector3(9, 6, 5)
+
+[node name="LateralS" type="CSGBox3D" parent="Paredes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9917297, 3.7683618, 9.898525)
+size = Vector3(9, 6, 5)
+
+[node name="Tras" type="CSGBox3D" parent="Paredes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.977997, 3.5000002, 0)
+size = Vector3(4.981, 5.5, 10)
+
+[node name="TorreN" type="CSGBox3D" parent="Paredes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.331, 7.8, -5.312)
+size = Vector3(4.5, 14, 4.5)
+
+[node name="TorreS" type="CSGBox3D" parent="Paredes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.331, 7.8, 5.312)
+size = Vector3(4.5, 14, 4.5)
+
+[node name="Triangulo" type="CSGMesh3D" parent="Paredes"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.264826, 9.224527, 0)
+mesh = SubResource("PrismMesh_ovftc")
+
+[node name="Cruz" type="CSGCombiner3D" parent="Paredes/Triangulo"]
+transform = Transform3D(-4.3711395e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711395e-08, 0, 3.8152828, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Paredes/Triangulo/Cruz"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6319132, 0)
+size = Vector3(0.1, 1.5, 0.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Paredes/Triangulo/Cruz"]
+transform = Transform3D(1, 0, -2.524355e-29, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.32979298, 0)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="Telhado" type="CSGCombiner3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.017305693, 5.5139174, 0.030072372)
+
+[node name="Frente" type="CSGCylinder3D" parent="Telhado"]
+transform = Transform3D(10.606602, 0, 10.606602, 0, 2.967723, 0, -10.606602, 0, 10.606602, -4.9090576, 3.5087523, 0)
+radius = 0.69677734
+height = 1.0
+sides = 4
+cone = true
+smooth_faces = false
+material = ExtResource("2_pgo8k")
+
+[node name="Meio" type="CSGMesh3D" parent="Telhado"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.7561321, 3.4838614, 0)
+mesh = SubResource("PrismMesh_d2d2s")
+
+[node name="Laterais" type="CSGMesh3D" parent="Telhado"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.991997, 2.9784544, 0)
+mesh = SubResource("PrismMesh_kse3w")
+
+[node name="TelhadoTras" type="CSGMesh3D" parent="Telhado"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.0037, 2.4928365, -0.038810257)
+mesh = SubResource("PrismMesh_y0vc2")
+
+[node name="TelhadoTorreN" type="CSGCylinder3D" parent="Telhado"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -10.305298, 11.549784, -5.3508105)
+radius = 2.2
+height = 3.0
+cone = true
+smooth_faces = false
+material = ExtResource("2_pgo8k")
+
+[node name="TelhadoTorreS" type="CSGCylinder3D" parent="Telhado"]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -10.305298, 11.550716, 5.27319)
+radius = 2.2
+height = 3.0
+cone = true
+smooth_faces = false
+material = ExtResource("2_pgo8k")

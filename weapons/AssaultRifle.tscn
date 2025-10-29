@@ -1,54 +1,82 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0ls7usiqt21e"]
+[gd_scene load_steps=9 format=3 uid="uid://b0ls7usiqt21e"]
 
-[ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_invhl"]
+[ext_resource type="Script" uid="uid://0xqg0lygjh1h" path="res://weapons/Weapon.gd" id="1_invhl"]
+[ext_resource type="PackedScene" uid="uid://d0waw2eynesrw" path="res://controllers/mk_weapon_controller.tscn" id="3_1c1in"]
 [ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="3_bj363"]
+[ext_resource type="Texture2D" uid="uid://culmcgoan4rgw" path="res://assets/models3D/gunshot-fire1.png" id="4_6necn"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_yxr67"]
-size = Vector3(0.09, 0.35, 0.09)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_7ibt7"]
-top_radius = 0.04
-bottom_radius = 0.04
-height = 1.0
-radial_segments = 8
-
-[sub_resource type="PrismMesh" id="PrismMesh_optit"]
+[sub_resource type="PrismMesh" id="PrismMesh_2ysyy"]
 left_to_right = 0.8
-size = Vector3(0.2, 0.4, 0.09)
+size = Vector3(0.19, 0.42, 0.09)
 
-[sub_resource type="BoxMesh" id="BoxMesh_y55du"]
-size = Vector3(0.09, 0.15, 0.6)
+[sub_resource type="Animation" id="Animation_6necn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="BoxMesh" id="BoxMesh_j8rth"]
-size = Vector3(0.09, 0.2, 0.09)
+[sub_resource type="Animation" id="Animation_1c1in"]
+resource_name = "shoot"
+length = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../OmniLight3D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
-[node name="AssaultRifle" type="Node3D"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4r8g"]
+_data = {
+&"RESET": SubResource("Animation_6necn"),
+&"shoot": SubResource("Animation_1c1in")
+}
+
+[node name="AssaultRifle" type="CSGCombiner3D"]
 script = ExtResource("1_invhl")
-fire_mode = 0
+fire_mode = 1
 freeze_time = 100.0
 
-[node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.000946797)
-mesh = SubResource("BoxMesh_yxr67")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.154545, -0.496387)
-mesh = SubResource("CylinderMesh_7ibt7")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, 1.91069e-15, -4.37114e-08, 0, -1, -4.37114e-08, 0, 0.11221, 0.228995)
-mesh = SubResource("PrismMesh_optit")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124348, -0.450947)
-mesh = SubResource("BoxMesh_y55du")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.400947)
-mesh = SubResource("BoxMesh_j8rth")
-
 [node name="RayCasts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, 0.15)
+transform = Transform3D(-1, -8.742278e-08, 3.8213718e-15, 0, -4.37114e-08, -1, 8.742278e-08, -1, 4.37114e-08, -3.8075733e-08, 0.15040767, 0.98742676)
 
 [node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
 collision_mask = 5
@@ -56,4 +84,45 @@ debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="Aim" parent="." instance=ExtResource("3_bj363")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.149666, -1.00566)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.295528e-08, 0, 0)
+visible = false
+
+[node name="Body" type="CSGBox3D" parent="."]
+size = Vector3(0.09, 0.35, 0.09)
+
+[node name="Body2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12156088, 0.4491377)
+size = Vector3(0.09, 0.14282227, 0.59277344)
+
+[node name="Body3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.15417472, 0.50022125)
+radius = 0.04
+height = 1.0
+
+[node name="Body5" type="CSGMesh3D" parent="."]
+transform = Transform3D(-5.9604645e-08, 4.371138e-08, 1, 1, 3.5527137e-15, 5.9604645e-08, 0, 1, -4.371139e-08, 0, 0.11796951, -0.20234925)
+mesh = SubResource("PrismMesh_2ysyy")
+
+[node name="Body4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3972965)
+size = Vector3(0.09, 0.18847656, 0.09)
+
+[node name="MKWeaponController" parent="." instance=ExtResource("3_1c1in")]
+process_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../GunshotFire")
+libraries = {
+&"": SubResource("AnimationLibrary_w4r8g")
+}
+
+[node name="GunshotFire" type="Sprite3D" parent="."]
+transform = Transform3D(1.6744776, 1.8284423e-09, 0.04182988, 0.04182988, -7.3193746e-08, -1.6744776, 0, 1.675, -7.3216576e-08, 0.0138168335, 0.15138876, 1.2336164)
+visible = false
+texture = ExtResource("4_6necn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18096924, 1.0457878)
+visible = false
+light_energy = 0.533
+omni_range = 6.7131577

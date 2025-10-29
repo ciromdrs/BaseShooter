@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqhd8r88xerrx"]
+
+[ext_resource type="Material" uid="uid://c42pywfjv1mo" path="res://scenario/carlights_material.tres" id="1_y52ea"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y52ea"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1p53"]
+albedo_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6b2ow"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Bus" type="CSGCombiner3D"]
+
+[node name="Main" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8440564, -0.023179293)
+size = Vector3(2.5, 2.7, 12)
+material = SubResource("StandardMaterial3D_y52ea")
+
+[node name="Tire5" type="CSGCylinder3D" parent="Main"]
+transform = Transform3D(-5.5294905e-08, 1.265, 0, -1.265, -5.5294905e-08, 0, 0, 0, 1.265, -1.089, -1.3350563, 3.6051104)
+operation = 2
+height = 0.35
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="Tire6" type="CSGCylinder3D" parent="Main"]
+transform = Transform3D(-5.5294905e-08, 1.265, 0, -1.265, -5.5294905e-08, 0, 0, 0, 1.265, 1.0894661, -1.3350031, 3.6048715)
+operation = 2
+height = 0.35
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="Tire7" type="CSGCylinder3D" parent="Main"]
+transform = Transform3D(-5.5294905e-08, 1.265, 0, -1.265, -5.5294905e-08, 0, 0, 0, 1.265, -0.85, -1.3350031, -2.2779195)
+operation = 2
+height = 0.7
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="Tire8" type="CSGCylinder3D" parent="Main"]
+transform = Transform3D(-5.5294905e-08, 1.265, 0, -1.265, -5.5294905e-08, 0, 0, 0, 1.265, 0.85, -1.3350031, -2.2779195)
+operation = 2
+height = 0.7
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="Main2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0016479492, 2.1494517, 0.18338656)
+size = Vector3(2.5733643, 1.4418457, 11.652939)
+material = SubResource("StandardMaterial3D_6b2ow")
+
+[node name="Tire1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -1, 0.5090532, 3.5816922)
+height = 0.35
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="Tire2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1, 0.5090532, 3.5816922)
+height = 0.35
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="Tire3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.85, 0.5090532, -2.3010988)
+height = 0.7
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="Tire4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.85, 0.5090532, -2.3010988)
+height = 0.7
+material = SubResource("StandardMaterial3D_c1p53")
+
+[node name="LightL" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -1, 1.1057546, 5.994521)
+radius = 0.2
+height = 0.068
+material = ExtResource("1_y52ea")
+
+[node name="LightR" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 1, 1.1057546, 5.994521)
+radius = 0.2
+height = 0.068
+material = ExtResource("1_y52ea")
