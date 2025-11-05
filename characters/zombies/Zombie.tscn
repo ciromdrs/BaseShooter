@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bjl3l2jcgid3j" path="res://characters/zombies/ZombieSkin.tscn" id="3_w8wi6"]
 [ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_34hb8"]
 [ext_resource type="Script" uid="uid://bgnytpqp1iekj" path="res://util/state_machine.gd" id="4_q0qse"]
-[ext_resource type="Script" uid="uid://dk7mpqqbcud1h" path="res://characters/zombies/zombie_wander.gd" id="5_uv860"]
-[ext_resource type="Script" uid="uid://b6wfkcjeg4mjf" path="res://characters/zombies/zombie_chase.gd" id="6_uv860"]
+[ext_resource type="Script" uid="uid://dk7mpqqbcud1h" path="res://characters/zombies/states/zombie_wander.gd" id="5_uv860"]
+[ext_resource type="Script" uid="uid://b6wfkcjeg4mjf" path="res://characters/zombies/states/zombie_chase.gd" id="6_uv860"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h34dh"]
 radius = 0.175

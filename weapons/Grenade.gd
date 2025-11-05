@@ -1,5 +1,9 @@
 class_name Throwable extends RigidBody3D
 
+
+## Type.
+var weapon_type: Weapon.WeaponType = Weapon.WeaponType.THROWABLE
+
 ## The maximum damage inflicted by the grenade. The closer the body is to the
 ## grenade, more damage it takes.
 @export var damage := 250

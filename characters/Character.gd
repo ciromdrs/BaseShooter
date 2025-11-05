@@ -3,12 +3,29 @@
 class_name Character extends CharacterBody3D
 
 
+enum MovementType {WALK, RUN}
+
+
 ## In meters per second.
-@export var walk_speed: float = 3
+@export var walk_speed: float = .5
+
+## In meters per second.
+@export var run_speed: float = 3
+
+## The current intended move speed. Assumes the value of walk_speed or 
+## run_speed.
+var _move_speed: float:
+	get():
+		var s = walk_speed
+		if _movement_type == MovementType.RUN: s = run_speed
+		return s
+
+## The current movement type.
+var _movement_type: float
 
 ## The direction the Character intents to walk towards, in meters per second.
 ## It is subject to physics processing.
-var _walk_direction := Vector3.ZERO
+var _move_direction := Vector3.ZERO
 
 ## Indicates that the Character just jumped.
 var _just_jumped := false
@@ -27,6 +44,20 @@ var current_weapon:
 	get():
 		if current_weapon_index < len(weapons):
 			return weapons[current_weapon_index]
+
+## The aim for the current weapon.
+var aim:
+	get:
+		if current_weapon == null:
+			return null
+		match current_weapon.weapon_type:
+			Weapon.WeaponType.RIFLE:
+				return $Aim/Rifle
+			Weapon.WeaponType.PISTOL:
+				return $Aim/Pistol
+			Weapon.WeaponType.SHOTGUN:
+				return $Aim/Shotgun
+		return null
 
 ## The health system.
 @onready var health_system = $HealthSystem
@@ -58,15 +89,49 @@ func freeze(freeze_time: float):
 	freeze_timer.wait_time = max(freeze_timer.time_left, freeze_time)
 	freeze_timer.start()
 
+
 func _process(_delta):
 	if not is_frozen():
 		var anim = 'idle'
 		var variation = ''
+		var direction = ''
 		if velocity != Vector3():
-			anim = 'run'
+			anim = 'walk'
+			if _movement_type == MovementType.RUN: anim = 'run'
+			# TODO: Remove this check when zombies anims have directions too.
+			if current_weapon != null:
+				direction = _get_anim_direction()
 		if current_weapon != null:
 			variation = current_weapon.anim_pose
-		play_animation(anim, variation)
+		play_animation(anim, variation, direction)
+
+
+func _get_anim_direction() -> String:
+	# Local velocity, based on rotation
+	var local_vel = global_transform.basis.inverse() * _move_direction
+	if local_vel == Vector3.ZERO: return ''
+	var angle = atan2(local_vel.x, -local_vel.z)
+	# Normalize angle to the interval [0, 2*PI)
+	if angle < 0: angle += TAU  # TAU is 2 * PI in Godot
+	# Each direction covers 45° = PI/4 radians
+	var slice = PI / 4.
+	# Determine which sector the angle falls in
+	if angle < slice / 2. or angle >= TAU - slice / 2.:
+		return "S"
+	elif angle < slice * 1.5:
+		return "SW"
+	elif angle < slice * 2.5:
+		return "W"
+	elif angle < slice * 3.5:
+		return "NW"
+	elif angle < slice * 4.5:
+		return "N"
+	elif angle < slice * 5.5:
+		return "NE"
+	elif angle < slice * 6.5:
+		return "E"
+	else:
+		return "SE"
 
 
 func _physics_process(delta):
@@ -77,7 +142,7 @@ func _physics_process(delta):
 			_just_jumped = false # Must not forget to set this to false
 		else:
 			# Walk
-			velocity = _walk_direction * walk_speed
+			velocity = _move_direction * _move_speed
 	else:
 		_process_fall(delta)
 	if not is_frozen():
@@ -96,10 +161,13 @@ func _process_fall(delta):
 	velocity += gravity_vector * JUMP_FALL_MOTION * gravity * delta
 
 
-## Walk towards `direction`.
-func walk(direction: Vector3):
+## Move towards `direction`.
+## 
+func move(direction: Vector3, movement_type: MovementType):
 	if is_on_floor():
-		_walk_direction = direction.normalized()
+		_move_direction = direction.normalized()
+		_move_speed = walk_speed
+		_movement_type = movement_type
 
 
 ## Look at `at`.
@@ -111,15 +179,14 @@ func look(at: Vector3):
 	look_at(at)
 
 
-## Walk to destination facing it.
-## Does not change x rotation.
-func walk_facing(destination: Vector3):
+## Move to destination facing it. Does not change x rotation.
+func move_facing(destination: Vector3, movement_type: MovementType):
 	# Face destination
 	var old_x_rotation = rotation.x
 	look(destination)
 	rotation.x = old_x_rotation
 	# And walk towards it
-	walk(destination - global_position)
+	move(destination - global_position, movement_type)
 
 
 ## Pulls the weapon's trigger.
@@ -173,7 +240,8 @@ func say(line: String):
 
 func stop():
 	velocity = Vector3.ZERO
-	_walk_direction = Vector3.ZERO
+	_move_direction = Vector3.ZERO
+	_move_speed = 0
 	_just_jumped = false
 
 
@@ -189,16 +257,18 @@ func equip(weapon_index: int):
 	# Unequip current weapon
 	if current_weapon != null:
 		current_weapon.unequip()
+		if aim != null:
+			aim.visible = false
 		# Remove from equiped bone (e.g. right hand)
 		current_weapon.get_parent().remove_child(current_weapon)
-		#var bone = skeleton.get_node(weapon.bone_name_equiped + '/Offset')
-		#bone.remove_child(weapon)
 		# Attatch to unequiped bone (e.g. right pocket)
 		var bone = skeleton.get_node(current_weapon.bone_name_unequiped + '/Offset')
 		bone.add_child(current_weapon)
 	# Equip next weapon
 	if weapons[weapon_index] != null:
 		current_weapon_index = weapon_index
+		if aim != null:
+			aim.visible = true
 		# Activate weapon controller
 		current_weapon.controller.controlled = self
 		# Attatch weapon to Skin
@@ -210,9 +280,12 @@ func equip(weapon_index: int):
 func shove():
 	play_animation('shove')
 
-func play_animation(action: String, variation: String = ''):
+
+func play_animation(action: String, variation = '', direction = ''):
 	if animation_player != null:
 		var anim = animation_library_name + '/' + action
+		if direction != '':
+			anim += '_' + direction
 		if variation != '':
 			anim += '_' + variation
 		animation_player.current_animation = anim

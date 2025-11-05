@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bpa1vtvflas21"]
+[gd_scene load_steps=55 format=3 uid="uid://bpa1vtvflas21"]
 
 [ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/humans/Human.tscn" id="1_81ao4"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_0r1sc"]
@@ -99,6 +99,12 @@ size = Vector3(2, 1, 34)
 [sub_resource type="PrismMesh" id="PrismMesh_wjx11"]
 left_to_right = 1.0
 size = Vector3(37, 7.5, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gr4wk"]
+size = Vector3(2.5323486, 2.9948487, 5.020294)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_77kbr"]
+size = Vector3(2.643, 3.8, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1eonr"]
 size = Vector3(1.0404968, 2.6505127, 21.029907)
@@ -449,11 +455,26 @@ transform = Transform3D(-5.234778e-05, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -5.
 [node name="Car12" parent="NavigationRegion3D/Cars" instance=ExtResource("16_d2d2s")]
 transform = Transform3D(-0.9126345, 0, -0.40877646, 0, 1, 0, 0.40877646, 0, -0.9126345, -18.533466, 0, -65.27876)
 
-[node name="Truck2" parent="NavigationRegion3D/Cars" instance=ExtResource("16_ngc87")]
-transform = Transform3D(-0.9054725, 0, 0.4244049, 0, 1, 0, -0.4244049, 0, -0.9054725, -17.49998, -0.5310669, -58.603737)
+[node name="Truck2" type="Node3D" parent="NavigationRegion3D/Cars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.545645, -0.531, -58.59979)
 
-[node name="Truck" parent="NavigationRegion3D/Cars/Truck2" instance=ExtResource("17_77kbr")]
-transform = Transform3D(0.7532421, 0, -0.6577432, 0, 1, 0, 0.6577432, 0, 0.7532421, 0.43899536, 0, -0.3314972)
+[node name="Node3D" type="StaticBody3D" parent="NavigationRegion3D/Cars/Truck2"]
+
+[node name="Cabin" parent="NavigationRegion3D/Cars/Truck2/Node3D" instance=ExtResource("16_ngc87")]
+transform = Transform3D(-0.9054725, 0, 0.4244049, 0, 1, 0, -0.4244049, 0, -0.9054725, 0, 0, 0)
+
+[node name="CabinCollisionShape" type="CollisionShape3D" parent="NavigationRegion3D/Cars/Truck2/Node3D"]
+transform = Transform3D(0.91024345, 0, -0.41407377, 0, 1, 0, 0.41407377, 0, 0.91024345, 0.8617115, 1.5454224, -1.8552322)
+shape = SubResource("BoxShape3D_gr4wk")
+
+[node name="Trunk" type="StaticBody3D" parent="NavigationRegion3D/Cars/Truck2"]
+
+[node name="Trunk" parent="NavigationRegion3D/Cars/Truck2/Trunk" instance=ExtResource("17_77kbr")]
+transform = Transform3D(-0.40289053, 0, 0.91524804, 0, 1, 0, -0.91524804, 0, -0.40289053, 0, 0, 0)
+
+[node name="TrunkCollisionShape" type="CollisionShape3D" parent="NavigationRegion3D/Cars/Truck2/Trunk"]
+transform = Transform3D(0.40146834, 0, -0.91587293, 0, 1, 0, 0.91587293, 0, 0.40146834, -5.912567, 1.947998, 2.6003094)
+shape = SubResource("BoxShape3D_77kbr")
 
 [node name="RoadBlocks" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.2360792, 0, -32.871574)
@@ -588,20 +609,21 @@ visible = false
 size = Vector3(1, 1, 74)
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("8_ixsqx")]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -18.686432, 26.531113, -9.363163)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 27.996, 26.531, -5.888)
+v_offset = 0.05
 projection = 1
 size = 10.0
 followed = NodePath("../Player")
 
 [node name="Camera3D3" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("8_ixsqx")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -18.686432, 26.531113, -20.337818)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 27.995903, 26.531, -16.862543)
 projection = 1
 current = false
 size = 8.0
 followed = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("weapons") instance=ExtResource("1_81ao4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.686783, 6.2303486, -20.351143)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.99612, 6.2303486, -16.875687)
 walk_speed = 5.0
 weapons = [NodePath("AssaultRifle"), NodePath("Pistol"), NodePath("Shotgun"), NodePath("Grenade")]
 

@@ -7,7 +7,7 @@ var wander_direction: Vector3
 var wander_time: float
 
 
-func enter(args: Dictionary = {}):
+func enter(_args: Dictionary = {}):
 	randomize_wander()
 
 
@@ -16,7 +16,7 @@ func update(delta):
 		wander_time -= delta
 	else:
 		randomize_wander()
-	zombie.walk(wander_direction)
+	zombie.move_facing(zombie.global_position + wander_direction, Character.MovementType.WALK)
 
 
 func randomize_wander():

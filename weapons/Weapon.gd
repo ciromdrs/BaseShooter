@@ -8,10 +8,10 @@ enum FireMode {
 	THROW  ## Hold the click and release to throw.
 }
 
-## Animation pose.
-enum _AnimationPose {
-	PISTOL,
+## Weapon type.
+enum WeaponType {
 	RIFLE,
+	PISTOL,
 	SHOTGUN,
 	THROWABLE
 }
@@ -31,15 +31,18 @@ enum _AnimationPose {
 ## Freeze time between shots, in milliseconds.
 @export var freeze_time: float = 400
 
-@export var _anim_pose: _AnimationPose
+## Type.
+@export var weapon_type: WeaponType
+
+## Animation pose.
 var anim_pose: String:
 	get:
 		return {
-			_AnimationPose.PISTOL: 'pistol',
-			_AnimationPose.RIFLE: 'rifle',
-			_AnimationPose.SHOTGUN: 'shotgun',
-			_AnimationPose.THROWABLE: 'throwable'
-		}[_anim_pose]
+			WeaponType.PISTOL: 'pistol',
+			WeaponType.RIFLE: 'rifle',
+			WeaponType.SHOTGUN: 'shotgun',
+			WeaponType.THROWABLE: 'throwable'
+		}[weapon_type]
 
 
 
@@ -159,14 +162,12 @@ func _update_aim():
 ## Equips the weapon and activates controls.
 func equip():
 	controller.process_mode = Node.PROCESS_MODE_INHERIT
-	$RayCasts.process_mode = Node.PROCESS_MODE_INHERIT
-	$Aim.process_mode = Node.PROCESS_MODE_INHERIT
-	$Aim.visible = true
+	#$RayCasts.process_mode = Node.PROCESS_MODE_INHERIT
+	#$Aim.process_mode = Node.PROCESS_MODE_INHERIT
+	#$Aim.visible = true
 
 
 ## Unequips the weapon and deactivates controls.
 func unequip():
 	controller.process_mode = Node.PROCESS_MODE_DISABLED
-	$RayCasts.process_mode = Node.PROCESS_MODE_DISABLED
-	$Aim.process_mode = Node.PROCESS_MODE_DISABLED
-	$Aim.visible = false
+	#$RayCDsible = false

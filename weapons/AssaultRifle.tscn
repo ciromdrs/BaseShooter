@@ -203,7 +203,6 @@ range_ = 7.0
 damage = 70
 fire_mode = 1
 freeze_time = 100.0
-_anim_pose = 1
 bone_name_equiped = "HandR"
 bone_name_unequiped = "Back"
 

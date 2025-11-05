@@ -87,7 +87,7 @@ range_ = 9.0
 damage = 150
 accuracy = 0.4
 freeze_time = 800.0
-_anim_pose = 2
+weapon_type = 2
 bone_name_equiped = "HandR"
 bone_name_unequiped = "Back"
 

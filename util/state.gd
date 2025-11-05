@@ -2,7 +2,7 @@ class_name State extends Node
 
 signal Transitioned(args: Dictionary)
 
-func enter(args: Dictionary = {}):
+func enter(_args: Dictionary = {}):
 	pass
 	
 func exit():

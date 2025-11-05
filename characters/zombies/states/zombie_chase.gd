@@ -47,5 +47,5 @@ func update(_delta):
 		zombie.say('Teje preso!')
 	else:
 		var next: Vector3 = _navagent.get_next_path_position()
-		zombie.walk_facing(next)
+		zombie.move_facing(next, Character.MovementType.RUN)
 	

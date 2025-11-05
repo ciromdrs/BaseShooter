@@ -86,6 +86,7 @@ range_ = 6.0
 damage = 4
 accuracy = 0.5
 freeze_time = 200.0
+weapon_type = 1
 bone_name_equiped = "HandR"
 bone_name_unequiped = "PocketR"
 
