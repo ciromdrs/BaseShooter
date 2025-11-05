@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://1wb7rer2w0s6" path="res://assets/models3D/car.tscn" id="1_yxd2d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m1k5v"]
-size = Vector3(2.3, 1.6, 4.4003906)
+size = Vector3(1.8, 1.6, 4.4)
 
 [node name="Car" type="StaticBody3D"]
 

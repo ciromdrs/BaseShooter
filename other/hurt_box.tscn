@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://iergminf1abj"]
+
+[ext_resource type="Script" uid="uid://behcoafxevgwf" path="res://other/hurt_box.gd" id="1_88qmr"]
+
+[node name="BodyHurtBox" type="StaticBody3D"]
+transform = Transform3D(100.00001, 5.28813e-09, 2.4482661e-08, 3.4955365e-09, 99.8461, -5.5459433, -2.8954531e-08, 5.545947, 99.8461, 0, 0, 0)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_88qmr")

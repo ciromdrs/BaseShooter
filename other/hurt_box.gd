@@ -1,0 +1,1 @@
+class_name HurtBox extends StaticBody3D

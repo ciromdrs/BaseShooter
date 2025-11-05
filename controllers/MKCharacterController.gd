@@ -6,7 +6,7 @@ extends Node
 const CURSOR = preload('res://assets/cursor.png')
 
 ## The [code]Character[/code] controlled by this.
-@onready var controlled: Character = get_parent()
+@export var controlled: Character
 
 ## Indicates if the Character just shot a bullet.
 ## To be processed during _physics_process.
@@ -22,7 +22,7 @@ func _ready():
 
 func _process(_delta):
 	_control_walk()
-	# _control_jump()
+	_control_jump()
 	_control_look_at_mouse()
 	_control_equip()
 
@@ -41,10 +41,10 @@ func _control_walk():
 
 ## Commands `controlled` to look at the mouse.
 func _control_look_at_mouse():
-	var mouse_pos = get_viewport().get_mouse_position()
 	var center = get_viewport().get_visible_rect().size / 2
+	var mouse_pos = get_viewport().get_mouse_position()
 	var angle = mouse_pos.angle_to_point(center)
-	controlled.rotation.y = -angle - PI*.5
+	controlled.rotation.y = -angle - PI/2
 
 ## Commands `controlled` to jump.
 func _control_jump():

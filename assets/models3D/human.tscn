@@ -1,11 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://car3blck7fy1l"]
+[gd_scene load_steps=6 format=3 uid="uid://car3blck7fy1l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axcr3"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_axcr3"]
-height = 1.8
-radial_segments = 16
-rings = 3
+[sub_resource type="CylinderMesh" id="CylinderMesh_y1nax"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.3
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i1364"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.3
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_axcr3"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.775
+radial_segments = 6
+rings = 1
 
 [sub_resource type="PrismMesh" id="PrismMesh_axcr3"]
 size = Vector3(0.55, 0.35, 0.1)
@@ -13,10 +29,77 @@ size = Vector3(0.55, 0.35, 0.1)
 [node name="Human" type="CSGCombiner3D"]
 material_override = SubResource("StandardMaterial3D_axcr3")
 
-[node name="Body" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9025456, 0)
-mesh = SubResource("CapsuleMesh_axcr3")
+[node name="Body" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 0.9999999, 0, -8.742278e-08, 0, -0.99999994, 0, 0.9464569, 0)
+size = Vector3(0.59936523, 0.7492676, 0.45483398)
+
+[node name="ArmL" type="CSGMesh3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39546922, 0.21825749, 1.4901161e-08)
+mesh = SubResource("CylinderMesh_y1nax")
+
+[node name="ForeArmL" type="CSGMesh3D" parent="Body/ArmL"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -5.9604645e-08, -0.3039896, 0)
+mesh = SubResource("CylinderMesh_i1364")
+
+[node name="HandL" type="CSGCombiner3D" parent="Body/ArmL/ForeArmL"]
+
+[node name="Add" type="CSGTorus3D" parent="Body/ArmL/ForeArmL/HandL"]
+transform = Transform3D(1, 0, 0, 0, -5.8354704e-08, -1, 0, 1.335, -4.371139e-08, -0.004077345, -0.21612549, 0)
+inner_radius = 0.0319563
+outer_radius = 0.1
+
+[node name="Subtract" type="CSGBox3D" parent="Body/ArmL/ForeArmL/HandL"]
+transform = Transform3D(0.961593, 0.27447954, 0, -0.27447954, 0.961593, 0, 0, 0, 1, -0.06948185, -0.26694405, -0.05456543)
+operation = 2
+size = Vector3(0.10534668, 0.115356445, 0.26879883)
+
+[node name="ArmR" type="CSGMesh3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -0.395, 0.219, 0)
+mesh = SubResource("CylinderMesh_y1nax")
+
+[node name="ForeArmR" type="CSGMesh3D" parent="Body/ArmR"]
+transform = Transform3D(0.9999998, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000004, 0.01, -0.298, 0)
+mesh = SubResource("CylinderMesh_i1364")
+
+[node name="HandR" type="CSGCombiner3D" parent="Body/ArmR/ForeArmR"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Add" type="CSGTorus3D" parent="Body/ArmR/ForeArmR/HandR"]
+transform = Transform3D(1, 0, 0, 0, -5.8354704e-08, -1, 0, 1.335, -4.371139e-08, -0.004077345, -0.21612549, 0)
+inner_radius = 0.0319563
+outer_radius = 0.1
+
+[node name="Subtract" type="CSGBox3D" parent="Body/ArmR/ForeArmR/HandR"]
+transform = Transform3D(0.961593, 0.27447954, 0, -0.27447954, 0.961593, 0, 0, 0, 1, -0.06948185, -0.26694405, -0.05456543)
+operation = 2
+size = Vector3(0.10534668, 0.115356445, 0.26879883)
+
+[node name="LegL" type="CSGCombiner3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158, -0.327, 0)
+
+[node name="MeshLegL" type="CSGMesh3D" parent="Body/LegL"]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, 0, -0.22, 0)
+mesh = SubResource("CylinderMesh_axcr3")
+
+[node name="LegR" type="CSGCombiner3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.158, -0.327, 0)
+
+[node name="MeshLegR" type="CSGMesh3D" parent="Body/LegR"]
+transform = Transform3D(1, 0, -2.1316282e-14, 0, 1, 0, 2.1316282e-14, 0, 1, 0, -0.22, 0)
+mesh = SubResource("CylinderMesh_axcr3")
+
+[node name="Head" type="CSGCombiner3D" parent="Body"]
+
+[node name="Sphere" type="CSGSphere3D" parent="Body/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6031029, 0)
+radius = 0.25
+radial_segments = 7
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Body/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6113281, 0)
+operation = 1
+size = Vector3(0.37304688, 0.61035156, 1)
 
 [node name="Arrow" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.3895868, 0.68746305)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.39, -0.687)
 mesh = SubResource("PrismMesh_axcr3")

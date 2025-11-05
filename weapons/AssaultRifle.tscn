@@ -1,13 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0ls7usiqt21e"]
+[gd_scene load_steps=21 format=4 uid="uid://b0ls7usiqt21e"]
 
 [ext_resource type="Script" uid="uid://0xqg0lygjh1h" path="res://weapons/Weapon.gd" id="1_invhl"]
 [ext_resource type="PackedScene" uid="uid://d0waw2eynesrw" path="res://controllers/mk_weapon_controller.tscn" id="3_1c1in"]
 [ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="3_bj363"]
 [ext_resource type="Texture2D" uid="uid://culmcgoan4rgw" path="res://assets/models3D/gunshot-fire1.png" id="4_6necn"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_2ysyy"]
-left_to_right = 0.8
-size = Vector3(0.19, 0.42, 0.09)
 
 [sub_resource type="Animation" id="Animation_6necn"]
 length = 0.001
@@ -70,42 +66,162 @@ _data = {
 &"shoot": SubResource("Animation_1c1in")
 }
 
-[node name="AssaultRifle" type="CSGCombiner3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6necn"]
+albedo_color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63qoq"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rqcl0"]
+_surfaces = [{
+"aabb": AABB(-0.030472483, -0.104077384, -0.030858532, 0.06094493, 0.20815477, 0.06094493),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/v8AAAAAAAD//////v8AAP7///8AAAAA//8AAP7/AAAAAP////8AAAAAAAAAAAAAAAD//wAAAAAAAAAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_h1tfv"]
+resource_name = "rifle_Cube_001"
+_surfaces = [{
+"aabb": AABB(-0.030472483, -0.104077384, -0.030858532, 0.06094493, 0.20815477, 0.06094493),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_63qoq"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/v8AAAAAVNX//////v9U1f7///8AAFTV//8AAP7/VNX//wAA/v//vwAA//////+///////7//78AAAAA////vwAAAAD//1TVAAD//wAAVNUAAP////9U1QAAAAAAAFTVAAAAAAAA///+////AAD//wAA//8AAP///v8AAAAA/////wAA/v///wAAAAAAAP//AAAAAP/////+/wAAAAD//wAA//////+//v///wAA/7///////v//vwAA//8AAP+/qiqqKqoqqiqqKqoqqiqqKv////////////////////9U1VTVVNVU1VTVVNVU1VTV/7//v/+//7//v/+//7//v/9//z//f/8//3//P/9//z////9/////f/7//3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_rqcl0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apjwy"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1qlny"]
+_surfaces = [{
+"aabb": AABB(-0.03809058, 0.047677375, 0.029660374, 0.07618119, 0.09547385, 0.5040462),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/v8AAAAAAAD///////8AAP7///8AAAAA//8AAP//AAAAAP////8AAAAAAAAAAAAAAAD//wAAAAAAAAAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0rahj"]
+resource_name = "rifle_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.03809058, 0.047677375, 0.029660374, 0.07618119, 0.09547385, 0.5040462),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_apjwy"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/v8AAAAAVNX///////9U1f7///8AAFTV//8AAP//VNX//wAA////vwAA//////+//////////78AAAAA////vwAAAAD//1TVAAD//wAAVNUAAP////9U1QAAAAAAAFTVAAAAAAAA///+////AAD//wAA//8AAP///v8AAAAA/////wAA/////wAAAAAAAP//AAAAAP/////+/wAAAAD//wAA//////+//v///wAA/7//////////vwAA//8AAP+/qiqqKqoqqiqqKqoqqiqqKv////////////////////9U1VTVVNVU1VTVVNVU1VTV/7//v/+//7//v/+//7//v/9//z//f/8//3//P/9//z////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_1qlny")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5se3"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lafxh"]
+_surfaces = [{
+"aabb": AABB(-0.03643092, 0.024445891, -0.22322248, 0.07286184, 0.10729499, 0.19251356),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAACAAEAAAAEAAEABAADAAIAAAADAAUABQADAAQAAAAFAAQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("AAD//wAAAAAAAE+///8AAAAAAAAAAAAA//8AAAAAAAD//0+///8AAP////8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3hwdb"]
+resource_name = "rifle_Cube_003"
+_surfaces = [{
+"aabb": AABB(-0.03643092, 0.024445891, -0.22322248, 0.07286184, 0.10729499, 0.19251356),
+"attribute_data": PackedByteArray("/1//v/+f/7//n////1//v/+f/3//n/+//1//f/9f/3//n/8//5//f/+f/3//3/8//9//f/+f/z//H/9//5//P/9f/3//nwAA"),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUAAwAGAAQABwAIAAkACgALAAwACgANAAsADgAPABAADgARAA8A"),
+"material": SubResource("StandardMaterial3D_j5se3"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("AAD//wAAMsAAAE+///8ywAAAAAAAADLAAAD//wAAHtL//0+///8e0gAAT7///x7S/////wAAHtL/////AAD3+///AAAAAPf7//9Pv///9/v//0+//////wAAAAAAAP//AABPv////////wAAAAD//wAA//8AAP////8AAAAA////////AAD//wAAAAAAAP//IXhD8CF4Q/AheEPwn6ifqJ+on6ifqJ+on6ifqNS9qnvUvap71L2qe/9/y0z/f8tM/3/LTP9/y0xM8k1ymeqaav///39Z4Fpg")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_lafxh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hnx3u"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kmvwn"]
+_surfaces = [{
+"aabb": AABB(-0.012365795, 0.10394196, 0.49479166, 0.02473159, 0.028557584, 0.12989476),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIABQADAAAABQACAAYAAwAHAAQACAAFAAYAAwAFAAkACQAFAAgAAwAJAAcABwAKAAQABwAJAAoAAgAEAAsAAgALAAYACwAEAAoACAAGAAsACQALAAoACQAIAAsA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/3///wAAAAD///+///8AAP9//////wAA////vwAAAAD///8///8AAAAA/78AAAAAAAD/v///AAD///8/AAAAAAAA/z8AAAAA/38AAAAAAAD/fwAA//8AAAAA/z///wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_i4vr5"]
+resource_name = "rifle_Cylinder"
+_surfaces = [{
+"aabb": AABB(-0.012365795, 0.10394196, 0.49479166, 0.02473159, 0.028557584, 0.12989476),
+"attribute_data": PackedByteArray("//+kwKnq/3////9/qeqkwKnqpMBU1f9/qer/f1TVpMBU1aTA/7//f1TV/3//v6TA/7+kwKmq/3//v/9/qaqkwJm6e/D/n+/Bmbpz0WSFe/D/n///ZIVz0amqpMBUlf9/qar/f1SVpMBUlaTA/3//f1SV/3//f6TAZMVz0Zn6c9H/3+/B/9///2TFe/CZ+nvw"),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEQAQABMAEwAQABQAEQATABUAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHwAeACEAIQAeACIAHwAhACMA"),
+"material": SubResource("StandardMaterial3D_hnx3u"),
+"primitive": 3,
+"uv_scale": Vector4(2, 1.98, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("/3///wAA//D///+/////8P9////////w////vwAA//D///+/AABU1f///z///1TV////v///VNX///8/AABU1f///z8AALrC/38AAP//usL///8///+6wv9/AAAAALrC/38AAAAAusIAAP8///+6wv9/AAD//7rCAAD/PwAAusL///8///8AgP9//////wCA////v///AIAAAP8///8AgP9/AAD//wCAAAD/v///AIAAAP8/AABU1QAA/7///1TVAAD/P///VNUAAP+/AABU1QAA/78AAP/w/3////////AAAP+/////8P9///8AAP/wAAD/vwAAAAD///+/AAAAAP9///8AAAAA/38AAAAAAAAAAP8/AAAAAP///z8AAAAAcDgfD3A4Hw9wOB8PcDgfD6oqqiqqKqoqqiqqKqoqqipUFlZTVBZWU1QWVlNUFlZTqSxUlqksVJapLFSWqSxUlv9/////f////3////9/////f////3///1RVqqpUVaqqVFWqqlRVqqrgcG+44HBvuOBwb7jgcG+4////f////3////9/////f/7//3/+//9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kmvwn")
+
+[node name="AssaultRifle" type="Node3D"]
 script = ExtResource("1_invhl")
+range_ = 7.0
+damage = 70
 fire_mode = 1
 freeze_time = 100.0
+_anim_pose = 1
+bone_name_equiped = "HandR"
+bone_name_unequiped = "Back"
 
 [node name="RayCasts" type="Node3D" parent="."]
-transform = Transform3D(-1, -8.742278e-08, 3.8213718e-15, 0, -4.37114e-08, -1, 8.742278e-08, -1, 4.37114e-08, -3.8075733e-08, 0.15040767, 0.98742676)
+process_mode = 4
+transform = Transform3D(-1, -8.742278e-08, 3.8213718e-15, 0, -4.37114e-08, -1, 8.742278e-08, -1, 4.37114e-08, -3.8075733e-08, 0.1132983, 0.62523735)
+visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
-collision_mask = 5
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+collision_mask = 13
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="Aim" parent="." instance=ExtResource("3_bj363")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.295528e-08, 0, 0)
+process_mode = 4
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.295528e-08, 0.110961914, 0.57035446)
 visible = false
-
-[node name="Body" type="CSGBox3D" parent="."]
-size = Vector3(0.09, 0.35, 0.09)
-
-[node name="Body2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12156088, 0.4491377)
-size = Vector3(0.09, 0.14282227, 0.59277344)
-
-[node name="Body3" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.15417472, 0.50022125)
-radius = 0.04
-height = 1.0
-
-[node name="Body5" type="CSGMesh3D" parent="."]
-transform = Transform3D(-5.9604645e-08, 4.371138e-08, 1, 1, 3.5527137e-15, 5.9604645e-08, 0, 1, -4.371139e-08, 0, 0.11796951, -0.20234925)
-mesh = SubResource("PrismMesh_2ysyy")
-
-[node name="Body4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3972965)
-size = Vector3(0.09, 0.18847656, 0.09)
 
 [node name="MKWeaponController" parent="." instance=ExtResource("3_1c1in")]
 process_mode = 4
@@ -117,12 +233,35 @@ libraries = {
 }
 
 [node name="GunshotFire" type="Sprite3D" parent="."]
-transform = Transform3D(1.6744776, 1.8284423e-09, 0.04182988, 0.04182988, -7.3193746e-08, -1.6744776, 0, 1.675, -7.3216576e-08, 0.0138168335, 0.15138876, 1.2336164)
+transform = Transform3D(1.6744776, 1.8284423e-09, 0.04182988, 0.04182988, -7.3193746e-08, -1.6744776, 0, 1.675, -7.3216576e-08, 0.0138168335, 0.106811434, 0.8796288)
 visible = false
 texture = ExtResource("4_6necn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18096924, 1.0457878)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12634006, 0.6443696)
 visible = false
 light_energy = 0.533
 omni_range = 6.7131577
+
+[node name="Skin" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6necn")
+
+[node name="Cube" type="MeshInstance3D" parent="Skin"]
+material_override = SubResource("StandardMaterial3D_6necn")
+mesh = SubResource("ArrayMesh_h1tfv")
+skeleton = NodePath("")
+
+[node name="Cube_001" type="MeshInstance3D" parent="Skin"]
+material_override = SubResource("StandardMaterial3D_6necn")
+mesh = SubResource("ArrayMesh_0rahj")
+skeleton = NodePath("")
+
+[node name="Cube_002" type="MeshInstance3D" parent="Skin"]
+material_override = SubResource("StandardMaterial3D_6necn")
+mesh = SubResource("ArrayMesh_3hwdb")
+skeleton = NodePath("")
+
+[node name="Cylinder" type="MeshInstance3D" parent="Skin"]
+material_override = SubResource("StandardMaterial3D_6necn")
+mesh = SubResource("ArrayMesh_i4vr5")
+skeleton = NodePath("")

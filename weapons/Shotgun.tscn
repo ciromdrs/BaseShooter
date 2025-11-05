@@ -18,7 +18,7 @@ radial_segments = 8
 size = Vector3(0.09, 0.15, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lpy25"]
-size = Vector3(0.09, 0.15, 0.6)
+size = Vector3(0.11, 0.11, 0.6)
 
 [sub_resource type="Animation" id="Animation_6necn"]
 length = 0.001
@@ -87,9 +87,12 @@ range_ = 9.0
 damage = 150
 accuracy = 0.4
 freeze_time = 800.0
+_anim_pose = 2
+bone_name_equiped = "HandR"
+bone_name_unequiped = "Back"
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.000946797)
+transform = Transform3D(0.555, 0, 0, 0, 0.555, 0, 0, 0, 0.555, 0, -0.000946749, -0.000946797)
 mesh = SubResource("BoxMesh_dblbo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
@@ -100,8 +103,15 @@ mesh = SubResource("CylinderMesh_1obas")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112058, 0.304093)
 mesh = SubResource("BoxMesh_6eru0")
 
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.10351034, -0.63855535)
+mesh = SubResource("BoxMesh_lpy25")
+skeleton = NodePath("../..")
+
 [node name="RayCasts" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.15, -0.99256337)
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.06729737, -0.55303633)
+visible = false
 
 [node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
 transform = Transform3D(0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
@@ -133,12 +143,9 @@ debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
 [node name="Aim" parent="." instance=ExtResource("2_lu8nu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147675, -1.00169)
+process_mode = 4
+transform = Transform3D(0.555, 0, 0, 0, 0.555, 0, 0, 0, 0.555, 0, 0.08987203, -0.559309)
 visible = false
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124348, -0.450947)
-mesh = SubResource("BoxMesh_lpy25")
 
 [node name="MKWeaponController" parent="." instance=ExtResource("3_rx5td")]
 process_mode = 4
@@ -150,12 +157,12 @@ libraries = {
 }
 
 [node name="GunshotFire" type="Sprite3D" parent="."]
-transform = Transform3D(-1.6750001, 1.4643314e-07, 7.321658e-08, -7.3216576e-08, 3.2003977e-15, -1.6750002, -1.4643315e-07, -1.6749998, 3.2003986e-15, -0.017961971, 0.15933633, -1.253048)
+transform = Transform3D(-1.965, 2.9670676e-07, -1.2969464e-14, 0, -8.589288e-08, -1.965, -2.9670676e-07, -1.965, 8.589288e-08, -0.000837557, 0.09586643, -0.84843445)
 visible = false
 texture = ExtResource("4_8swrk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17060626, -1.1103766)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107136354, -0.57729363)
 visible = false
 light_energy = 0.533
 omni_range = 6.7131577

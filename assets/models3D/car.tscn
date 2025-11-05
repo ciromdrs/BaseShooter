@@ -1,22 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://1wb7rer2w0s6"]
+[gd_scene load_steps=9 format=3 uid="uid://1wb7rer2w0s6"]
 
 [ext_resource type="Material" uid="uid://c42pywfjv1mo" path="res://scenario/carlights_material.tres" id="1_gftwy"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_yc1fd"]
 left_to_right = 1.0
-size = Vector3(0.53, 1.215, 1.9)
+size = Vector3(0.53, 1.215, 1.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yc1fd"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_yj4dp"]
 left_to_right = 1.0
-size = Vector3(0.53, 0.72, 1.9)
+size = Vector3(0.53, 0.72, 1.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srul8"]
 albedo_color = Color(1, 0, 0, 1)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_gftwy"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.3
+radial_segments = 8
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_ho5m3"]
+top_radius = 0.35
+bottom_radius = 0.35
 height = 0.3
 radial_segments = 8
 
@@ -37,48 +45,74 @@ material = SubResource("StandardMaterial3D_yc1fd")
 
 [node name="Upper" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3082654, -0.33924562)
-size = Vector3(1.9, 0.545, 1.6294)
+size = Vector3(1.7, 0.545, 1.629)
 
-[node name="Lower" type="CSGBox3D" parent="."]
+[node name="Lower" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72130036, -0.06797248)
-size = Vector3(2.0666504, 0.6711426, 4.4020014)
-
-[node name="LightL" type="CSGBox3D" parent="Lower"]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -0.74429893, -0.09215188, 2.221526)
-size = Vector3(0.38226318, 0.068, 0.5239258)
-material = ExtResource("1_gftwy")
 
 [node name="LightR" type="CSGBox3D" parent="Lower"]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0.744, -0.092, 2.222)
-size = Vector3(0.38226318, 0.068, 0.5239258)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0.67460304, -0.002049446, 2.222)
+size = Vector3(0.20236206, 0.068, 0.38513184)
+material = ExtResource("1_gftwy")
+
+[node name="LightL" type="CSGBox3D" parent="Lower"]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -0.675, -0.002, 2.222)
+size = Vector3(0.20236206, 0.068, 0.38513184)
 material = ExtResource("1_gftwy")
 
 [node name="LightL2" type="CSGBox3D" parent="Lower"]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -0.74429893, -0.09215188, -2.2290356)
-size = Vector3(0.38226318, 0.068, 0.5239258)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -0.6765499, -0.0014536381, -2.2290356)
+size = Vector3(0.29159546, 0.068, 0.38842773)
 material = SubResource("StandardMaterial3D_srul8")
 
 [node name="LightR2" type="CSGBox3D" parent="Lower"]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0.744, -0.09200001, -2.2285616)
-size = Vector3(0.38226318, 0.068, 0.5239258)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0.677, -0.001, -2.229)
+size = Vector3(0.29159546, 0.068, 0.38842773)
 material = SubResource("StandardMaterial3D_srul8")
 
-[node name="Tire" type="CSGMesh3D" parent="."]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1, 0.5090532, 1.5371151)
+[node name="Main" type="CSGBox3D" parent="Lower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.083740234, 0)
+size = Vector3(1.75, 0.83251953, 4.413086)
+
+[node name="Subtract" type="CSGCombiner3D" parent="Lower/Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7801786, 0.06797248)
+operation = 2
+
+[node name="Tire" type="CSGMesh3D" parent="Lower/Main/Subtract"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, 0.8248596, 0.5090532, 1.5371151)
+mesh = SubResource("CylinderMesh_gftwy")
+
+[node name="Tire2" type="CSGMesh3D" parent="Lower/Main/Subtract"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, -0.825, 0.509, 1.537)
+mesh = SubResource("CylinderMesh_gftwy")
+
+[node name="Tire3" type="CSGMesh3D" parent="Lower/Main/Subtract"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, 0.8248596, 0.5090532, -1.1172962)
+mesh = SubResource("CylinderMesh_gftwy")
+
+[node name="Tire4" type="CSGMesh3D" parent="Lower/Main/Subtract"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, -0.825, 0.509, -1.117)
+mesh = SubResource("CylinderMesh_gftwy")
+
+[node name="Tires" type="CSGCombiner3D" parent="Lower/Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7801786, 0.06797248)
+
+[node name="Tire" type="CSGMesh3D" parent="Lower/Main/Tires"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, 0.8248596, 0.5090532, 1.5371151)
 mesh = SubResource("CylinderMesh_ho5m3")
 material = SubResource("StandardMaterial3D_ubikj")
 
-[node name="Tire2" type="CSGMesh3D" parent="."]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -1, 0.509, 1.5371153)
+[node name="Tire2" type="CSGMesh3D" parent="Lower/Main/Tires"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, -0.825, 0.509, 1.537)
 mesh = SubResource("CylinderMesh_ho5m3")
 material = SubResource("StandardMaterial3D_ubikj")
 
-[node name="Tire3" type="CSGMesh3D" parent="."]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1, 0.5090532, -1.1172962)
+[node name="Tire3" type="CSGMesh3D" parent="Lower/Main/Tires"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, 0.8248596, 0.5090532, -1.1172962)
 mesh = SubResource("CylinderMesh_ho5m3")
 material = SubResource("StandardMaterial3D_ubikj")
 
-[node name="Tire4" type="CSGMesh3D" parent="."]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -1, 0.509, -1.117296)
+[node name="Tire4" type="CSGMesh3D" parent="Lower/Main/Tires"]
+transform = Transform3D(-4.371139e-08, 1, 0, -0.9238795, -4.0384055e-08, -0.38268346, -0.38268346, -1.6727626e-08, 0.9238795, -0.825, 0.509, -1.117)
 mesh = SubResource("CylinderMesh_ho5m3")
 material = SubResource("StandardMaterial3D_ubikj")

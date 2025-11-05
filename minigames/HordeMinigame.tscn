@@ -1,14 +1,14 @@
 [gd_scene load_steps=27 format=3 uid="uid://61e84tuq4sp7"]
 
-[ext_resource type="Script" path="res://minigames/HordeMinigame.gd" id="1_72rqi"]
-[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="1_yvsfk"]
+[ext_resource type="Script" uid="uid://bkvngbfyjwkhb" path="res://minigames/HordeMinigame.gd" id="1_72rqi"]
+[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/humans/Human.tscn" id="1_yvsfk"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_k6a2i"]
 [ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://util/Camera3DPlus.tscn" id="4_74j83"]
 [ext_resource type="PackedScene" uid="uid://ck5ybqy03jeqm" path="res://weapons/Shotgun.tscn" id="5_1yyko"]
-[ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="5_303dq"]
+[ext_resource type="Script" uid="uid://bdslfijn3cqpu" path="res://util/Camera3DPlus.gd" id="5_303dq"]
 [ext_resource type="PackedScene" uid="uid://bfbvr5limn4fp" path="res://other/HealthSystem.tscn" id="5_b0oc3"]
 [ext_resource type="PackedScene" uid="uid://cn2ds681w2jm4" path="res://other/SpawnArea.tscn" id="8_0b44g"]
-[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/Zombie.tscn" id="9_vg6fu"]
+[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/zombies/Zombie.tscn" id="9_vg6fu"]
 [ext_resource type="PackedScene" uid="uid://cnks015m076md" path="res://controllers/ChaseController.tscn" id="11_ea5v7"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b87hx"]

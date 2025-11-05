@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dla6ybjgpehhe"]
 
-[ext_resource type="Script" path="res://weapons/Aim3D.gd" id="1_oi4ha"]
+[ext_resource type="Script" uid="uid://ddkod3xxmulli" path="res://weapons/Aim3D.gd" id="1_oi4ha"]
 [ext_resource type="ArrayMesh" uid="uid://dhpo8hysltinr" path="res://assets/anchored_plane_N_Plane.res" id="3_4pfti"]
 
 [node name="Aim3D" type="Node3D"]

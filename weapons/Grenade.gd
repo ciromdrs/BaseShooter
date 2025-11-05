@@ -13,6 +13,12 @@ var force = Vector3(8,5,8)
 
 @export var amount: int = 1
 
+@onready var controller = $MKThrowableController
+
+var bone_name_equiped: String = 'HandL'
+
+var bone_name_unequiped: String = 'PocketL'
+
 ## Inflicts the damage of the explosion.
 func boom():
 	$AnimationPlayer.current_animation = 'boom'
@@ -55,15 +61,8 @@ func be_thrown():
 
 ## Equips the throwable and activates controller.
 func equip():
-	const CURSOR = preload('res://assets/cursor.png')
-	Input.set_custom_mouse_cursor(CURSOR, Input.CURSOR_ARROW, CURSOR.get_size() / 2)
-	# BUG: self becomes null after explosionsa4as
-	var player: Character = get_parent()
-	$MKThrowableController.controlled = player
-	$MKThrowableController.process_mode = Node.PROCESS_MODE_INHERIT
+	controller.process_mode = Node.PROCESS_MODE_INHERIT
 
 ## Unequips the throwable and deactivates controller.
 func unequip():
-	# TODO: Restore cursor?
-	$MKThrowableController.process_mode = Node.PROCESS_MODE_DISABLED
-	$MKThrowableController.controlled = null
+	controller.process_mode = Node.PROCESS_MODE_DISABLED

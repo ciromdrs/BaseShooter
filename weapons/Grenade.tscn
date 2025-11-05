@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4jp760bnicdm" path="res://controllers/mk_throwable_controller.tscn" id="2_pef50"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ltc8k"]
+radius = 0.2897055
 
 [sub_resource type="SphereMesh" id="SphereMesh_pc6d0"]
 radius = 0.55
@@ -179,11 +180,11 @@ one_shot = true
 process_mode = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 shape = SubResource("SphereShape3D_ltc8k")
 
 [node name="Skin" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.24000001, 0, 0, 0, 0.24000001, 0, 0, 0, 0.24000001, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("SphereMesh_pc6d0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Skin"]

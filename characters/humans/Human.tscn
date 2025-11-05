@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsy2ocrbtii6l"]
+
+[ext_resource type="Script" uid="uid://wdkwm4bcqetd" path="res://characters/Character.gd" id="1_3yc0c"]
+[ext_resource type="PackedScene" uid="uid://blrr5f6riyld2" path="res://characters/humans/HumanSkin.tscn" id="3_0b0dh"]
+[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_o823k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xjx24"]
+radius = 0.25
+height = 1.75
+
+[node name="Human" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 7
+velocity = Vector3(0, -333.195, 0)
+script = ExtResource("1_3yc0c")
+walk_speed = 4.0
+animation_library_name = "human"
+
+[node name="Dialog" parent="." instance=ExtResource("4_o823k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00022673607, 0.9, 0)
+shape = SubResource("CapsuleShape3D_xjx24")
+
+[node name="Skin" parent="." instance=ExtResource("3_0b0dh")]
+transform = Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.00022673607, 0, 0)
+
+[node name="FreezeTimer" type="Timer" parent="."]
+
+[node name="WeaponPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3518612, 0.20419312)

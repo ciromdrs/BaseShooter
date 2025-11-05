@@ -1,8 +1,6 @@
 ## A Character, either playable or not.
 
-class_name Character
-
-extends CharacterBody3D
+class_name Character extends CharacterBody3D
 
 
 ## In meters per second.
@@ -22,14 +20,53 @@ var _just_jumped := false
 @export var weapons: Array[Node3D]
 
 ## The current (equiped) weapon's index.
-var current_weapon: int = 0
+var current_weapon_index: int = 0
+
+## The current (equiped) weapon.
+var current_weapon:
+	get():
+		if current_weapon_index < len(weapons):
+			return weapons[current_weapon_index]
 
 ## The health system.
 @onready var health_system = $HealthSystem
 
+## The skin's animation player.
+@onready var animation_player = get_node_or_null('Skin/AnimationPlayer')
+
+@export var animation_library_name: String
+
+@onready var skeleton = $Skin/Armature/Skeleton3D
+
+## The freeze timer.
+@onready var freeze_timer = $FreezeTimer
+
+
 func _ready():
-	if len(weapons) > 0:
-		weapons[current_weapon].equip()
+	for i in range(len(weapons)):
+		if weapons[i] != null:
+			equip(i)
+		equip(0)
+
+
+func is_frozen():
+	return freeze_timer.time_left > 0
+
+
+## Freezes the character for a given time (in seconds).
+func freeze(freeze_time: float):
+	freeze_timer.wait_time = max(freeze_timer.time_left, freeze_time)
+	freeze_timer.start()
+
+func _process(_delta):
+	if not is_frozen():
+		var anim = 'idle'
+		var variation = ''
+		if velocity != Vector3():
+			anim = 'run'
+		if current_weapon != null:
+			variation = current_weapon.anim_pose
+		play_animation(anim, variation)
 
 
 func _physics_process(delta):
@@ -43,7 +80,8 @@ func _physics_process(delta):
 			velocity = _walk_direction * walk_speed
 	else:
 		_process_fall(delta)
-	move_and_slide()
+	if not is_frozen():
+		move_and_slide()
 
 
 ## Processes fall physics.
@@ -86,7 +124,7 @@ func walk_facing(destination: Vector3):
 
 ## Pulls the weapon's trigger.
 func pull_trigger():
-	self.weapons[current_weapon].pull_trigger()
+	self.current_weapon.pull_trigger()
 	var lines: Array[String] = [
 		'PEI!!',
 		'TEI!!',
@@ -101,7 +139,7 @@ func pull_trigger():
 
 ## Releases the weapon's trigger.
 func release_trigger():
-	self.weapons[current_weapon].release_trigger()
+	self.current_weapon.release_trigger()
 
 
 func take_damage(damage):
@@ -116,10 +154,15 @@ func take_damage(damage):
 			'Arra foi mesmo no pau da minha venta!..',
 			'Arra meus dente!..',
 		]
+		self.freeze(.5)
+		play_animation('hit_reaction')
 		say(lines.pick_random())
+		
 
 
 func die():
+	say('Ai! morri...')
+	play_animation('death')
 	queue_free()
 
 
@@ -139,14 +182,38 @@ func jump():
 
 
 func throw():
-	self.weapons[current_weapon].be_thrown()
+	self.current_weapon.be_thrown()
 	
 
 func equip(weapon_index: int):
 	# Unequip current weapon
-	if weapons[current_weapon] != null:
-		weapons[current_weapon].unequip()
+	if current_weapon != null:
+		current_weapon.unequip()
+		# Remove from equiped bone (e.g. right hand)
+		current_weapon.get_parent().remove_child(current_weapon)
+		#var bone = skeleton.get_node(weapon.bone_name_equiped + '/Offset')
+		#bone.remove_child(weapon)
+		# Attatch to unequiped bone (e.g. right pocket)
+		var bone = skeleton.get_node(current_weapon.bone_name_unequiped + '/Offset')
+		bone.add_child(current_weapon)
 	# Equip next weapon
 	if weapons[weapon_index] != null:
-		current_weapon = weapon_index
-		weapons[current_weapon].equip()
+		current_weapon_index = weapon_index
+		# Activate weapon controller
+		current_weapon.controller.controlled = self
+		# Attatch weapon to Skin
+		var bone = skeleton.get_node(current_weapon.bone_name_equiped + '/Offset')
+		current_weapon.get_parent().remove_child(current_weapon)
+		bone.add_child(current_weapon)
+		current_weapon.equip()
+
+func shove():
+	play_animation('shove')
+
+func play_animation(action: String, variation: String = ''):
+	if animation_player != null:
+		var anim = animation_library_name + '/' + action
+		if variation != '':
+			anim += '_' + variation
+		animation_player.current_animation = anim
+		animation_player.play()

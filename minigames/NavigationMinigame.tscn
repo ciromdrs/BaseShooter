@@ -1,11 +1,11 @@
 [gd_scene load_steps=25 format=3 uid="uid://dx4eg1ujl1udl"]
 
-[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/Human.tscn" id="1_yc1mq"]
+[ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/humans/Human.tscn" id="1_yc1mq"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_55v1b"]
-[ext_resource type="PackedScene" uid="uid://b3mdeswkvljqe" path="res://weapons/Weapon.tscn" id="3_hcxpx"]
+[ext_resource type="PackedScene" path="res://weapons/Weapon.tscn" id="3_hcxpx"]
 [ext_resource type="PackedScene" uid="uid://dh5wri0vfxf0p" path="res://util/Camera3DPlus.tscn" id="4_fx57x"]
-[ext_resource type="Script" path="res://util/Camera3DPlus.gd" id="5_k5ilq"]
-[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/Zombie.tscn" id="6_sey8w"]
+[ext_resource type="Script" uid="uid://bdslfijn3cqpu" path="res://util/Camera3DPlus.gd" id="5_k5ilq"]
+[ext_resource type="PackedScene" uid="uid://ckdhl0d0mcqmg" path="res://characters/zombies/Zombie.tscn" id="6_sey8w"]
 [ext_resource type="PackedScene" uid="uid://cnks015m076md" path="res://controllers/ChaseController.tscn" id="7_cxg1x"]
 [ext_resource type="PackedScene" uid="uid://bfbvr5limn4fp" path="res://other/HealthSystem.tscn" id="8_elj2l"]
 

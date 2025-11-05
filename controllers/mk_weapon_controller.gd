@@ -32,7 +32,9 @@ func _get_mouse_pos3D() -> Vector3:
 
 ## Commands `controlled` to perform mouse actions.
 func _control_mouse_actions():
-	if Input.is_action_just_pressed("action1"):
+	if Input.is_action_just_pressed("action2"):
+		controlled.shove()
+	elif Input.is_action_just_pressed("action1"):
 		controlled.pull_trigger()
 	elif Input.is_action_just_released("action1"):
 		controlled.release_trigger()

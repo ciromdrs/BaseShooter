@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Shooter"
-run/main_scene="res://minigames/RandomScenarioMinigame.tscn"
+run/main_scene="uid://bpa1vtvflas21"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
@@ -87,6 +91,7 @@ equip4={
 3d_physics/layer_1="scenario"
 3d_physics/layer_2="player"
 3d_physics/layer_3="enemies"
+3d_physics/layer_4="enemies_hurt_boxes"
 
 [rendering]
 

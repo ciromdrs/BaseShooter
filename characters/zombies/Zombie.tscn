@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckdhl0d0mcqmg"]
+
+[ext_resource type="Script" uid="uid://wdkwm4bcqetd" path="res://characters/Character.gd" id="1_h34dh"]
+[ext_resource type="PackedScene" uid="uid://bjl3l2jcgid3j" path="res://characters/zombies/ZombieSkin.tscn" id="3_w8wi6"]
+[ext_resource type="PackedScene" uid="uid://dyqf8n6it7xox" path="res://util/Dialog.tscn" id="4_34hb8"]
+[ext_resource type="Script" uid="uid://bgnytpqp1iekj" path="res://util/state_machine.gd" id="4_q0qse"]
+[ext_resource type="Script" uid="uid://dk7mpqqbcud1h" path="res://characters/zombies/zombie_wander.gd" id="5_uv860"]
+[ext_resource type="Script" uid="uid://b6wfkcjeg4mjf" path="res://characters/zombies/zombie_chase.gd" id="6_uv860"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h34dh"]
+radius = 0.175
+height = 1.75
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q0qse"]
+radius = 2.0
+
+[node name="Zombie" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_h34dh")
+animation_library_name = "zombie"
+
+[node name="Dialog" parent="." instance=ExtResource("4_34hb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_h34dh")
+
+[node name="Skin" parent="." instance=ExtResource("3_w8wi6")]
+transform = Transform3D(-1.18, 0, 1.7817504e-07, 0, 1.18, 0, -1.7817504e-07, 0, -1.18, 0, 0, 0)
+
+[node name="DetectionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9965012, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_q0qse")
+
+[node name="FreezeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.5
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_q0qse")
+initial_state = NodePath("ZombieWanderState")
+
+[node name="ZombieWanderState" type="Node" parent="StateMachine" node_paths=PackedStringArray("zombie")]
+script = ExtResource("5_uv860")
+zombie = NodePath("../..")
+metadata/_custom_type_script = "uid://dk7mpqqbcud1h"
+
+[node name="ZombieChaseState" type="Node" parent="StateMachine" node_paths=PackedStringArray("zombie")]
+script = ExtResource("6_uv860")
+zombie = NodePath("../..")
+metadata/_custom_type_script = "uid://b6wfkcjeg4mjf"
+
+[connection signal="body_entered" from="DetectionArea" to="StateMachine/ZombieWanderState" method="_on_detection_area_body_entered"]

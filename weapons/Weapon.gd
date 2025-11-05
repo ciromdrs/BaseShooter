@@ -8,6 +8,14 @@ enum FireMode {
 	THROW  ## Hold the click and release to throw.
 }
 
+## Animation pose.
+enum _AnimationPose {
+	PISTOL,
+	RIFLE,
+	SHOTGUN,
+	THROWABLE
+}
+
 ## In meters.
 @export var range_: float = 10
 
@@ -22,6 +30,25 @@ enum FireMode {
 
 ## Freeze time between shots, in milliseconds.
 @export var freeze_time: float = 400
+
+@export var _anim_pose: _AnimationPose
+var anim_pose: String:
+	get:
+		return {
+			_AnimationPose.PISTOL: 'pistol',
+			_AnimationPose.RIFLE: 'rifle',
+			_AnimationPose.SHOTGUN: 'shotgun',
+			_AnimationPose.THROWABLE: 'throwable'
+		}[_anim_pose]
+
+
+
+@export var bone_name_equiped: String
+
+@export var bone_name_unequiped: String
+
+@onready var controller: = $MKWeaponController
+
 
 ## Indicates if the trigger is pulled.
 var trigger_pulled: bool = false
@@ -73,21 +100,31 @@ func _shoot_process():
 ## Performs a shot by applying damage to raycast colliders and updates last shot
 ## time.
 func _shoot():
+	# just_shot = true
 	var gunshot_textures = [
 		preload('res://assets/models3D/gunshot-fire1.png'),
 		preload('res://assets/models3D/gunshot-fire2.png'),
 		preload('res://assets/models3D/gunshot-fire3.png'),
 	]
-	$GunshotFire.texture = gunshot_textures.pick_random()
-	$GunshotFire.flip_h = randf() > .5
-	$AnimationPlayer.current_animation = 'shoot'
 	_last_shot = Util.now()
 	var ray_damage = damage / float(len($RayCasts.get_children()))
 	for r in $RayCasts.get_children():
 		if r.is_colliding():
 			var collider = r.get_collider()
-			if collider is Character:
-				collider.take_damage(ray_damage)
+			if collider is HurtBox:
+				# Get Character ancestor
+				# The collider is a HurtBox attatched to a bone in the skin's
+				# skeleton
+				var skin = collider.owner
+				if skin != null:
+					# The Skin node MUST be a direct child of a Character
+					var character: Character = skin.get_parent()
+					character.take_damage(ray_damage)
+	# Play animations
+	$GunshotFire.texture = gunshot_textures.pick_random()
+	$GunshotFire.flip_h = randf() > .5
+	$AnimationPlayer.current_animation = 'shoot'
+	
 
 
 ## Rotates the raycasts to simulate accuracy.
@@ -110,7 +147,7 @@ func _rotate_raycasts():
 ## Scales raycasts to the weapon's range.
 func _scale_raycasts():
 	for r in $RayCasts.get_children():
-		r.scale = Vector3(1, self.range_, 1)
+		r.scale.y = self.range_
 
 
 ## Update the aim.
@@ -121,19 +158,15 @@ func _update_aim():
 
 ## Equips the weapon and activates controls.
 func equip():
-	const CURSOR = preload('res://assets/cursor.png')
-	Input.set_custom_mouse_cursor(CURSOR, Input.CURSOR_ARROW, CURSOR.get_size() / 2)
-	var player: Character = get_parent()
-	$MKWeaponController.controlled = player
-	$MKWeaponController.process_mode = Node.PROCESS_MODE_INHERIT
+	controller.process_mode = Node.PROCESS_MODE_INHERIT
+	$RayCasts.process_mode = Node.PROCESS_MODE_INHERIT
+	$Aim.process_mode = Node.PROCESS_MODE_INHERIT
 	$Aim.visible = true
-	visible = true
 
 
 ## Unequips the weapon and deactivates controls.
 func unequip():
-	# TODO: Restore cursor?
-	visible = false
+	controller.process_mode = Node.PROCESS_MODE_DISABLED
+	$RayCasts.process_mode = Node.PROCESS_MODE_DISABLED
+	$Aim.process_mode = Node.PROCESS_MODE_DISABLED
 	$Aim.visible = false
-	$MKWeaponController.process_mode = Node.PROCESS_MODE_DISABLED
-	$MKWeaponController.controlled = null
