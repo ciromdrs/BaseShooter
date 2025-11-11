@@ -3,7 +3,6 @@ extends Node
 ##
 ## Add this as a child of a [code]Character[/code] node.
 
-const CURSOR = preload('res://assets/cursor.png')
 
 ## The [code]Character[/code] controlled by this.
 @export var controlled: Character
@@ -16,15 +15,12 @@ var just_shot: bool = false
 var target: Vector3
 
 
-func _ready():
-	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	Input.set_custom_mouse_cursor(CURSOR, Input.CURSOR_ARROW, CURSOR.get_size() / 2)
-
 func _process(_delta):
 	_control_move()
 	_control_jump()
 	_control_look_at_mouse()
 	_control_equip()
+
 
 ## Commands `controlled` to move.
 func _control_move():

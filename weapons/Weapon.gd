@@ -1,6 +1,7 @@
 ## A weapon.
 class_name Weapon extends Node3D
 
+
 ## Fire mode.
 enum FireMode {
 	MANUAL,  ## Pull the trigger to shoot one bullet.
@@ -26,7 +27,7 @@ enum WeaponType {
 @export var fire_mode: FireMode = FireMode.MANUAL
 
 ## Accuracy.
-@export_range(.01, 1) var accuracy: float = .7
+@export_range(.01, 1) var accuracy: float = .9
 
 ## Freeze time between shots, in milliseconds.
 @export var freeze_time: float = 400
@@ -44,13 +45,15 @@ var anim_pose: String:
 			WeaponType.THROWABLE: 'throwable'
 		}[weapon_type]
 
-
-
 @export var bone_name_equiped: String
 
 @export var bone_name_unequiped: String
 
+@onready var animation_player: = $Skin/AnimationPlayer
+
 @onready var controller: = $MKWeaponController
+
+@onready var skin: = $Skin
 
 
 ## Indicates if the trigger is pulled.
@@ -64,9 +67,8 @@ var _last_shot: float = 0
 
 
 func _ready():
-	_update_aim()
 	_rotate_raycasts()
-	_scale_raycasts()
+	_grow_raycasts()
 
 
 func _physics_process(_delta):
@@ -103,7 +105,6 @@ func _shoot_process():
 ## Performs a shot by applying damage to raycast colliders and updates last shot
 ## time.
 func _shoot():
-	# just_shot = true
 	var gunshot_textures = [
 		preload('res://assets/models3D/gunshot-fire1.png'),
 		preload('res://assets/models3D/gunshot-fire2.png'),
@@ -118,56 +119,45 @@ func _shoot():
 				# Get Character ancestor
 				# The collider is a HurtBox attatched to a bone in the skin's
 				# skeleton
-				var skin = collider.owner
-				if skin != null:
-					# The Skin node MUST be a direct child of a Character
-					var character: Character = skin.get_parent()
-					character.take_damage(ray_damage)
+				collider.hit.emit(ray_damage, self, null)
 	# Play animations
-	$GunshotFire.texture = gunshot_textures.pick_random()
-	$GunshotFire.flip_h = randf() > .5
-	$AnimationPlayer.current_animation = 'shoot'
+	var fire = skin.get_node('GunshotFire')
+	fire.texture = gunshot_textures.pick_random()
+	fire.flip_h = randf() > .5
+	animation_player.current_animation = 'weapon/shoot'
 	
 
 
 ## Rotates the raycasts to simulate accuracy.
 func _rotate_raycasts():
+	const MAX_APERTURE = PI / 3
 	# Number of rays
 	var nrays = len($RayCasts.get_children())
 	# Aperture of each ray
-	var ray_aperture = ($Aim/Right.rotation.y - $Aim/Left.rotation.y) / nrays
+	var ray_aperture = MAX_APERTURE * (1-accuracy) / nrays
+	var ray_rotation = TAU * (1-accuracy) / nrays
 	for i in nrays:
 		var ray = $RayCasts.get_child(i)
-		var target = $Aim/Left.rotation.y + \
-			i * ray_aperture + \
-			ray_aperture * (1 - randf())
-		var current = ray.rotation.z
-		var radians = current - target
+		var y_rotation = ray_aperture * (randf()-.5)
+		var z_rotation = ray_rotation * (randf()-.5)
 		# Apply rotation
-		ray.rotate(Vector3.FORWARD, radians)
+		ray.rotation.y = y_rotation
+		ray.rotation.z = z_rotation
 
 
-## Scales raycasts to the weapon's range.
-func _scale_raycasts():
+## Grows raycasts to the weapon's range.
+func _grow_raycasts():
 	for r in $RayCasts.get_children():
-		r.scale.y = self.range_
-
-
-## Update the aim.
-func _update_aim():
-	$Aim.set_range(self.range_)
-	$Aim.set_aperture(self.accuracy)
+		r.target_position.z = self.range_
 
 
 ## Equips the weapon and activates controls.
 func equip():
 	controller.process_mode = Node.PROCESS_MODE_INHERIT
-	#$RayCasts.process_mode = Node.PROCESS_MODE_INHERIT
-	#$Aim.process_mode = Node.PROCESS_MODE_INHERIT
-	#$Aim.visible = true
+	$RayCasts.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 ## Unequips the weapon and deactivates controls.
 func unequip():
 	controller.process_mode = Node.PROCESS_MODE_DISABLED
-	#$RayCDsible = false
+	$RayCasts.process_mode = Node.PROCESS_MODE_DISABLED

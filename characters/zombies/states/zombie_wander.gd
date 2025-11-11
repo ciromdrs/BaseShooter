@@ -8,7 +8,14 @@ var wander_time: float
 
 
 func enter(_args: Dictionary = {}):
+	var detection_area = zombie.get_node('DetectionArea')
+	detection_area.set_deferred('monitoring', true)
 	randomize_wander()
+
+
+func exit():
+	var detection_area = zombie.get_node('DetectionArea')
+	detection_area.set_deferred('monitoring', false)
 
 
 func update(delta):

@@ -1,4 +1,4 @@
-extends Node
+extends Control
 ## A mouse+keyboard controller for [code]Character[/code]s equiped with a 
 ## [code]Weapon[/code].
 ##
@@ -16,19 +16,40 @@ var just_shot: bool = false
 var target: Vector3
 
 
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
+
 func _process(_delta):
 	_control_mouse_actions()
+	queue_redraw()
 
-## Gets the global mouse position in the 3D space.
-func _get_mouse_pos3D() -> Vector3:
+
+func _draw():
+	var camera_radius_meters = get_viewport().get_camera_3d().size / 2
 	var mouse_pos = get_viewport().get_mouse_position()
-	var center = get_viewport().get_visible_rect().size / 2
-	var angle = mouse_pos.angle_to_point(center)
-	
-	var pos = Vector3()
-	pos.y = controlled.global_position.y - .1
-	controlled.rotation.y = -angle - PI*.5
-	return pos
+	var center = get_viewport().size / 2
+	# Distance from center, normalized in terms of screen's horizontal size
+	var distance_px = center.distance_to(mouse_pos)
+	var distance_norm = distance_px / center.y
+	var distance_meters = distance_norm * camera_radius_meters
+	var weapon_range = controlled.current_weapon.range_
+	#var ray_source = controlled.get_node('AimPlaceholder').position.z
+	#var angle = Vector2(center).angle_to(mouse_pos)
+	#print(angle)
+	#print(sin(angle))
+	#print(ray_source)
+	#print()
+	var alpha = 1 if distance_meters <= weapon_range else 0
+	# Cursor
+	draw_circle(mouse_pos, 2, Color(.5,.5,.5, .4), true, -1., true)
+	draw_circle(mouse_pos, 1, Color.WHITE, true, -1., true)
+	# Aim
+	var radius = 20
+	draw_circle(mouse_pos, radius, Color(.5,.5,.5, .4), false, 3, true)
+	draw_circle(mouse_pos, radius, Color(1, 1, 1, alpha), false, 1, true)
+
+
 
 ## Commands `controlled` to perform mouse actions.
 func _control_mouse_actions():

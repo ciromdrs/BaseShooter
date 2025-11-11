@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://2uwapeamrudl"]
 
 [ext_resource type="Script" uid="uid://0xqg0lygjh1h" path="res://weapons/Weapon.gd" id="1_lh0fb"]
-[ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="2_0s3b2"]
 [ext_resource type="PackedScene" uid="uid://d0waw2eynesrw" path="res://controllers/mk_weapon_controller.tscn" id="3_02mrp"]
 [ext_resource type="Texture2D" uid="uid://culmcgoan4rgw" path="res://assets/models3D/gunshot-fire1.png" id="3_y80sb"]
 
@@ -19,7 +18,7 @@ albedo_color = Color(0.11119685, 0.11119684, 0.11119684, 1)
 material = SubResource("StandardMaterial3D_02mrp")
 size = Vector3(0.1, 0.2, 0.55)
 
-[sub_resource type="Animation" id="Animation_6necn"]
+[sub_resource type="Animation" id="Animation_hvggv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -33,21 +32,13 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../OmniLight3D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_33u05"]
+_data = {
+&"RESET": SubResource("Animation_hvggv")
 }
 
-[sub_resource type="Animation" id="Animation_1c1in"]
-resource_name = "shoot"
+[sub_resource type="Animation" id="Animation_02mrp"]
 length = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -61,76 +52,54 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../OmniLight3D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.025),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w4r8g"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvggv"]
 _data = {
-&"RESET": SubResource("Animation_6necn"),
-&"shoot": SubResource("Animation_1c1in")
+&"shoot": SubResource("Animation_02mrp")
 }
 
 [node name="Pistol" type="Node3D"]
 script = ExtResource("1_lh0fb")
-range_ = 6.0
-damage = 4
-accuracy = 0.5
 freeze_time = 200.0
 weapon_type = 1
 bone_name_equiped = "HandR"
 bone_name_unequiped = "PocketR"
 
-[node name="Body" type="MeshInstance3D" parent="."]
+[node name="Skin" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.55, 0, -4.8082526e-08, 0, 0.55, 0, 4.8082526e-08, 0, -0.55, -0.007184813, -0.0018514767, 0.008141756)
 mesh = SubResource("BoxMesh_rvp1e")
 skeleton = NodePath("MeshInstance3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Skin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12077, -0.257011)
 mesh = SubResource("BoxMesh_v5lpq")
 skeleton = NodePath("../..")
 
-[node name="RayCasts" type="Node3D" parent="."]
-process_mode = 4
-transform = Transform3D(-0.55, -4.8082526e-08, 2.1017539e-15, 0, -2.4041261e-08, -0.55, 4.8082526e-08, -0.55, 2.4041261e-08, -0.00718479, 0.08372152, 0.26954478)
-visible = false
-
-[node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
-collision_mask = 5
-debug_shape_custom_color = Color(0, 0, 1, 1)
-debug_shape_thickness = 5
-
-[node name="Aim" parent="." instance=ExtResource("2_0s3b2")]
-process_mode = 4
-transform = Transform3D(-0.55, 0, -4.8082526e-08, 0, 0.55, 0, 4.8082526e-08, 0, -0.55, -0.007184787, 0.08494203, 0.30126452)
-visible = false
-
-[node name="MKWeaponController" parent="." instance=ExtResource("3_02mrp")]
-process_mode = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../GunshotFire")
-libraries = {
-&"": SubResource("AnimationLibrary_w4r8g")
-}
-
-[node name="GunshotFire" type="Sprite3D" parent="."]
-transform = Transform3D(1.4, -7.914843e-08, 2.1619574e-15, 0, -5.4420678e-08, -0.778, 8.900224e-08, 1.245, -3.400746e-08, 0.003046832, 0.09291136, 0.4941215)
+[node name="GunshotFire" type="Sprite3D" parent="Skin"]
+transform = Transform3D(-2.5454545, 3.417996e-07, -9.336334e-15, 0, -9.8946686e-08, -1.4145454, -3.8435297e-07, -2.2636364, 6.183174e-08, -0.018602911, 0.17229606, -0.8835995)
 visible = false
 texture = ExtResource("3_y80sb")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0071847774, 0.10418129, 0.41181034)
-visible = false
+[node name="OmniLight3D" type="OmniLight3D" parent="Skin/GunshotFire"]
+transform = Transform3D(-0.71428573, 1.5615768e-22, -1.0785414e-07, 1.2128177e-07, -3.5109547e-08, -0.8032129, -8.483594e-15, -1.2853471, 5.6184305e-08, -0.007308296, -0.06611338, -0.014485769)
 light_energy = 0.533
 omni_range = 6.7131577
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
+root_node = NodePath("../GunshotFire")
+libraries = {
+&"": SubResource("AnimationLibrary_33u05"),
+&"weapon": SubResource("AnimationLibrary_hvggv")
+}
+
+[node name="RayCasts" type="Node3D" parent="."]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00718479, 0.08372152, 0.26954478)
+
+[node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
+target_position = Vector3(0, 0, 1)
+collision_mask = 9
+
+[node name="MKWeaponController" parent="." instance=ExtResource("3_02mrp")]
+process_mode = 4
+visible = false

@@ -11,23 +11,25 @@ func _ready():
 	for c in get_children():
 		if c is State:
 			states[c.name] = c
-			c.Transitioned.connect(on_child_transition)
+			c.Transitioned.connect(on_state_transition)
 	# Set current state to the initial state
-	current_state = initial_state
-	initial_state.enter()
-			
+	on_state_transition(null, initial_state.name)
+
+		
 func _process(delta):
 	current_state.update(delta)
 
 func _physics_process(delta):
 	current_state.physics_update(delta)
 
-func on_child_transition(old_state, new_state_name, args: Dictionary = {}):
-	# TODO: Current state changed before this transition could happen. Discard?
-	if old_state != current_state:
-		return 
+func on_state_transition(old_state, new_state_name: String, args: Dictionary = {}):
+	# TODO: Discard loop transitions?
+	if current_state != null:
+		if current_state.name == new_state_name:
+			return
 	# Perform the transition
-	old_state.exit()
+	if old_state != null:
+		old_state.exit()
 	var new_state = states[new_state_name]
 	current_state = new_state
-	new_state.enter(args)
+	current_state.enter(args)

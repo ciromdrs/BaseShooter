@@ -1,54 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck5ybqy03jeqm"]
+[gd_scene load_steps=11 format=3 uid="uid://ck5ybqy03jeqm"]
 
 [ext_resource type="Script" uid="uid://0xqg0lygjh1h" path="res://weapons/Weapon.gd" id="1_gr6bx"]
-[ext_resource type="PackedScene" uid="uid://dla6ybjgpehhe" path="res://weapons/Aim3D.tscn" id="2_lu8nu"]
 [ext_resource type="PackedScene" uid="uid://d0waw2eynesrw" path="res://controllers/mk_weapon_controller.tscn" id="3_rx5td"]
 [ext_resource type="Texture2D" uid="uid://culmcgoan4rgw" path="res://assets/models3D/gunshot-fire1.png" id="4_8swrk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dblbo"]
-size = Vector3(0.09, 0.35, 0.09)
+size = Vector3(0.09, 0.255, 0.05)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1obas"]
-top_radius = 0.05
-bottom_radius = 0.05
-height = 1.0
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.7
 radial_segments = 8
 
 [sub_resource type="BoxMesh" id="BoxMesh_6eru0"]
-size = Vector3(0.09, 0.15, 0.5)
+size = Vector3(0.03, 0.075, 0.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lpy25"]
-size = Vector3(0.11, 0.11, 0.6)
+size = Vector3(0.065, 0.065, 0.4)
 
 [sub_resource type="Animation" id="Animation_6necn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../OmniLight3D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_1c1in"]
-resource_name = "shoot"
+resource_name = "RESET"
 length = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -57,18 +29,22 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.025),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../OmniLight3D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id="Animation_1c1in"]
+resource_name = "shoot"
+length = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.025),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -83,86 +59,76 @@ _data = {
 
 [node name="Shotgun" type="Node3D"]
 script = ExtResource("1_gr6bx")
-range_ = 9.0
 damage = 150
-accuracy = 0.4
+accuracy = 0.3
 freeze_time = 800.0
 weapon_type = 2
 bone_name_equiped = "HandR"
 bone_name_unequiped = "Back"
 
-[node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.555, 0, 0, 0, 0.555, 0, 0, 0, 0.555, 0, -0.000946749, -0.000946797)
+[node name="Skin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.000946797)
 mesh = SubResource("BoxMesh_dblbo")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.154545, -0.496387)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.111097455, 0.35911578)
 mesh = SubResource("CylinderMesh_1obas")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112058, 0.304093)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09746717, -0.14724207)
 mesh = SubResource("BoxMesh_6eru0")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.10351034, -0.63855535)
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.07478231, 0.40796152)
 mesh = SubResource("BoxMesh_lpy25")
 skeleton = NodePath("../..")
 
-[node name="RayCasts" type="Node3D" parent="."]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.06729737, -0.55303633)
-visible = false
-
-[node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
-collision_mask = 5
-debug_shape_custom_color = Color(0, 0, 1, 1)
-debug_shape_thickness = 5
-
-[node name="RayCast3D2" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.99863, 0.052336, 0, -0.052336, 0.99863, 0, 0, 0, 1, 0, 0, 0)
-collision_mask = 5
-debug_shape_custom_color = Color(0, 0, 1, 1)
-debug_shape_thickness = 5
-
-[node name="RayCast3D3" type="RayCast3D" parent="RayCasts"]
-collision_mask = 5
-debug_shape_custom_color = Color(0, 0, 1, 1)
-debug_shape_thickness = 5
-
-[node name="RayCast3D4" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0, 1, 0, 0, 0)
-collision_mask = 5
-debug_shape_custom_color = Color(0, 0, 1, 1)
-debug_shape_thickness = 5
-
-[node name="RayCast3D5" type="RayCast3D" parent="RayCasts"]
-transform = Transform3D(0.994522, -0.104528, 0, 0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
-collision_mask = 5
-debug_shape_custom_color = Color(0, 0, 1, 1)
-debug_shape_thickness = 5
-
-[node name="Aim" parent="." instance=ExtResource("2_lu8nu")]
-process_mode = 4
-transform = Transform3D(0.555, 0, 0, 0, 0.555, 0, 0, 0, 0.555, 0, 0.08987203, -0.559309)
-visible = false
-
-[node name="MKWeaponController" parent="." instance=ExtResource("3_rx5td")]
-process_mode = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../GunshotFire")
-libraries = {
-&"": SubResource("AnimationLibrary_w4r8g")
-}
-
-[node name="GunshotFire" type="Sprite3D" parent="."]
-transform = Transform3D(-1.965, 2.9670676e-07, -1.2969464e-14, 0, -8.589288e-08, -1.965, -2.9670676e-07, -1.965, 8.589288e-08, -0.000837557, 0.09586643, -0.84843445)
+[node name="GunshotFire" type="Sprite3D" parent="Skin"]
+transform = Transform3D(3.5405405, 0, 0, 0, -1.5476193e-07, -3.5405405, 0, 3.5405405, -1.5476193e-07, 0.012865145, 0.116634995, 1.2628944)
 visible = false
 texture = ExtResource("4_8swrk")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.107136354, -0.57729363)
-visible = false
+[node name="OmniLight3D" type="OmniLight3D" parent="Skin/GunshotFire"]
+transform = Transform3D(-0.5089058, 4.465526e-22, -7.684264e-08, 7.684264e-08, -2.2244977e-08, -0.5089058, -3.3588981e-15, -0.5089058, 2.2244977e-08, -0.00042625846, -0.13798514, -0.005735323)
 light_energy = 0.533
 omni_range = 6.7131577
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
+root_node = NodePath("../GunshotFire")
+libraries = {
+&"weapon": SubResource("AnimationLibrary_w4r8g")
+}
+
+[node name="RayCasts" type="Node3D" parent="."]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10925408, 0.71021724)
+
+[node name="RayCast3D" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
+collision_mask = 9
+
+[node name="RayCast3D2" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.99863, 0.052336, 0, -0.052336, 0.99863, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
+collision_mask = 9
+
+[node name="RayCast3D3" type="RayCast3D" parent="RayCasts"]
+target_position = Vector3(0, 0, 1)
+collision_mask = 9
+
+[node name="RayCast3D4" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
+collision_mask = 9
+
+[node name="RayCast3D5" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(0.994522, -0.104528, 0, 0.104528, 0.994522, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, 1)
+collision_mask = 9
+
+[node name="MKWeaponController" parent="." instance=ExtResource("3_rx5td")]
+process_mode = 4
+visible = false
+
+[node name="Node" type="Node" parent="."]

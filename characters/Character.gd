@@ -3,6 +3,10 @@
 class_name Character extends CharacterBody3D
 
 
+@warning_ignore("unused_signal")
+signal damage_taken
+
+
 enum MovementType {WALK, RUN}
 
 
@@ -45,20 +49,6 @@ var current_weapon:
 		if current_weapon_index < len(weapons):
 			return weapons[current_weapon_index]
 
-## The aim for the current weapon.
-var aim:
-	get:
-		if current_weapon == null:
-			return null
-		match current_weapon.weapon_type:
-			Weapon.WeaponType.RIFLE:
-				return $Aim/Rifle
-			Weapon.WeaponType.PISTOL:
-				return $Aim/Pistol
-			Weapon.WeaponType.SHOTGUN:
-				return $Aim/Shotgun
-		return null
-
 ## The health system.
 @onready var health_system = $HealthSystem
 
@@ -69,8 +59,8 @@ var aim:
 
 @onready var skeleton = $Skin/Armature/Skeleton3D
 
-## The freeze timer.
-@onready var freeze_timer = $FreezeTimer
+## The freeze time, in seconds.
+var freeze_time: float = 0.
 
 
 func _ready():
@@ -81,16 +71,16 @@ func _ready():
 
 
 func is_frozen():
-	return freeze_timer.time_left > 0
+	return freeze_time > 0
 
 
 ## Freezes the character for a given time (in seconds).
-func freeze(freeze_time: float):
-	freeze_timer.wait_time = max(freeze_timer.time_left, freeze_time)
-	freeze_timer.start()
+func freeze(duration: float):
+	freeze_time = max(freeze_time, duration)
 
 
-func _process(_delta):
+func _process(delta):
+	freeze_time -= delta / 1000
 	if not is_frozen():
 		var anim = 'idle'
 		var variation = ''
@@ -209,30 +199,6 @@ func release_trigger():
 	self.current_weapon.release_trigger()
 
 
-func take_damage(damage):
-	health_system.take_damage(damage)
-	if health_system.is_dead():
-		self.die()
-	else:
-		var lines: Array[String] = [
-			'Arra meu figo!..',
-			'Arra fi de rapariga!..',
-			'Arra fresco!..',
-			'Arra foi mesmo no pau da minha venta!..',
-			'Arra meus dente!..',
-		]
-		self.freeze(.5)
-		play_animation('hit_reaction')
-		say(lines.pick_random())
-		
-
-
-func die():
-	say('Ai! morri...')
-	play_animation('death')
-	queue_free()
-
-
 func say(line: String):
 	var duration = clamp(len(line)/20.0, .5, 3)
 	$Dialog.show_text(line, duration)
@@ -257,25 +223,25 @@ func equip(weapon_index: int):
 	# Unequip current weapon
 	if current_weapon != null:
 		current_weapon.unequip()
-		if aim != null:
-			aim.visible = false
 		# Remove from equiped bone (e.g. right hand)
-		current_weapon.get_parent().remove_child(current_weapon)
+		current_weapon.skin.get_parent().remove_child(current_weapon.skin)
 		# Attatch to unequiped bone (e.g. right pocket)
 		var bone = skeleton.get_node(current_weapon.bone_name_unequiped + '/Offset')
-		bone.add_child(current_weapon)
+		bone.add_child(current_weapon.skin)
 	# Equip next weapon
 	if weapons[weapon_index] != null:
 		current_weapon_index = weapon_index
-		if aim != null:
-			aim.visible = true
 		# Activate weapon controller
 		current_weapon.controller.controlled = self
 		# Attatch weapon to Skin
 		var bone = skeleton.get_node(current_weapon.bone_name_equiped + '/Offset')
-		current_weapon.get_parent().remove_child(current_weapon)
-		bone.add_child(current_weapon)
+		current_weapon.skin.get_parent().remove_child(current_weapon.skin)
+		bone.add_child(current_weapon.skin)
+		# Set up aim
+		#current_weapon.aim.position = $AimPlaceholder.position
+		current_weapon.get_node('RayCasts').position = $AimPlaceholder.position
 		current_weapon.equip()
+
 
 func shove():
 	play_animation('shove')
@@ -290,3 +256,7 @@ func play_animation(action: String, variation = '', direction = ''):
 			anim += '_' + variation
 		animation_player.current_animation = anim
 		animation_player.play()
+
+
+func _on_body_hurt_box_hit(damage: int, _collider: Node3D, _collision: CollisionObject3D) -> void:
+	damage_taken.emit(damage)

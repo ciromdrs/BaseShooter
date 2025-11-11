@@ -26,43 +26,5 @@ shape = SubResource("CapsuleShape3D_xjx24")
 [node name="Skin" parent="." instance=ExtResource("3_0b0dh")]
 transform = Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.00022673607, 0, 0)
 
-[node name="FreezeTimer" type="Timer" parent="."]
-
-[node name="Aim" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.074, 1.476, 0.354)
-
-[node name="Rifle" type="Node3D" parent="Aim"]
-visible = false
-
-[node name="RayCast3D" type="RayCast3D" parent="Aim/Rifle"]
-transform = Transform3D(1, -6.3573026e-08, 2.7788652e-15, 0, -4.371139e-08, -1, 6.3573026e-08, 1, -4.371139e-08, 0, 0, 0)
-target_position = Vector3(0, 10, 0)
-
-[node name="Pistol" type="Node3D" parent="Aim"]
-visible = false
-
-[node name="RayCast3D" type="RayCast3D" parent="Aim/Pistol"]
-transform = Transform3D(1, -6.3573026e-08, 2.7788652e-15, 0, -4.371139e-08, -1, 6.3573026e-08, 1, -4.371139e-08, 0, 0, 0)
-target_position = Vector3(0, 10, 0)
-
-[node name="Shotgun" type="Node3D" parent="Aim"]
-
-[node name="RayCast3D" type="RayCast3D" parent="Aim/Shotgun"]
-transform = Transform3D(0.96592575, 0.25881898, -1.1313335e-08, 0, -4.371139e-08, -1, -0.25881898, 0.96592575, -4.2221952e-08, -0.11470699, -0.38079834, 0)
-target_position = Vector3(0, 10, 0)
-
-[node name="RayCast3D2" type="RayCast3D" parent="Aim/Shotgun"]
-transform = Transform3D(0.9914449, 0.1305262, -5.7054814e-09, 0, -4.371139e-08, -1, -0.1305262, 0.9914449, -4.3337433e-08, -0.11470699, -0.38079834, 0)
-target_position = Vector3(0, 10, 0)
-
-[node name="RayCast3D3" type="RayCast3D" parent="Aim/Shotgun"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.11470699, -0.38079834, 0)
-target_position = Vector3(0, 10, 0)
-
-[node name="RayCast3D4" type="RayCast3D" parent="Aim/Shotgun"]
-transform = Transform3D(0.9914449, -0.1305262, 5.7054814e-09, 0, -4.371139e-08, -1, 0.1305262, 0.9914449, -4.3337433e-08, -0.11470699, -0.38079834, 0)
-target_position = Vector3(0, 10, 0)
-
-[node name="RayCast3D5" type="RayCast3D" parent="Aim/Shotgun"]
-transform = Transform3D(0.9659259, -0.25881916, 1.1313345e-08, 1.53837e-15, -4.371139e-08, -1, 0.25881916, 0.9659259, -4.2221963e-08, -0.11470699, -0.38079834, 0)
-target_position = Vector3(0, 10, 0)
+[node name="AimPlaceholder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00033938885, 1.476, 9.919703e-05)

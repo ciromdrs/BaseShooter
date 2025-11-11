@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/humans/Human.tscn" id="1_81ao4"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_0r1sc"]
 [ext_resource type="PackedScene" uid="uid://bfbvr5limn4fp" path="res://other/HealthSystem.tscn" id="3_y2h77"]
-[ext_resource type="PackedScene" uid="uid://j5o0ne0vwj5g" path="res://weapons/Grenade.tscn" id="4_aiyjo"]
+[ext_resource type="PackedScene" uid="uid://d24uy3qlglqmp" path="res://scenario/explosive_barrel.tscn" id="4_77kbr"]
 [ext_resource type="PackedScene" uid="uid://cj61nrs3fo57c" path="res://util/HUD3D.tscn" id="5_nly4j"]
 [ext_resource type="PackedScene" uid="uid://bvxmgay1e78st" path="res://controllers/MKHUDController.tscn" id="6_e4bam"]
 [ext_resource type="PackedScene" uid="uid://b0ls7usiqt21e" path="res://weapons/AssaultRifle.tscn" id="7_wjx11"]
@@ -124,11 +124,11 @@ size = Vector2(260, 140)
 [node name="StreetMinigame" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8801788, -0.46517986, 0.09430251, -0.2952003, 0.6920874, 0.6586895, -0.3716747, 0.55192643, -0.7464819, 8.56134, 16.4148, 8.718487)
+transform = Transform3D(0.47175118, -0.0049107624, 0.8817181, -0.8066443, 0.40140423, 0.4338197, -0.35605577, -0.91588783, 0.18540171, 17.229385, 16.4148, -16.982197)
 
 [node name="SpawnArea" parent="." node_paths=PackedStringArray("spawnable") instance=ExtResource("10_1eonr")]
-transform = Transform3D(-5.244, 0, 9.2318834e-07, 0, 0.07, 0, -7.91822e-07, 0, -6.114, -15.764263, 3.6260452, -13.488998)
-spawn_amount = 20
+transform = Transform3D(-16.253633, 0, 1.024925e-06, 0, 0.07, 0, -2.4542303e-06, 0, -6.7877717, 5.0919533, 3.6260452, -16.239267)
+spawn_amount = 100
 spawnable = NodePath("../Palette/Zombie")
 
 [node name="Timer" type="Timer" parent="SpawnArea"]
@@ -224,6 +224,9 @@ size = Vector3(72, 3, 64.2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.679061, 0)
 size = Vector3(72, 0.358, 64.2)
 material = ExtResource("13_0r1sc")
+
+[node name="ExplosiveBarrel" parent="NavigationRegion3D/Casas2" instance=ExtResource("4_77kbr")]
+transform = Transform3D(1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 1, -22.139713, -0.45098877, 35.85206)
 
 [node name="Casas3" type="CSGCombiner3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.9996867, 0, -0.025025493, 0, 1, 0, 0.025025493, 0, -0.9996867, 40.591057, 1.9073486e-06, -33.04075)
@@ -609,23 +612,22 @@ visible = false
 size = Vector3(1, 1, 74)
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("8_ixsqx")]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 27.996, 26.531, -5.888)
-v_offset = 0.05
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -7.3215485, 26.531, -3.7886925)
 projection = 1
-size = 10.0
+size = 14.0
 followed = NodePath("../Player")
 
 [node name="Camera3D3" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("8_ixsqx")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 27.995903, 26.531, -16.862543)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7.32164, 26.531, -14.763233)
 projection = 1
 current = false
 size = 8.0
 followed = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("weapons") instance=ExtResource("1_81ao4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.99612, 6.2303486, -16.875687)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3214264, 6.2303486, -14.776379)
 walk_speed = 5.0
-weapons = [NodePath("AssaultRifle"), NodePath("Pistol"), NodePath("Shotgun"), NodePath("Grenade")]
+weapons = [NodePath("AssaultRifle"), NodePath("Pistol"), NodePath("Shotgun"), null]
 
 [node name="MKCharacterController" parent="Player" node_paths=PackedStringArray("controlled") instance=ExtResource("2_0r1sc")]
 controlled = NodePath("..")
@@ -637,15 +639,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MKHUDController" parent="Player/HUD3D" instance=ExtResource("6_e4bam")]
 
-[node name="Grenade" parent="Player" instance=ExtResource("4_aiyjo")]
-freeze = true
-
 [node name="AssaultRifle" parent="Player" instance=ExtResource("7_wjx11")]
 
 [node name="Pistol" parent="Player" instance=ExtResource("29_gr4wk")]
 
 [node name="Shotgun" parent="Player" instance=ExtResource("30_nhuap")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9844051, 0.17591658, 0, -0.17591658, 0.9844051, -18.686432, 4.2613983, -9.363163)
