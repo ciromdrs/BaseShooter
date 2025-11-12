@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dljfec6np8wpu"]
+[gd_scene load_steps=11 format=3 uid="uid://dljfec6np8wpu"]
 
 [ext_resource type="Material" uid="uid://tp7vl7lim2lt" path="res://scenario/TelhadoMaterial.tres" id="1_r4p0p"]
-[ext_resource type="Material" uid="uid://bcnsltqvb7d8v" path="res://scenario/invisible_material.tres" id="2_bm0ce"]
 [ext_resource type="Texture2D" uid="uid://bkjfdbr65bip6" path="res://ignored/sao_joao_reference.png" id="2_r4p0p"]
 [ext_resource type="PackedScene" uid="uid://ccw600quhxwih" path="res://scenario/arvore.tscn" id="3_bm0ce"]
 
@@ -39,25 +38,21 @@ material = SubResource("StandardMaterial3D_hnwqy")
 transform = Transform3D(-4.377216e-08, 0, -1, 0, 1, 0, 1, 0, -4.377216e-08, 0, 0, -18)
 use_collision = true
 mesh = SubResource("PrismMesh_kj341")
-material = ExtResource("2_bm0ce")
 
 [node name="AcessoS" type="CSGMesh3D" parent="."]
 transform = Transform3D(-4.377216e-08, 0, 1, 0, 1, 0, -1, 0, -4.377216e-08, 0, 0, 18)
 use_collision = true
 mesh = SubResource("PrismMesh_kj341")
-material = ExtResource("2_bm0ce")
 
 [node name="AcessoE" type="CSGMesh3D" parent="."]
 transform = Transform3D(-1, 0, -8.754432e-08, 0, 1, 0, 8.754432e-08, 0, -1, 20.25, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_hnwqy")
-material = ExtResource("2_bm0ce")
 
 [node name="AcessoW" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.25, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_hnwqy")
-material = ExtResource("2_bm0ce")
 
 [node name="Quiosques" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1375868, 2.5, 6.0187454)

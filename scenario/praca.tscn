@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=3 uid="uid://di68u5j47c71t"]
+[gd_scene load_steps=17 format=3 uid="uid://di68u5j47c71t"]
 
-[ext_resource type="Material" uid="uid://bcnsltqvb7d8v" path="res://scenario/invisible_material.tres" id="1_khwfr"]
 [ext_resource type="Material" uid="uid://tp7vl7lim2lt" path="res://scenario/TelhadoMaterial.tres" id="2_n3gdf"]
 [ext_resource type="PackedScene" uid="uid://ccw600quhxwih" path="res://scenario/arvore.tscn" id="3_n3gdf"]
 [ext_resource type="Material" uid="uid://ofqrcf3ktesi" path="res://assets/models3D/TelhadoMaterial.tres" id="3_y16wo"]
@@ -81,25 +80,21 @@ size = Vector3(32, 1, 75)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -38.5)
 use_collision = true
 mesh = SubResource("PrismMesh_0r1sc")
-material = ExtResource("1_khwfr")
 
 [node name="AcessoS" type="CSGMesh3D" parent="CSGCombiner3D/Piso"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 38.5)
 use_collision = true
 mesh = SubResource("PrismMesh_0r1sc")
-material = ExtResource("1_khwfr")
 
 [node name="AcessoE" type="CSGMesh3D" parent="CSGCombiner3D/Piso"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 17, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_ixsqx")
-material = ExtResource("1_khwfr")
 
 [node name="AcessoW" type="CSGMesh3D" parent="CSGCombiner3D/Piso"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_ixsqx")
-material = ExtResource("1_khwfr")
 
 [node name="Cobertura" type="CSGCombiner3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.05)

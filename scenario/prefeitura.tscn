@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://pcl81e78pgat"]
+[gd_scene load_steps=14 format=3 uid="uid://pcl81e78pgat"]
 
 [ext_resource type="Material" uid="uid://tp7vl7lim2lt" path="res://scenario/TelhadoMaterial.tres" id="1_cmqxt"]
-[ext_resource type="Material" uid="uid://bcnsltqvb7d8v" path="res://scenario/invisible_material.tres" id="2_8qktx"]
 [ext_resource type="PackedScene" uid="uid://ccw600quhxwih" path="res://scenario/arvore.tscn" id="3_8qktx"]
 [ext_resource type="Material" uid="uid://c0iwlvxlorkhu" path="res://scenario/azul.tres" id="3_ypib2"]
 
@@ -52,19 +51,16 @@ material = SubResource("StandardMaterial3D_8qktx")
 transform = Transform3D(-0.0017279189, 0, -0.9999986, 0, 1, 0, 0.9999986, 0, -0.0017279189, 1.4598895, 0, -19.035099)
 use_collision = true
 mesh = SubResource("PrismMesh_nnlvd")
-material = ExtResource("2_8qktx")
 
 [node name="AcessoS" type="CSGMesh3D" parent="."]
 transform = Transform3D(0.0017278313, 0, 0.9999986, 0, 1, 0, -0.9999986, 0, 0.0017278313, 1.3976831, 0, 16.964844)
 use_collision = true
 mesh = SubResource("PrismMesh_nnlvd")
-material = ExtResource("2_8qktx")
 
 [node name="AcessoW" type="CSGMesh3D" parent="."]
 transform = Transform3D(0.9999986, 0, -0.0017278751, 0, 1, 0, 0.0017278751, 0, 0.9999986, -9.073199, 0, -1.0532748)
 use_collision = true
 mesh = SubResource("PrismMesh_ypib2")
-material = ExtResource("2_8qktx")
 
 [node name="Principal" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3962203, 4.69, 5.6430445)
