@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bpa1vtvflas21"]
+[gd_scene load_steps=54 format=3 uid="uid://bpa1vtvflas21"]
 
 [ext_resource type="PackedScene" uid="uid://bsy2ocrbtii6l" path="res://characters/humans/Human.tscn" id="1_81ao4"]
 [ext_resource type="PackedScene" uid="uid://behxdl27wyfos" path="res://controllers/MKCharacterController.tscn" id="2_0r1sc"]
@@ -17,7 +17,6 @@
 [ext_resource type="Material" uid="uid://tp7vl7lim2lt" path="res://scenario/TelhadoMaterial.tres" id="13_0r1sc"]
 [ext_resource type="PackedScene" uid="uid://bls1jx4pnnnem" path="res://scenario/road_block.tscn" id="13_1eonr"]
 [ext_resource type="PackedScene" uid="uid://di68u5j47c71t" path="res://scenario/praca.tscn" id="13_nly4j"]
-[ext_resource type="Material" uid="uid://bcnsltqvb7d8v" path="res://scenario/invisible_material.tres" id="13_y2h77"]
 [ext_resource type="PackedScene" uid="uid://xlmgkb2tvhtg" path="res://scenario/police_car.tscn" id="14_vqlev"]
 [ext_resource type="PackedScene" uid="uid://1wb7rer2w0s6" path="res://assets/models3D/car.tscn" id="16_d2d2s"]
 [ext_resource type="PackedScene" uid="uid://syutp1ijusdw" path="res://scenario/igreja.tscn" id="16_e4bam"]
@@ -128,7 +127,7 @@ transform = Transform3D(0.47175118, -0.0049107624, 0.8817181, -0.8066443, 0.4014
 
 [node name="SpawnArea" parent="." node_paths=PackedStringArray("spawnable") instance=ExtResource("10_1eonr")]
 transform = Transform3D(-16.253633, 0, 1.024925e-06, 0, 0.07, 0, -2.4542303e-06, 0, -6.7877717, 5.0919533, 3.6260452, -16.239267)
-spawn_amount = 100
+spawn_amount = 15
 spawnable = NodePath("../Palette/Zombie")
 
 [node name="Timer" type="Timer" parent="SpawnArea"]
@@ -156,25 +155,21 @@ size = Vector3(52, 1, 73)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -37.5)
 use_collision = true
 mesh = SubResource("PrismMesh_8tytt")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoS" type="CSGMesh3D" parent="NavigationRegion3D/Casas1/Piso"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 37.5)
 use_collision = true
 mesh = SubResource("PrismMesh_8tytt")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoE" type="CSGMesh3D" parent="NavigationRegion3D/Casas1/Piso"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_d2d2s")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoW" type="CSGMesh3D" parent="NavigationRegion3D/Casas1/Piso"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_d2d2s")
-material = ExtResource("13_y2h77")
 
 [node name="Paredes" type="CSGBox3D" parent="NavigationRegion3D/Casas1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.999999, 0)
@@ -196,25 +191,21 @@ size = Vector3(75.6, 1, 67)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -34.5)
 use_collision = true
 mesh = SubResource("PrismMesh_y2h77")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoS" type="CSGMesh3D" parent="NavigationRegion3D/Casas2/Piso"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 34.5)
 use_collision = true
 mesh = SubResource("PrismMesh_aiyjo")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoW" type="CSGMesh3D" parent="NavigationRegion3D/Casas2/Piso"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.83496, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_nly4j")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoE" type="CSGMesh3D" parent="NavigationRegion3D/Casas2/Piso"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 38.8, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_e4bam")
-material = ExtResource("13_y2h77")
 
 [node name="Paredes" type="CSGBox3D" parent="NavigationRegion3D/Casas2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.999999, 0)
@@ -248,25 +239,21 @@ material = ExtResource("13_0r1sc")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -37.5)
 use_collision = true
 mesh = SubResource("PrismMesh_y0vc2")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoS" type="CSGMesh3D" parent="NavigationRegion3D/Casas3"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 37.5)
 use_collision = true
 mesh = SubResource("PrismMesh_y0vc2")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoE" type="CSGMesh3D" parent="NavigationRegion3D/Casas3"]
 transform = Transform3D(-1.0000001, 0, -8.754432e-08, 0, 1, 0, 8.754432e-08, 0, -1.0000001, 19, 0, -0.071)
 use_collision = true
 mesh = SubResource("PrismMesh_yufx7")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoW" type="CSGMesh3D" parent="NavigationRegion3D/Casas3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_yufx7")
-material = ExtResource("13_y2h77")
 
 [node name="Arvore" parent="NavigationRegion3D/Casas3" instance=ExtResource("17_e4bam")]
 transform = Transform3D(0.79394174, 0, 0.18406962, 0, 0.815, 0, -0.18406962, 0, 0.79394174, 13.625286, 0, -38.841667)
@@ -294,25 +281,21 @@ material = ExtResource("13_0r1sc")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -37.5)
 use_collision = true
 mesh = SubResource("PrismMesh_u3gj2")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoS" type="CSGMesh3D" parent="NavigationRegion3D/Casas4"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 37.5)
 use_collision = true
 mesh = SubResource("PrismMesh_u3gj2")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoE" type="CSGMesh3D" parent="NavigationRegion3D/Casas4"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 22, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_1eonr")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoW" type="CSGMesh3D" parent="NavigationRegion3D/Casas4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_1eonr")
-material = ExtResource("13_y2h77")
 
 [node name="Casas5" type="CSGCombiner3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.99999833, 0, -0.0018326835, 0, 1, 0, 0.0018326835, 0, -0.99999833, 83.9149, 1.9073486e-06, -13.560272)
@@ -333,25 +316,21 @@ material = ExtResource("13_0r1sc")
 transform = Transform3D(-4.377216e-08, 0, -1, 0, 1, 0, 1, 0, -4.377216e-08, 0.207, 0, -18)
 use_collision = true
 mesh = SubResource("PrismMesh_kj341")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoS" type="CSGMesh3D" parent="NavigationRegion3D/Casas5"]
 transform = Transform3D(-4.377216e-08, 0, 1, 0, 1, 0, -1, 0, -4.377216e-08, -0.203, 0, 18)
 use_collision = true
 mesh = SubResource("PrismMesh_kj341")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoE" type="CSGMesh3D" parent="NavigationRegion3D/Casas5"]
 transform = Transform3D(-1, 0, -8.754432e-08, 0, 1, 0, 8.754432e-08, 0, -1, 22, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_hnwqy")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoW" type="CSGMesh3D" parent="NavigationRegion3D/Casas5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0)
 use_collision = true
 mesh = SubResource("PrismMesh_hnwqy")
-material = ExtResource("13_y2h77")
 
 [node name="Casas6" type="CSGCombiner3D" parent="NavigationRegion3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 138.63493, 1.0000018, -13.847535)
@@ -373,19 +352,16 @@ material = ExtResource("13_0r1sc")
 transform = Transform3D(-4.377216e-08, 0, -1, 0, 1, 0, 1, 0, -4.377216e-08, 0, -1, -18)
 use_collision = true
 mesh = SubResource("PrismMesh_nnlvd")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoS" type="CSGMesh3D" parent="NavigationRegion3D/Casas6"]
 transform = Transform3D(-4.377216e-08, 0, 1, 0, 1, 0, -1, 0, -4.377216e-08, 0, -1, 18)
 use_collision = true
 mesh = SubResource("PrismMesh_nnlvd")
-material = ExtResource("13_y2h77")
 
 [node name="AcessoW" type="CSGMesh3D" parent="NavigationRegion3D/Casas6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, 0.014)
 use_collision = true
 mesh = SubResource("PrismMesh_ypib2")
-material = ExtResource("13_y2h77")
 
 [node name="Prefeitura" parent="NavigationRegion3D" instance=ExtResource("8_k4fu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.75255, 1.9073486e-06, -12.836783)
@@ -614,7 +590,7 @@ size = Vector3(1, 1, 74)
 [node name="Camera3D" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("8_ixsqx")]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, -7.3215485, 26.531, -3.7886925)
 projection = 1
-size = 14.0
+size = 10.0
 followed = NodePath("../Player")
 
 [node name="Camera3D3" parent="." node_paths=PackedStringArray("followed") instance=ExtResource("8_ixsqx")]
@@ -644,6 +620,21 @@ metadata/_edit_use_anchors_ = true
 [node name="Pistol" parent="Player" instance=ExtResource("29_gr4wk")]
 
 [node name="Shotgun" parent="Player" instance=ExtResource("30_nhuap")]
+
+[node name="FlashLight" type="SpotLight3D" parent="Player"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.2150879, 0.7775574)
+light_energy = 5.0
+shadow_enabled = true
+spot_range = 11.664252
+spot_angle = 30.52
+
+[node name="PlayerLight" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.5475464, 0)
+layers = 2
+light_cull_mask = 4293918722
+spot_range = 4.64652
+spot_angle = 14.720578
+spot_angle_attenuation = 0.00232267
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9844051, 0.17591658, 0, -0.17591658, 0.9844051, -18.686432, 4.2613983, -9.363163)

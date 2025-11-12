@@ -68,18 +68,22 @@ bone_name_unequiped = "Back"
 
 [node name="Skin" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.000946749, -0.000946797)
+layers = 3
 mesh = SubResource("BoxMesh_dblbo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Skin"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.111097455, 0.35911578)
+layers = 3
 mesh = SubResource("CylinderMesh_1obas")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Skin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09746717, -0.14724207)
+layers = 3
 mesh = SubResource("BoxMesh_6eru0")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Skin"]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.07478231, 0.40796152)
+layers = 3
 mesh = SubResource("BoxMesh_lpy25")
 skeleton = NodePath("../..")
 

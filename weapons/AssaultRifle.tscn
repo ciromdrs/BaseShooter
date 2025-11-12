@@ -178,7 +178,6 @@ _data = {
 
 [node name="AssaultRifle" type="Node3D"]
 script = ExtResource("1_invhl")
-range_ = 12.0
 damage = 70
 fire_mode = 1
 freeze_time = 100.0
@@ -197,24 +196,29 @@ collision_mask = 13
 process_mode = 4
 
 [node name="Skin" type="MeshInstance3D" parent="."]
+layers = 3
 material_override = SubResource("StandardMaterial3D_6necn")
 
 [node name="Cube" type="MeshInstance3D" parent="Skin"]
+layers = 3
 material_override = SubResource("StandardMaterial3D_6necn")
 mesh = SubResource("ArrayMesh_h1tfv")
 skeleton = NodePath("")
 
 [node name="Cube_001" type="MeshInstance3D" parent="Skin"]
+layers = 3
 material_override = SubResource("StandardMaterial3D_6necn")
 mesh = SubResource("ArrayMesh_0rahj")
 skeleton = NodePath("")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Skin"]
+layers = 3
 material_override = SubResource("StandardMaterial3D_6necn")
 mesh = SubResource("ArrayMesh_3hwdb")
 skeleton = NodePath("")
 
 [node name="Cylinder" type="MeshInstance3D" parent="Skin"]
+layers = 3
 material_override = SubResource("StandardMaterial3D_6necn")
 mesh = SubResource("ArrayMesh_i4vr5")
 skeleton = NodePath("")

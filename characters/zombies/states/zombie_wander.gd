@@ -19,6 +19,8 @@ func exit():
 
 
 func update(delta):
+	if zombie.is_frozen():
+		return
 	if wander_time > 0:
 		wander_time -= delta
 	else:

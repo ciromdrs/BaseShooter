@@ -27,4 +27,4 @@ shape = SubResource("CapsuleShape3D_xjx24")
 transform = Transform3D(1, 0, -6.3573026e-08, 0, 1, 0, 6.3573026e-08, 0, 1, -0.00022673607, 0, 0)
 
 [node name="AimPlaceholder" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00033938885, 1.476, 9.919703e-05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00033938885, 1.2640249, 9.919703e-05)

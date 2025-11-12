@@ -67,11 +67,13 @@ bone_name_unequiped = "PocketR"
 
 [node name="Skin" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.55, 0, -4.8082526e-08, 0, 0.55, 0, 4.8082526e-08, 0, -0.55, -0.007184813, -0.0018514767, 0.008141756)
+layers = 3
 mesh = SubResource("BoxMesh_rvp1e")
 skeleton = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Skin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12077, -0.257011)
+layers = 3
 mesh = SubResource("BoxMesh_v5lpq")
 skeleton = NodePath("../..")
 

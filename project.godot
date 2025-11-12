@@ -88,6 +88,7 @@ equip4={
 
 [layer_names]
 
+3d_render/layer_2="player"
 3d_physics/layer_1="scenario"
 3d_physics/layer_2="player"
 3d_physics/layer_3="enemies"

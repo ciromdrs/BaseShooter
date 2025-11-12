@@ -14,6 +14,7 @@ func on_damage_taken(damage):
 		Transitioned.emit(self, 'ZombieDieState')
 		return
 	var lines: Array[String] = [
+		'',
 		'Arra meu figo!..',
 		'Arra fi de rapariga!..',
 		'Arra fresco!..',

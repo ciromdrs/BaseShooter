@@ -34,7 +34,6 @@ func _draw():
 	var distance_norm = distance_px / center.y
 	var distance_meters = distance_norm * camera_radius_meters
 	var weapon_range = controlled.current_weapon.range_
-	#var ray_source = controlled.get_node('AimPlaceholder').position.z
 	#var angle = Vector2(center).angle_to(mouse_pos)
 	#print(angle)
 	#print(sin(angle))
@@ -42,12 +41,13 @@ func _draw():
 	#print()
 	var alpha = 1 if distance_meters <= weapon_range else 0
 	# Cursor
-	draw_circle(mouse_pos, 2, Color(.5,.5,.5, .4), true, -1., true)
-	draw_circle(mouse_pos, 1, Color.WHITE, true, -1., true)
+	draw_circle(mouse_pos, 3, Color(.5,.5,.5, .4), true, -1., true)
+	draw_circle(mouse_pos, 2, Color.WHITE, true, -1., true)
 	# Aim
+	# TODO: grow radius based on the character's balance.
 	var radius = 20
 	draw_circle(mouse_pos, radius, Color(.5,.5,.5, .4), false, 3, true)
-	draw_circle(mouse_pos, radius, Color(1, 1, 1, alpha), false, 1, true)
+	draw_circle(mouse_pos, radius, Color(1, 1, 1, alpha), false, 2, true)
 
 
 
